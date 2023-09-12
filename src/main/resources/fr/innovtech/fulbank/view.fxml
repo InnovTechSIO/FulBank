@@ -32,7 +32,7 @@
             <Font size="24.0" />
          </font>
       </FontAwesomeIcon>
-      <FontAwesomeIcon fill="#fff3f3" glyphName="MINUS" layoutX="1468.0" layoutY="35.0" onMouseClicked="#onMinusButtonClick" size="2em" text="" AnchorPane.rightAnchor="82.14285659790039">
+      <FontAwesomeIcon fx:id="minusButton" fill="#fff3f3" glyphName="MINUS" layoutX="1468.0" layoutY="35.0" onMouseClicked="#onMinusButtonClick" size="2em" text="" AnchorPane.rightAnchor="82.14285659790039">
          <font>
             <Font size="24.0" />
          </font>
@@ -48,7 +48,7 @@
             <Font size="75.0" />
          </font>
       </PasswordField>
-      <Button layoutX="461.0" layoutY="764.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="650.0" style="-fx-background-color: #fff; -fx-border-color: #000;" text="CONNEXION" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="461.0" AnchorPane.rightAnchor="458.0">
+      <Button layoutX="461.0" layoutY="764.0" mnemonicParsing="false" onMouseClicked="#switchSceneAccount" prefHeight="140.0" prefWidth="650.0" style="-fx-background-color: #fff; -fx-border-color: #000;" text="CONNEXION" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="461.0" AnchorPane.rightAnchor="458.0">
          <font>
             <Font size="56.0" />
          </font>

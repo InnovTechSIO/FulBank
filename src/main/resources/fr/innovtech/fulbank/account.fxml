@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<AnchorPane fx:controller="fr.innovtech.fulbank.controller.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="946.0" prefWidth="1458.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle fx:id="accountRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="956.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" width="1458.0" />
+      <Button layoutX="704.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#switchToConnexionView" prefHeight="261.0" prefWidth="386.0" text="Button" />
+   </children>
+</AnchorPane>
