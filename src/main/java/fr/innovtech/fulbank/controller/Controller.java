@@ -3,6 +3,7 @@ package fr.innovtech.fulbank.controller;
 
 import fr.innovtech.fulbank.App;
 import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,10 @@ public class Controller {
     protected void handleClickAction(MouseEvent event) {
         xOffset = event.getScreenX() - (topPane.getScene().getWindow()).getX();
         yOffset = event.getScreenY() - (topPane.getScene().getWindow()).getY();
+    }
+
+    public void onClickConnexionButton(Event event) {
+        //rrr
     }
 
 
