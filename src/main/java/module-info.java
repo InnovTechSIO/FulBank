@@ -3,6 +3,7 @@ module fr.innovtech.fulbank {
     requires javafx.fxml;
     requires org.json;
     requires fontawesomefx;
+    requires java.sql;
 
 
     opens fr.innovtech.fulbank to javafx.fxml;

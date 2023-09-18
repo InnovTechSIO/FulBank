@@ -36,7 +36,7 @@
             <Font size="75.0" />
          </font>
       </PasswordField>
-      <Button layoutX="461.0" layoutY="764.0" mnemonicParsing="false" onMouseClicked="#switchSceneAccount" prefHeight="140.0" prefWidth="650.0" style="-fx-background-color: #fff; -fx-border-color: #000;" text="CONNEXION" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="461.0" AnchorPane.rightAnchor="458.0">
+      <Button fx:id="connexionButton" layoutX="461.0" layoutY="764.0" mnemonicParsing="false" onMouseClicked="#switchSceneAccount" prefHeight="140.0" prefWidth="650.0" style="-fx-background-color: #fff; -fx-border-color: #000;" text="CONNEXION" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="461.0" AnchorPane.rightAnchor="458.0">
          <font>
             <Font size="56.0" />
          </font>
