@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -27,17 +26,6 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <FontAwesomeIcon fx:id="closeButton" fill="RED" glyphName="CLOSE" layoutX="1528.0" layoutY="34.0" onMouseClicked="#onCloseButtonClick" size="2em" text="" AnchorPane.rightAnchor="22.14285659790039">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </FontAwesomeIcon>
-      <FontAwesomeIcon fx:id="minusButton" fill="#fff3f3" glyphName="MINUS" layoutX="1468.0" layoutY="35.0" onMouseClicked="#onMinusButtonClick" size="2em" text="" AnchorPane.rightAnchor="82.14285659790039">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </FontAwesomeIcon>
-      <FontAwesomeIcon fx:id="resizeButton" fill="WHITE" glyphName="SQUARE" layoutX="1501.0" layoutY="33.0" onMouseClicked="#onResizeButtonClick" size="1.5em" text="" AnchorPane.rightAnchor="52.571428298950195" />
       <TextField layoutX="119.0" layoutY="219.0" prefHeight="204.0" prefWidth="1332.0" style="-fx-alignment: center; -fx-border-color: #000;" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="118.0">
          <font>
             <Font size="75.0" />

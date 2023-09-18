@@ -22,16 +22,6 @@ public class Controller {
     private double yOffset = 0;
 
     @FXML
-    private FontAwesomeIcon closeButton;
-
-    @FXML
-    private FontAwesomeIcon minusButton;
-
-    @FXML
-    private FontAwesomeIcon resizeButton;
-
-
-    @FXML
     private Rectangle mainRectangle;
 
     @FXML
@@ -40,30 +30,6 @@ public class Controller {
     @FXML
     private ImageView logo;
 
-    @FXML
-    private Rectangle accountRectangle;
-
-    @FXML
-    protected void onCloseButtonClick() {
-
-        ((Stage) closeButton.getScene().getWindow()).close();
-
-    }
-
-    @FXML
-    protected void onMinusButtonClick() {
-
-        ((Stage) closeButton.getScene().getWindow()).setIconified(true);
-
-    }
-    
-    
-    @FXML
-    protected void onResizeButtonClick() {
-        this.setFullScreen(closeButton.getScene());
-
-
-    }
 
     @FXML
     protected void handleClickAction(MouseEvent event) {
@@ -79,7 +45,6 @@ public class Controller {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-        Platform.runLater(() -> this.setFullScreen(scene));
     }
 
 
@@ -90,7 +55,6 @@ public class Controller {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-        Platform.runLater(() -> this.setFullScreen(scene));
     }
 
     @FXML
@@ -100,34 +64,6 @@ public class Controller {
         stage.setY(event.getScreenY() - yOffset);
     }
 
-    public void setFullScreen(Scene scene) {
-        Stage stage = (Stage) scene.getWindow();
-        stage.setFullScreen(true);
-        stage.setWidth(stage.getWidth());
-        stage.setHeight(stage.getHeight());
-        stage.setX(0);
-        stage.setY(0);
-        stage.setFullScreen(false);
-        if(this.topPane != null) {
-            topPane.setWidth(stage.getWidth());
-            topPane.setVisible(false);
-        }
-        if(this.mainRectangle != null) {
-            mainRectangle.setWidth(stage.getWidth());
-            mainRectangle.setHeight(stage.getHeight());
-        }
-        if(this.logo != null) {
-            logo.setScaleX(2);
-            logo.setScaleY(2);
-            logo.setLayoutY(stage.getHeight() * 0.05);
-            logo.setLayoutX(stage.getWidth() / 2 - logo.getFitWidth() / 2);
-        }
-        if(this.closeButton != null)
-            closeButton.setVisible(false);
-        if(this.minusButton != null)
-            minusButton.setVisible(false);
-        if(this.resizeButton != null)
-            resizeButton.setVisible(false);
-    }
+
 
 }
