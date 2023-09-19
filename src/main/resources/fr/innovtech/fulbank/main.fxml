@@ -35,11 +35,7 @@
             <Font size="40.0" />
          </font>
       </Button>
-      <Button fx:id="profilButton" layoutX="1225.0" layoutY="650.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="286.0" style="-fx-background-color: #16915A;" text="Profil" textAlignment="CENTER">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Button>
+     
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#224394" height="25.0" layoutX="675.0" layoutY="455.0" stroke="BLACK" strokeType="INSIDE" width="24.0" />
       <ImageView fitHeight="584.0" fitWidth="800.0" layoutX="376.0" layoutY="-204.0">
          <image>
@@ -61,5 +57,10 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#224394" height="25.0" layoutX="843.0" layoutY="274.0" stroke="BLACK" strokeType="INSIDE" width="24.0" />
       <Line endX="249.0" layoutX="857.0" layoutY="287.0" startX="10.0" stroke="#224394" />
       <Line endX="99.0" endY="-24.0" layoutX="1126.0" layoutY="266.0" startX="-19.5" startY="21.5" stroke="#224394" />
+      <Button fx:id="profileButton" layoutX="1225.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#switchProfile" prefHeight="84.0" prefWidth="286.0" style="-fx-background-color: #16915A;" text="Profil" textAlignment="CENTER">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

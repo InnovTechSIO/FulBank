@@ -3,9 +3,7 @@ package fr.innovtech.fulbank.controller;
 
 import fr.innovtech.fulbank.App;
 import fr.innovtech.fulbank.entities.Customer;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -36,7 +34,7 @@ public class Controller {
     private Button connexionButton;
 
     @FXML
-    private Button profilButton;
+    private Button profileButton;
 
 
     @FXML
@@ -75,8 +73,8 @@ public class Controller {
     }
 
     @FXML
-    protected void switchSceneProfil(MouseEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("profil.fxml"));
+    protected void switchProfile(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("profile.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);

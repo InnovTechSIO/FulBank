@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.Profil">
+   <children>
+      <Label layoutX="665.0" layoutY="46.0" prefHeight="100.0" prefWidth="205.0" style="-fx-font-family: roboto; -fx-font-style: bold;" text="Profil">
+         <font>
+            <Font name="System Bold" size="68.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="438.0" fitWidth="600.0" layoutX="1068.0" layoutY="-168.0" AnchorPane.rightAnchor="-99.0" AnchorPane.topAnchor="-168.0">
+         <image>
+            <Image url="@fulbanklogo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="39.0" layoutY="176.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Propiétaire du compte :" textFill="#224399">
+         <font>
+            <Font size="68.0" />
+         </font>
+      </Label>
+      <Line endX="676.0" layoutX="108.0" layoutY="287.0" startX="-66.0" />
+   </children>
+</AnchorPane>
