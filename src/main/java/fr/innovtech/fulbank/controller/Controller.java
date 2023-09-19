@@ -35,6 +35,9 @@ public class Controller {
     @FXML
     private Button connexionButton;
 
+    @FXML
+    private Button profilButton;
+
 
     @FXML
     protected void handleClickAction(MouseEvent event) {
@@ -69,6 +72,15 @@ public class Controller {
         Stage stage = (Stage) topPane.getScene().getWindow();
         stage.setX(event.getScreenX() - xOffset);
         stage.setY(event.getScreenY() - yOffset);
+    }
+
+    @FXML
+    protected void switchSceneProfil(MouseEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("profil.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 
