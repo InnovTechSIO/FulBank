@@ -1,0 +1,85 @@
+package fr.innovtech.fulbank.controller;
+
+
+import fr.innovtech.fulbank.entities.Customer;
+import fr.innovtech.fulbank.gateways.MySQLDBGateway;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+public class CustomerDBController {
+
+
+    private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
+
+    public static Customer getCustomerById(int id) {
+        ArrayList<Customer> customers = new ArrayList<>();
+
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM customer WHERE idClient = ?");
+            stmtQuery.setInt(1, id);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if(resultSet.next()) {
+                do {
+                    String name = resultSet.getString("name");
+                    String firstname = resultSet.getString("firstname");
+                    String email = resultSet.getString("email");
+                    String phone = resultSet.getString("phone");
+                    String password = resultSet.getString("password");
+
+                    Customer customer = new Customer(firstname, name, email, phone, password);
+                    customers.add(customer);
+                } while(resultSet.next());
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return customers.get(0);
+    }
+
+
+    public static boolean checkUser(String username, String password) {
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT COUNT(*) FROM customer WHERE name = ? AND password = ?");
+            stmtQuery.setString(1, username);
+            stmtQuery.setString(2, password);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if (resultSet.next()) {
+                int rowCount = resultSet.getInt(1);
+                return rowCount > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public static  boolean register_customer(String name, String firstname, String email, String phone, String card_number, String IBAN, String password){
+        if(name.isEmpty() || firstname.isEmpty() || email.isEmpty() || phone.isEmpty() || card_number.isEmpty() || IBAN.isEmpty() || password.isEmpty()){
+            return false;
+        }
+        else {
+            try {
+                PreparedStatement stmtQuery = mySQLConnection.prepareStatement("INSERT INTO customer (name, firstname, email, phone, Identity_card_number, IBAN, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                stmtQuery.setString(1, name);
+                stmtQuery.setString(2, firstname);
+                stmtQuery.setString(3, email);
+                stmtQuery.setString(4, phone);
+                stmtQuery.setString(5, card_number);
+                stmtQuery.setString(6, IBAN);
+                stmtQuery.setString(7, password);
+                stmtQuery.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+    }
+
+}
