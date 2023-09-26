@@ -4,6 +4,8 @@ package fr.innovtech.fulbank.controller;
 import fr.innovtech.fulbank.App;
 import fr.innovtech.fulbank.entities.Customer;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
+import fr.innovtech.fulbank.controller.CustomerDBController;
+import fr.innovtech.fulbank.controller.Controller;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -113,6 +115,7 @@ public class Controller {
 
         String username = this.username.getText();
         String password = this.password.getText();
+
 
         boolean isUser = CustomerDBController.checkUser(username, password);
 
