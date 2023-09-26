@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class CustomerDBController {
 
 
-    private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
+    private static Connection mySQLConnection = MySQLDBGateway.getConnection();
+
 
     public static Customer getCustomerById(int id) {
         ArrayList<Customer> customers = new ArrayList<>();
@@ -42,6 +43,11 @@ public class CustomerDBController {
 
     public static boolean checkUser(String username, String password) {
         try {
+            if (MySQLDBGateway.isConnected()){
+                System.out.println("Connected");
+            } else {
+                System.out.println("Not connected");
+            }
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT COUNT(*) FROM customer WHERE name = ? AND password = ?");
             stmtQuery.setString(1, username);
             stmtQuery.setString(2, password);
