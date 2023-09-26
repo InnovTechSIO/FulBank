@@ -58,19 +58,19 @@ public class CustomerDBController {
         return false;
     }
 
-    public static  boolean register_customer(String name, String firstname, String email, String phone, String card_number, String IBAN, String password){
-        if(name.isEmpty() || firstname.isEmpty() || email.isEmpty() || phone.isEmpty() || card_number.isEmpty() || IBAN.isEmpty() || password.isEmpty()){
+    public static  boolean registerCustomer(String name, String firstName, String email, String phone, String cardNumber, String iban, String password){
+        if(name.isEmpty() || firstName.isEmpty() || email.isEmpty() || phone.isEmpty() || cardNumber.isEmpty() || iban.isEmpty() || password.isEmpty()){
             return false;
         }
         else {
             try {
                 PreparedStatement stmtQuery = mySQLConnection.prepareStatement("INSERT INTO customer (name, firstname, email, phone, Identity_card_number, IBAN, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
                 stmtQuery.setString(1, name);
-                stmtQuery.setString(2, firstname);
+                stmtQuery.setString(2, firstName);
                 stmtQuery.setString(3, email);
                 stmtQuery.setString(4, phone);
-                stmtQuery.setString(5, card_number);
-                stmtQuery.setString(6, IBAN);
+                stmtQuery.setString(5, cardNumber);
+                stmtQuery.setString(6, iban);
                 stmtQuery.setString(7, password);
                 stmtQuery.executeUpdate();
                 return true;

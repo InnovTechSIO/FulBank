@@ -2,11 +2,7 @@ package fr.innovtech.fulbank.controller;
 
 
 import fr.innovtech.fulbank.App;
-import fr.innovtech.fulbank.entities.Customer;
-import fr.innovtech.fulbank.gateways.MySQLDBGateway;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -144,7 +140,7 @@ public class Controller {
         String IBAN = this.IBAN.getText();
         String password = this.password_register.getText();
 
-        boolean isRegistered = CustomerDBController.register_customer(name, firstname, email, phone, card_number, IBAN, password);
+        boolean isRegistered = CustomerDBController.registerCustomer(name, firstname, email, phone, card_number, IBAN, password);
 
         if(isRegistered){
             System.out.println("User is registered");
