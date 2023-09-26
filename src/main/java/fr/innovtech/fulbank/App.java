@@ -1,5 +1,6 @@
 package fr.innovtech.fulbank;
 
+import fr.innovtech.fulbank.api.CoinGeckoAPI;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

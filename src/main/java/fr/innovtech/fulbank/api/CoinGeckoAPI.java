@@ -1,29 +1,18 @@
 package fr.innovtech.fulbank.api;
 
+import fr.innovtech.fulbank.annotations.NotNull;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.json.JSONObject;
 
-public class BinanceAPI {
-    private String cryptoSymbol;
+public class CoinGeckoAPI {
 
-    public BinanceAPI(String cryptoSymbol) {
-        this.cryptoSymbol = cryptoSymbol;
-    }
-
-    public String getCryptoFormat() {
-        return cryptoSymbol;
-    }
-
-    public void setCryptoFormat(String cryptoSymbol) {
-        this.cryptoSymbol = cryptoSymbol;
-    }
-
-    public String getCryptoCurrentPrice() throws IOException {
-        URL url = new URL("https://api.binance.com/api/v3/ticker/price?symbol="+this.cryptoSymbol);
+    public static Integer getCryptoCurrentPrice(@NotNull String crypto, @NotNull String currency) throws IOException {
+        URL url = new URL(String.format("https://api.coingecko.com/api/v3/coins/%s", crypto.toLowerCase()));
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
@@ -36,9 +25,9 @@ public class BinanceAPI {
 
         JSONObject jsonObject = new JSONObject(sb.toString());
 
-
-
-        return jsonObject.getString("price");
+        return jsonObject.getJSONObject("market_data")
+                .getJSONObject("current_price")
+                .getInt(currency);
 
     }
 }
