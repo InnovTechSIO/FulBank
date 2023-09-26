@@ -28,7 +28,7 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <TextField layoutX="119.0" layoutY="219.0" prefHeight="204.0" prefWidth="1332.0" style="-fx-alignment: center; -fx-border-color: #000;" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="118.0">
+      <TextField fx:id="username" layoutX="119.0" layoutY="219.0" prefHeight="204.0" prefWidth="1332.0" style="-fx-alignment: center; -fx-border-color: #000;" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="118.0">
          <font>
             <Font size="75.0" />
          </font>

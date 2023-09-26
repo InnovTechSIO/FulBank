@@ -78,7 +78,6 @@ public class Controller {
         xOffset = event.getScreenX() - (topPane.getScene().getWindow()).getX();
         yOffset = event.getScreenY() - (topPane.getScene().getWindow()).getY();
 
-        connexionButton.setText(customer.get_firstName());
     }
     @FXML
     protected void switchSceneAccount(MouseEvent event) throws IOException {
