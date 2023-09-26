@@ -2,6 +2,7 @@ package fr.innovtech.fulbank.controller;
 
 
 import fr.innovtech.fulbank.App;
+import fr.innovtech.fulbank.entities.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -68,6 +69,7 @@ public class Controller {
 
     @FXML
     private Label label_registration_failed;
+    private Button profileButton;
 
 
     @FXML
@@ -76,10 +78,11 @@ public class Controller {
         xOffset = event.getScreenX() - (topPane.getScene().getWindow()).getX();
         yOffset = event.getScreenY() - (topPane.getScene().getWindow()).getY();
 
+        connexionButton.setText(customer.get_firstName());
     }
     @FXML
     protected void switchSceneAccount(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("account.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -168,6 +171,16 @@ public class Controller {
         stage.setX(event.getScreenX() - xOffset);
         stage.setY(event.getScreenY() - yOffset);
     }
+
+    @FXML
+    protected void switchProfile(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("profile.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
 }
