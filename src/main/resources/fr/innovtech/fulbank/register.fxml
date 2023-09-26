@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: rgba(0,0,0,0); -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.Controller">
+   <children>
+      <Rectangle fx:id="mainRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#80e2ec" height="970.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80e2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fx:id="logo" cache="true" fitHeight="601.0" fitWidth="823.0" focusTraversable="true" layoutX="377.0" layoutY="-187.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fulbanklogo.png" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <TextField fx:id="name" layoutX="193.0" layoutY="338.0" prefHeight="41.0" prefWidth="324.0" style="-fx-alignment: center; -fx-border-color: #000;" AnchorPane.bottomAnchor="591.0" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="1052.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="firstname" layoutX="193.0" layoutY="256.0" prefHeight="22.0" prefWidth="324.0" style="-fx-alignment: center; -fx-border-color: #000;" AnchorPane.bottomAnchor="673.0" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="1052.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="email" layoutX="1032.0" layoutY="253.0" prefHeight="41.0" prefWidth="324.0" style="-fx-alignment: center; -fx-border-color: #000;" AnchorPane.bottomAnchor="676.0" AnchorPane.leftAnchor="1032.0" AnchorPane.rightAnchor="213.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="phone" layoutX="193.0" layoutY="485.0" prefHeight="41.0" prefWidth="324.0" style="-fx-alignment: center; -fx-border-color: #000;" AnchorPane.bottomAnchor="444.0" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="1052.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="card_number" layoutX="1032.0" layoutY="414.0" prefHeight="41.0" prefWidth="324.0" style="-fx-alignment: center; -fx-border-color: #000;" AnchorPane.bottomAnchor="515.0" AnchorPane.leftAnchor="1032.0" AnchorPane.rightAnchor="213.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="IBAN" layoutX="1032.0" layoutY="338.0" prefHeight="41.0" prefWidth="324.0" style="-fx-alignment: center; -fx-border-color: #000;" AnchorPane.bottomAnchor="591.0" AnchorPane.leftAnchor="1032.0" AnchorPane.rightAnchor="213.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="password_register" layoutX="193.0" layoutY="414.0" prefHeight="41.0" prefWidth="324.0" style="-fx-border-color: #000; -fx-alignment: center;" AnchorPane.bottomAnchor="515.0" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="1052.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </PasswordField>
+      <Button fx:id="registerButton" layoutX="436.0" layoutY="752.0" mnemonicParsing="false" onMouseClicked="#register_clicked" prefHeight="140.0" prefWidth="650.0" style="-fx-background-color: #fff; -fx-border-color: #000;" text="REGISTER" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="436.0" AnchorPane.rightAnchor="483.0">
+         <font>
+            <Font size="56.0" />
+         </font>
+      </Button>
+      <Label fx:id="label_firstname" layoutX="42.0" layoutY="259.0" text="First Name">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_name" layoutX="42.0" layoutY="341.0" text="Name">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_password" layoutX="42.0" layoutY="417.0" text="Password">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_phone" layoutX="42.0" layoutY="488.0" text="Phone">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_email" layoutX="944.0" layoutY="259.0" text="Email">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_IBAN" layoutX="947.0" layoutY="341.0" text="IBAN">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_card_number" layoutX="857.0" layoutY="408.0" text="Card Number">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_registration_failed" layoutX="610.0" layoutY="695.0" text="Registration failed. Try again" visible="false">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="connect_register_button" layoutX="1188.0" layoutY="761.0" mnemonicParsing="false" onMouseClicked="#switchToConnexionView" prefHeight="95.0" prefWidth="337.0" style="-fx-background-color: #fff; -fx-border-color: #000;" text="CONNECT">
+         <font>
+            <Font size="56.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
