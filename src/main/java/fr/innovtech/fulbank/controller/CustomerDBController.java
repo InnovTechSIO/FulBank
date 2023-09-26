@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class CustomerDBController {
 
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
+    public static Customer connectedCustomer = new Customer("Default","Default","default@default.fr","0606060606","Default",  "000000000");
 
     public static Customer getCustomerById(int id) {
         ArrayList<Customer> customers = new ArrayList<>();
@@ -26,8 +27,9 @@ public class CustomerDBController {
                     String email = resultSet.getString("email");
                     String phone = resultSet.getString("phone");
                     String password = resultSet.getString("password");
+                    String iban = resultSet.getString("iban");
 
-                    Customer customer = new Customer(firstname, name, email, phone, password);
+                    Customer customer = new Customer(firstname, name, email, phone, password, iban);
                     customers.add(customer);
                 } while(resultSet.next());
             }
@@ -46,13 +48,23 @@ public class CustomerDBController {
             } else {
                 System.out.println("Not connected");
             }
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT COUNT(*) FROM customer WHERE name = ? AND password = ?");
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM customer WHERE name = ? AND password = ?");
             stmtQuery.setString(1, username);
             stmtQuery.setString(2, password);
             ResultSet resultSet = stmtQuery.executeQuery();
 
             if (resultSet.next()) {
                 int rowCount = resultSet.getInt(1);
+                String name = resultSet.getString("name");
+                String firstname = resultSet.getString("firstname");
+                String email = resultSet.getString("email");
+                String phone = resultSet.getString("phone");
+                String pass = resultSet.getString("password");
+                String iban = resultSet.getString("iban");
+
+                Customer customer = new Customer(firstname, name, email, phone, pass, iban);
+                CustomerDBController.connectedCustomer = customer;
+
                 return rowCount > 0;
             }
         } catch (SQLException e) {
@@ -63,6 +75,7 @@ public class CustomerDBController {
     }
 
     public static  boolean registerCustomer(String name, String firstName, String email, String phone, String cardNumber, String iban, String password){
+
         if(name.isEmpty() || firstName.isEmpty() || email.isEmpty() || phone.isEmpty() || cardNumber.isEmpty() || iban.isEmpty() || password.isEmpty()){
             return false;
         }
