@@ -4,6 +4,7 @@ module fr.innovtech.fulbank {
     requires org.json;
     requires fontawesomefx;
     requires java.sql;
+    requires jbcrypt;
 
 
     opens fr.innovtech.fulbank to javafx.fxml;

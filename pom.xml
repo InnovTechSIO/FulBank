@@ -59,12 +59,20 @@
       <artifactId>json</artifactId>
       <version>20230618</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
+    <dependency>
+      <groupId>org.mindrot</groupId>
+      <artifactId>jbcrypt</artifactId>
+      <version>0.4</version>
+    </dependency>
 
     <dependency>
       <groupId>de.jensd</groupId>
       <artifactId>fontawesomefx</artifactId>
       <version>8.2</version>
     </dependency>
+
+
 
   </dependencies>
 

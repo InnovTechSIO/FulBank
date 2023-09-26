@@ -4,8 +4,12 @@ package fr.innovtech.fulbank.controller;
 import fr.innovtech.fulbank.entities.Customer;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class CustomerDBController {
 
@@ -26,7 +30,6 @@ public class CustomerDBController {
                     String email = resultSet.getString("email");
                     String phone = resultSet.getString("phone");
                     String password = resultSet.getString("password");
-
                     Customer customer = new Customer(firstname, name, email, phone, password);
                     customers.add(customer);
                 } while(resultSet.next());
@@ -40,23 +43,34 @@ public class CustomerDBController {
 
 
     public static boolean checkUser(String username, String password) {
+
         try {
             if (MySQLDBGateway.isConnected()){
                 System.out.println("Connected");
             } else {
                 System.out.println("Not connected");
             }
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT COUNT(*) FROM customer WHERE name = ? AND password = ?");
+
+
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM customer WHERE name = ?");
             stmtQuery.setString(1, username);
-            stmtQuery.setString(2, password);
             ResultSet resultSet = stmtQuery.executeQuery();
 
-            if (resultSet.next()) {
-                int rowCount = resultSet.getInt(1);
-                return rowCount > 0;
+            if(resultSet.next()) {
+                do {
+                    String databasePassword = resultSet.getString("password");
+                    boolean isPasswordCorrect = BCrypt.checkpw(password, databasePassword);
+                    if (isPasswordCorrect) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                } while(resultSet.next());
             }
+
         } catch (SQLException e) {
-            e.printStackTrace();
+
         }
 
         return false;
@@ -67,6 +81,9 @@ public class CustomerDBController {
             return false;
         }
         else {
+            String password_crypted = BCrypt.hashpw(password, BCrypt.gensalt());
+
+
             try {
                 PreparedStatement stmtQuery = mySQLConnection.prepareStatement("INSERT INTO customer (name, firstname, email, phone, Identity_card_number, IBAN, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
                 stmtQuery.setString(1, name);
@@ -75,7 +92,7 @@ public class CustomerDBController {
                 stmtQuery.setString(4, phone);
                 stmtQuery.setString(5, cardNumber);
                 stmtQuery.setString(6, iban);
-                stmtQuery.setString(7, password);
+                stmtQuery.setString(7, password_crypted);
                 stmtQuery.executeUpdate();
                 return true;
             } catch (SQLException e) {
