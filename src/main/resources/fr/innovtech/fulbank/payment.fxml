@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.Controller">
    <children>
-      <ImageView fx:id="n" fitHeight="438.0" fitWidth="600.0" layoutX="1169.0" layoutY="-159.0">
+      <ImageView fx:id="n" fitHeight="438.0" fitWidth="600.0" layoutX="1169.0" layoutY="-159.0" AnchorPane.rightAnchor="-99.0" AnchorPane.topAnchor="-168.0">
          <image>
             <Image url="@fulbanklogo.png" />
          </image>
       </ImageView>
+      <Label layoutX="622.0" layoutY="46.0" style="-fx-font-family: roboto;" text="Virement">
+         <font>
+            <Font name="System Bold" size="68.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="226.0" style="-fx-font-family: roboto;" text="Montant :" textFill="#224399">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </Label>
+      <TextField layoutX="369.0" layoutY="250.0" prefHeight="53.0" prefWidth="289.0" />
    </children>
 </AnchorPane>
