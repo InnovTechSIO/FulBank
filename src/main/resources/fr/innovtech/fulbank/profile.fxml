@@ -25,12 +25,12 @@
          </font>
       </Label>
       <Line endX="676.0" layoutX="108.0" layoutY="287.0" startX="-66.0" />
-      <Label layoutX="39.0" layoutY="435.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="IBAN :" textFill="#224399">
+      <Label layoutX="39.0" layoutY="419.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="IBAN :" textFill="#224399">
          <font>
             <Font size="68.0" />
          </font>
       </Label>
-      <Line endX="676.0" layoutX="106.0" layoutY="536.0" startX="-66.0" />
+      <Line endX="676.0" layoutX="106.0" layoutY="520.0" startX="-66.0" />
       <Label layoutX="42.0" layoutY="653.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Email :" textFill="#224399">
          <font>
             <Font size="68.0" />
@@ -42,12 +42,12 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Label fx:id="iban" layoutX="39.0" layoutY="559.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: open sans;" text="test">
+      <Label fx:id="iban" layoutX="39.0" layoutY="543.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: open sans;" text="test">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_email" layoutX="42.0" layoutY="793.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: open sans;" text="test">
+      <Label fx:id="lbl_email" layoutX="42.0" layoutY="781.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: open sans;" text="test">
          <font>
             <Font size="48.0" />
          </font>
