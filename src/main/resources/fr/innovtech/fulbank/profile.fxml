@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,5 +26,6 @@
          </font>
       </Label>
       <Line endX="676.0" layoutX="108.0" layoutY="287.0" startX="-66.0" />
+      <FontAwesomeIcon glyphName="LONG_ARROW_LEFT" layoutX="42.0" layoutY="117.0" onMouseClicked="#switchSceneAccount" size="10em" />
    </children>
 </AnchorPane>
