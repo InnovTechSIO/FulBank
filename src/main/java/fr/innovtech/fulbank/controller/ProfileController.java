@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProfileController implements Initializable {
+public class ProfileController extends Controller implements Initializable {
 
 
     @FXML
@@ -29,7 +29,6 @@ public class ProfileController implements Initializable {
 
     @FXML
     private Label lbl_email;
-
 
     @FXML
     protected void ShowProfile(){
