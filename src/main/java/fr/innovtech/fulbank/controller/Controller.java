@@ -150,6 +150,7 @@ public class Controller {
         String IBAN = this.IBAN.getText();
         String password = this.password_register.getText();
 
+        
         boolean isRegistered = CustomerDBController.registerCustomer(name, firstname, email, phone, card_number, IBAN, password);
 
         if(isRegistered){
