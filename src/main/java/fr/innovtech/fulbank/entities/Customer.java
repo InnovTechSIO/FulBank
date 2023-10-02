@@ -8,12 +8,15 @@ public class Customer {
     private String _phone;
     private String _password;
 
-    public Customer(String _firstName, String _lastName, String _mail, String _phone, String _password) {
+    private  String _iban;
+
+    public Customer(String _firstName, String _lastName, String _mail, String _phone, String _password, String _iban) {
         this._firstName = _firstName;
         this._lastName = _lastName;
         this._mail = _mail;
         this._phone = _phone;
         this._password = _password;
+        this._iban = _iban;
     }
 
     public String get_firstName() {
@@ -36,6 +39,8 @@ public class Customer {
         return _phone;
     }
 
+    public String get_iban(){ return _iban; }
+
     public void set_firstName(String _firstName) {
         this._firstName = _firstName;
     }
@@ -55,6 +60,8 @@ public class Customer {
     public void set_phone(String _phone) {
         this._phone = _phone;
     }
+
+    public void set_iban(String _iban){ this._iban= _iban;}
 
     @Override
     public String toString() {

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,22 +9,48 @@
 
 <AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.ProfileController">
    <children>
-      <Label layoutX="665.0" layoutY="46.0" prefHeight="100.0" prefWidth="205.0"  text="Profil">
+      <Label layoutX="665.0" layoutY="46.0" prefHeight="100.0" prefWidth="205.0" style="-fx-font-family: 'Roboto Serif'; -fx-font-style: bold;" text="Profil">
          <font>
-            <Font name="System Bold" size="68.0" />
+            <Font name="Arial Bold" size="68.0" />
          </font>
       </Label>
-      <ImageView fitHeight="438.0" fitWidth="600.0" layoutX="1068.0" layoutY="-168.0" AnchorPane.rightAnchor="-99.0" AnchorPane.topAnchor="-168.0">
+      <ImageView fx:id="n" fitHeight="438.0" fitWidth="600.0" layoutX="1068.0" layoutY="-168.0" AnchorPane.rightAnchor="-99.0" AnchorPane.topAnchor="-168.0">
          <image>
             <Image url="@fulbanklogo.png" />
          </image>
       </ImageView>
-      <Label layoutX="39.0" layoutY="176.0" prefHeight="100.0" prefWidth="791.0"  text="Propiétaire du compte :" textFill="#224399">
+      <Label layoutX="39.0" layoutY="176.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Propiétaire du compte :" textFill="#224399">
          <font>
             <Font size="68.0" />
          </font>
       </Label>
       <Line endX="676.0" layoutX="108.0" layoutY="287.0" startX="-66.0" />
-      <FontAwesomeIcon glyphName="LONG_ARROW_LEFT" layoutX="42.0" layoutY="117.0" onMouseClicked="#switchSceneAccount" size="10em" />
+      <Label layoutX="39.0" layoutY="419.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="IBAN :" textFill="#224399">
+         <font>
+            <Font size="68.0" />
+         </font>
+      </Label>
+      <Line endX="676.0" layoutX="106.0" layoutY="520.0" startX="-66.0" />
+      <Label layoutX="42.0" layoutY="653.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Email :" textFill="#224399">
+         <font>
+            <Font size="68.0" />
+         </font>
+      </Label>
+      <Line endX="676.0" layoutX="106.0" layoutY="753.0" startX="-66.0" />
+      <Label fx:id="customer_name" layoutX="39.0" layoutY="303.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: open sans;" text="test">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="iban" layoutX="39.0" layoutY="543.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: open sans;" text="test">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_email" layoutX="42.0" layoutY="781.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: open sans;" text="test">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller{
 
 
     private double xOffset = 0;
@@ -72,7 +72,7 @@ public class Controller implements Initializable {
 
     @FXML
     private Label label_registration_failed;
-    private Button profileButton;
+
 
 
     @FXML
@@ -163,10 +163,6 @@ public class Controller implements Initializable {
 
 
 
-
-
-
-
     @FXML
     protected void handleMovementAction(MouseEvent event) {
         Stage stage = (Stage) topPane.getScene().getWindow();
@@ -178,6 +174,16 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL var1, ResourceBundle var2) {
+
+    }
+    
+    @FXML
+    protected void switchProfile(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("profile.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
 
     }
 }
