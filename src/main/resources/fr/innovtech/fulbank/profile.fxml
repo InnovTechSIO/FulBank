@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.Controller">
    <children>
-      <Label layoutX="665.0" layoutY="46.0" prefHeight="100.0" prefWidth="205.0"  text="Profil">
+      <Label layoutX="665.0" layoutY="46.0" prefHeight="100.0" prefWidth="205.0" text="Profil">
          <font>
             <Font name="System Bold" size="68.0" />
          </font>
@@ -20,7 +20,7 @@
             <Image url="@fulbanklogo.png" />
          </image>
       </ImageView>
-      <Label layoutX="39.0" layoutY="176.0" prefHeight="100.0" prefWidth="791.0"  text="Propiétaire du compte :" textFill="#224399">
+      <Label layoutX="39.0" layoutY="176.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Propiétaire du compte :" textFill="#224399">
          <font>
             <Font size="68.0" />
          </font>
