@@ -99,6 +99,14 @@ public class Controller{
         stage.show();
     }
 
+    protected void switchToaccount_creationView(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @FXML
     protected void switchToRegisterView(MouseEvent event) throws  IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("register.fxml"));

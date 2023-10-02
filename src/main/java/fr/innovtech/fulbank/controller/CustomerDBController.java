@@ -92,7 +92,7 @@ public class CustomerDBController {
                 stmtQuery.executeUpdate();
                 return true;
             } catch (SQLException e) {
-                e.printStackTrace();
+
                 return false;
             }
         }
