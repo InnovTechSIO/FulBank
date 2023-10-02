@@ -61,6 +61,14 @@ public class CustomerDBController {
                     String databasePassword = resultSet.getString("password");
                     boolean isPasswordCorrect = BCrypt.checkpw(password, databasePassword);
                     if (isPasswordCorrect) {
+                        String name = resultSet.getString("name");
+                        String firstname = resultSet.getString("firstname");
+                        String email = resultSet.getString("email");
+                        String phone = resultSet.getString("phone");
+                        String pass = resultSet.getString("password");
+                        String iban = resultSet.getString("iban");
+
+                        CustomerDBController.connectedCustomer = new Customer(firstname, name, email, phone, pass, iban);
                         return true;
                     }
                     else {
