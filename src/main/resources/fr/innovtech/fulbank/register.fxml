@@ -97,7 +97,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label_card_number" layoutX="857.0" layoutY="408.0" text="Card Number">
+      <Label fx:id="label_card_number" layoutX="857.0" layoutY="408.0" text="Carte bancaire">
          <font>
             <Font size="24.0" />
          </font>
