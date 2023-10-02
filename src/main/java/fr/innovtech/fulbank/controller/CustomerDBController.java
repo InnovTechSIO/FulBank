@@ -1,3 +1,4 @@
+
 package fr.innovtech.fulbank.controller;
 
 
@@ -83,8 +84,9 @@ public class CustomerDBController {
             return false;
         }
         else {
-            String password_crypted = BCrypt.hashpw(password, BCrypt.gensalt());
 
+
+            String password_crypted = BCrypt.hashpw(password, BCrypt.gensalt());
 
             try {
                 PreparedStatement stmtQuery = mySQLConnection.prepareStatement("INSERT INTO customer (name, firstname, email, phone, Identity_card_number, IBAN, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
