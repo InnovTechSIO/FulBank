@@ -4,6 +4,7 @@ import com.github.javafaker.CreditCardType;
 import com.github.javafaker.Faker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -16,10 +17,22 @@ public class RegisterController extends Controller implements Initializable {
 
     @FXML
     private TextField card_number;
+
+    @FXML
+    private ComboBox wording;
+
     @Override
     public void initialize(URL var1, ResourceBundle var2) {
         Faker faker = new Faker();
         IBAN.setText(faker.finance().iban("FR"));
         card_number.setText(faker.finance().creditCard(CreditCardType.MASTERCARD));
+        for(String crypto : CustomerDBController.allcrypto()){
+            System.out.println(crypto);
+            wording.getItems().add(crypto);
+        }
     }
+
+
+
+
 }

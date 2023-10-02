@@ -7,11 +7,12 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerDBController {
 
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
-    public static Customer connectedCustomer = new Customer("Default","Default","default@default.fr","0606060606","Default",  "000000000");
+
 
     public static Customer getCustomerById(int id) {
         ArrayList<Customer> customers = new ArrayList<>();
@@ -23,6 +24,7 @@ public class CustomerDBController {
 
             if(resultSet.next()) {
                 do {
+                    int idClient = resultSet.getInt("idClient");
                     String name = resultSet.getString("name");
                     String firstname = resultSet.getString("firstname");
                     String email = resultSet.getString("email");
@@ -30,7 +32,7 @@ public class CustomerDBController {
                     String password = resultSet.getString("password");
                     String iban = resultSet.getString("iban");
 
-                    Customer customer = new Customer(firstname, name, email, phone, password, iban);
+                    Customer customer = new Customer(idClient,firstname, name, email, phone, password, iban);
                     customers.add(customer);
                 } while(resultSet.next());
             }
@@ -108,6 +110,37 @@ public class CustomerDBController {
                 return false;
             }
         }
+
+    }
+    public static String capitalizeWord(String str){
+        String words[]=str.split("\\s");
+        StringBuilder capitalizeWord= new StringBuilder();
+        for(String w:words){
+            String first=w.substring(0,1);
+            String afterfirst=w.substring(1);
+            capitalizeWord.append(first.toUpperCase()).append(afterfirst).append(" ");
+        }
+        return capitalizeWord.toString().trim();
+    }
+    public static List<String> allcrypto(){
+        List<String> cryptos = new ArrayList<>();
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Crypto");
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if(resultSet.next()) {
+                do {
+                    String crypto = CustomerDBController.capitalizeWord(resultSet.getString("libelle"));
+
+                    cryptos.add(crypto);
+                } while(resultSet.next());
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return cryptos;
+
 
     }
 

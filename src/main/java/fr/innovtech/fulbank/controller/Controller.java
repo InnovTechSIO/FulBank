@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -72,6 +69,17 @@ public class Controller implements Initializable {
 
     @FXML
     private Label label_registration_failed;
+
+    @FXML
+    private TextField amount;
+
+    @FXML
+    private TextField ceiling_high;
+
+    @FXML
+    private TextField low_ceilling;
+
+
 
 
 
