@@ -5,6 +5,7 @@ import fr.innovtech.fulbank.App;
 import fr.innovtech.fulbank.entities.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,8 +18,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
 
 
     private double xOffset = 0;
@@ -171,15 +174,10 @@ public class Controller {
         stage.setY(event.getScreenY() - yOffset);
     }
 
-    @FXML
-    protected void switchProfile(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("profile.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+
+
+    @Override
+    public void initialize(URL var1, ResourceBundle var2) {
+
     }
-
-
-
 }

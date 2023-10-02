@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class MySQLDBGateway {
     private static Connection connection;
-    private static String url_base = "jdbc:mariadb://", host = "172.16.119.18/FulBank?characterEncoding=utf8&autoReconnect=true&useSSL=false&serverTimezone=UTC",
+    private static String url_base = "jdbc:mariadb://", host = "172.16.119.20/FulBank?characterEncoding=utf8&autoReconnect=true&useSSL=false&serverTimezone=UTC",
             username = "fulbank", password = "FulbankADMIN";
 
     public static Connection getConnection() {
