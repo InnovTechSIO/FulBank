@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.Controller">
    <children>
       <ImageView fx:id="n" fitHeight="438.0" fitWidth="600.0" layoutX="1169.0" layoutY="-159.0">
@@ -12,5 +13,6 @@
             <Image url="@fulbanklogo.png" />
          </image>
       </ImageView>
+      <FontAwesomeIcon glyphName="LONG_ARROW_LEFT" layoutX="42.0" layoutY="117.0" onMouseClicked="#switchSceneAccount" size="10em" />
    </children>
 </AnchorPane>

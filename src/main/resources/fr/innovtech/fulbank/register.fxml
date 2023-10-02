@@ -67,27 +67,27 @@
             <Font size="56.0" />
          </font>
       </Button>
-      <Label fx:id="label_firstname" layoutX="42.0" layoutY="259.0" text="First Name">
+      <Label fx:id="label_firstname" layoutX="42.0" layoutY="259.0" text="Prénom">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label_name" layoutX="42.0" layoutY="341.0" text="Name">
+      <Label fx:id="label_name" layoutX="42.0" layoutY="341.0" text="Nom">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label_password" layoutX="42.0" layoutY="417.0" text="Password">
+      <Label fx:id="label_password" layoutX="42.0" layoutY="417.0" text="Mot de Passe">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label_phone" layoutX="42.0" layoutY="488.0" text="Phone">
+      <Label fx:id="label_phone" layoutX="42.0" layoutY="488.0" text="Tel">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label_email" layoutX="944.0" layoutY="259.0" text="Email">
+      <Label fx:id="label_email" layoutX="944.0" layoutY="259.0" text="mail">
          <font>
             <Font size="24.0" />
          </font>
