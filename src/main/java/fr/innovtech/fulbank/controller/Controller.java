@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller{
+public class Controller implements Initializable {
 
 
     private double xOffset = 0;
@@ -99,6 +99,14 @@ public class Controller{
         stage.show();
     }
 
+    protected void switchToaccount_creationView(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @FXML
     protected void switchToRegisterView(MouseEvent event) throws  IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("register.fxml"));
@@ -145,6 +153,7 @@ public class Controller{
         String IBAN = this.IBAN.getText();
         String password = this.password_register.getText();
 
+        
         boolean isRegistered = CustomerDBController.registerCustomer(name, firstname, email, phone, card_number, IBAN, password);
 
         if(isRegistered){
@@ -170,6 +179,13 @@ public class Controller{
         stage.setY(event.getScreenY() - yOffset);
     }
 
+
+
+    @Override
+    public void initialize(URL var1, ResourceBundle var2) {
+
+    }
+    
     @FXML
     protected void switchProfile(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("profile.fxml"));

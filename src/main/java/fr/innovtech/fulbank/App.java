@@ -1,6 +1,6 @@
 package fr.innovtech.fulbank;
 
-import fr.innovtech.fulbank.api.CoinGeckoAPI;
+import com.github.javafaker.CreditCardType;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +24,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         MySQLDBGateway.connection();
+
     }
 
 
