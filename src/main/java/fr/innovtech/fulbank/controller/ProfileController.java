@@ -29,7 +29,9 @@ public class ProfileController extends Controller implements Initializable {
 
     @FXML
     protected void ShowProfile(){
-
+        customer_name.setText(CustomerDBController.capitalizeWord(CustomerDBController.connectedCustomer.get_firstName()) + " " + CustomerDBController.connectedCustomer.get_lastName().toUpperCase());
+        iban.setText(CustomerDBController.connectedCustomer.get_iban());
+        lbl_email.setText(CustomerDBController.connectedCustomer.get_mail());
     }
 
 

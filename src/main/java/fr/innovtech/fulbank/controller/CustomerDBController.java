@@ -12,6 +12,7 @@ import java.util.List;
 public class CustomerDBController {
 
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
+    public static Customer connectedCustomer = new Customer("default", "default", "default", "default", "default", "default");
 
 
     public static Customer getCustomerById(int id) {
@@ -32,7 +33,7 @@ public class CustomerDBController {
                     String password = resultSet.getString("password");
                     String iban = resultSet.getString("iban");
 
-                    Customer customer = new Customer(idClient,firstname, name, email, phone, password, iban);
+                    Customer customer = new Customer(firstname, name, email, phone, password, iban);
                     customers.add(customer);
                 } while(resultSet.next());
             }
