@@ -43,7 +43,7 @@
             <Font size="56.0" />
          </font>
       </Button>
-      <Label fx:id="label_error_connexion" alignment="CENTER" layoutY="711.0" prefHeight="27.0" prefWidth="1569.0" text="Nom d'utilisateur ou mot de passe invalide. Réessayez !" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="label_error_connexion" alignment="CENTER" layoutY="711.0" prefHeight="27.0" prefWidth="1569.0" text="Nom d'utilisateur ou mot de passe invalide. Réessayez !" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="18.0" />
          </font>
