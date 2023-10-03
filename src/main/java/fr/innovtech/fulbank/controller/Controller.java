@@ -2,6 +2,7 @@ package fr.innovtech.fulbank.controller;
 
 
 import fr.innovtech.fulbank.App;
+import fr.innovtech.fulbank.api.CoinGeckoAPI;
 import fr.innovtech.fulbank.entities.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +11,12 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.w3c.dom.events.Event;
 
 import java.io.IOException;
 import java.net.URL;
@@ -91,7 +95,7 @@ public class Controller implements Initializable {
 
     }
     @FXML
-    protected void switchSceneAccount(MouseEvent event) throws IOException {
+    protected void switchSceneAccount(InputEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -124,9 +128,11 @@ public class Controller implements Initializable {
         stage.show();
     }
 
+
+
     @FXML
 
-    protected void connexion_clicked(MouseEvent event){
+    protected void connexion_clicked(InputEvent event){
 
         String username = this.username.getText();
         String password = this.password.getText();
@@ -178,7 +184,13 @@ public class Controller implements Initializable {
         }
     }
 
-
+    @FXML
+    protected void connectEnter(KeyEvent e) {
+        if(e.getCode().toString().equals("ENTER"))
+        {
+            connexion_clicked(e);
+        }
+    }
 
     @FXML
     protected void handleMovementAction(MouseEvent event) {
