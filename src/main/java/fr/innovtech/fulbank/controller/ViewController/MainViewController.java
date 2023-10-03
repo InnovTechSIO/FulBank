@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainViewController implements Initializable {
 
     @FXML
     protected void switchProfile(MouseEvent event) throws IOException {
