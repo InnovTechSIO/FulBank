@@ -27,7 +27,7 @@
             <Font size="68.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER_RIGHT" layoutX="352.0" layoutY="237.0" prefHeight="75.0" prefWidth="477.0" style="-fx-font-family: Open Sans;" text="0.0 €">
+      <TextField fx:id="txt_montant" alignment="CENTER_RIGHT" layoutX="352.0" layoutY="237.0" prefHeight="75.0" prefWidth="477.0" style="-fx-font-family: Open Sans;" text="0.0 €">
          <font>
             <Font size="36.0" />
          </font></TextField>
