@@ -1,10 +1,11 @@
-package fr.innovtech.fulbank.controller;
+package fr.innovtech.fulbank.controller.ViewController;
 
 
 import fr.innovtech.fulbank.App;
 import fr.innovtech.fulbank.animator.TextAnimator;
 import fr.innovtech.fulbank.animator.TextOutput;
 import javafx.application.Platform;
+import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,7 +25,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class ViewController implements Initializable {
 
 
     private double xOffset = 0;

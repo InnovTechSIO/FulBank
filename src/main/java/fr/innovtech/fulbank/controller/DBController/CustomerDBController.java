@@ -1,4 +1,4 @@
-package fr.innovtech.fulbank.controller;
+package fr.innovtech.fulbank.controller.DBController;
 
 
 import fr.innovtech.fulbank.entities.Customer;

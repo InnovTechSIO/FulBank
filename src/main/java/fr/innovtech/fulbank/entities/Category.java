@@ -10,12 +10,17 @@ public class Category {
         private Float _currency;
         private Crypto _crypto;
 
-        public Category(String _wording, Float _account_fees, Float _ceiling_high, Float _low_ceiling, Float _currency) {
+        private Float _interest_rate;
+
+        public Category(Integer _id, String _wording, Float _account_fees, Float _ceiling_high, Float _low_ceiling,Float _interest_rate, Float _currency, Crypto _crypto) {
             this._wording = _wording;
             this._account_fees = _account_fees;
             this._ceiling_high = _ceiling_high;
             this._low_ceiling = _low_ceiling;
             this._currency = _currency;
+            this._crypto = _crypto;
+            this._id = _id;
+            this._interest_rate = _interest_rate;
         }
 
         public String get_wording() {

@@ -1,4 +1,4 @@
-package fr.innovtech.fulbank.controller;
+package fr.innovtech.fulbank.controller.ViewController;
 
 import fr.innovtech.fulbank.App;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class PaymentController extends Controller implements Initializable {
+public class PaymentViewController extends ViewController implements Initializable {
 
     @FXML
     private TextField txt_montant;
