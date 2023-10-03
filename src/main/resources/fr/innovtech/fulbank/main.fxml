@@ -10,27 +10,27 @@
 
 <AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.MainController">
    <children>
-      <Button stylesheets="@style.css" styleClass="buttonMain" layoutX="50.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: #16915A;" text="Mes comptes" textAlignment="CENTER">
+      <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Mes comptes" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <Button stylesheets="@style.css" styleClass="buttonMain" layoutX="50.0" layoutY="425.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="291.0" style="-fx-background-color: #16915A;" text="Virement" textAlignment="CENTER">
+      <Button fx:id="paymentButton" layoutX="50.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#switchPayment" prefHeight="84.0" prefWidth="291.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Virement" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <Button stylesheets="@style.css" styleClass="buttonMain" layoutX="50.0" layoutY="650.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="291.0" style="-fx-background-color: #16915A;" text="Historique" textAlignment="CENTER">
+      <Button layoutX="50.0" layoutY="650.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="291.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Historique" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <Button stylesheets="@style.css" styleClass="buttonMain" layoutX="1225.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: #16915A;" text="Cours Crypto" textAlignment="CENTER">
+      <Button layoutX="1225.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Cours Crypto" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <Button stylesheets="@style.css" styleClass="buttonMain" layoutX="1225.0" layoutY="425.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="286.0" style="-fx-background-color: #16915A;" text="Conversion" textAlignment="CENTER">
+      <Button layoutX="1225.0" layoutY="425.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="286.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Conversion" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
@@ -57,7 +57,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#224394" height="25.0" layoutX="843.0" layoutY="274.0" stroke="BLACK" strokeType="INSIDE" width="24.0" />
       <Line endX="249.0" layoutX="857.0" layoutY="287.0" startX="10.0" stroke="#224394" />
       <Line endX="99.0" endY="-24.0" layoutX="1126.0" layoutY="266.0" startX="-19.5" startY="21.5" stroke="#224394" />
-      <Button stylesheets="@style.css" styleClass="buttonMain" fx:id="profileButton" layoutX="1225.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#switchProfile" prefHeight="84.0" prefWidth="286.0" style="-fx-background-color: #16915A;" text="Profil" textAlignment="CENTER">
+      <Button fx:id="profileButton" layoutX="1225.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#switchProfile" prefHeight="84.0" prefWidth="286.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Profil" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
