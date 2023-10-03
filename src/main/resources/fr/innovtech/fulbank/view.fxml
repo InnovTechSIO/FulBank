@@ -32,7 +32,7 @@
             <Font size="75.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="password" layoutX="120.0" layoutY="497.0" prefHeight="204.0" prefWidth="1332.0" style="-fx-border-color: #000; -fx-alignment: center;" AnchorPane.bottomAnchor="269.0" onKeyPressed="#connectEnter" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="117.0">
+      <PasswordField fx:id="password" layoutX="120.0" layoutY="497.0" onKeyPressed="#connectEnter" prefHeight="204.0" prefWidth="1332.0" style="-fx-border-color: #000; -fx-alignment: center;" AnchorPane.bottomAnchor="269.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="117.0">
          <font>
             <Font size="75.0" />
          </font>
@@ -43,12 +43,12 @@
             <Font size="56.0" />
          </font>
       </Button>
-      <Label fx:id="label_error_connexion" layoutX="585.0" layoutY="722.0" prefHeight="27.0" prefWidth="358.0" text="Username or password not valid. Try again" visible="false">
+      <Label fx:id="label_error_connexion" alignment="CENTER" layoutY="711.0" prefHeight="27.0" prefWidth="1569.0" text="Nom d'utilisateur ou mot de passe invalide. Réessayez !" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="register_redirect" layoutX="1158.0" layoutY="766.0" mnemonicParsing="false" onMouseClicked="#switchToRegisterView" prefHeight="107.0" prefWidth="397.0" style="-fx-background-color: #fff; -fx-border-color: #000;" text="S'enregistrer">
+      <Button fx:id="register_redirect" layoutX="1158.0" layoutY="766.0" mnemonicParsing="false" onMouseClicked="#switchToRegisterView" prefHeight="107.0" prefWidth="397.0" style="-fx-background-color: #fff; -fx-border-color: #000;" text="Registration">
 
          <font>
             <Font size="56.0" />

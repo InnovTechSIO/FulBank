@@ -2,24 +2,26 @@ package fr.innovtech.fulbank.controller;
 
 
 import fr.innovtech.fulbank.App;
-import fr.innovtech.fulbank.api.CoinGeckoAPI;
-import fr.innovtech.fulbank.entities.Customer;
+import fr.innovtech.fulbank.animator.TextAnimator;
+import fr.innovtech.fulbank.animator.TextOutput;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import org.w3c.dom.events.Event;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -29,17 +31,7 @@ public class Controller implements Initializable {
     private double yOffset = 0;
 
     @FXML
-    private Rectangle mainRectangle;
-
-    @FXML
     private Rectangle topPane;
-
-
-    @FXML
-    private ImageView logo;
-
-    @FXML
-    private Button connexionButton;
 
     @FXML
     private TextField username;
@@ -74,16 +66,8 @@ public class Controller implements Initializable {
     @FXML
     private Label label_registration_failed;
 
-    @FXML
-    private TextField amount;
 
-    @FXML
-    private TextField ceiling_high;
-
-    @FXML
-    private TextField low_ceilling;
-
-
+    TextAnimator textAnimator;
 
 
 
@@ -151,7 +135,11 @@ public class Controller implements Initializable {
         }
         else{
             System.out.println("User is not connected");
+            label_error_connexion.setText("");
             label_error_connexion.setVisible(true);
+            Thread thread = new Thread(textAnimator);
+            thread.start();
+            this.password.setText("");
         }
 
     }
@@ -203,7 +191,16 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL var1, ResourceBundle var2) {
+        TextOutput textOutput = textOut -> Platform.runLater(() ->  {
+            label_error_connexion.setText(textOut);
+            label_error_connexion.setTextFill(Color.rgb((new Random()).nextInt(255),(new Random()).nextInt(255),(new Random()).nextInt(255), 1));
+            if(Objects.equals(textOut, "Nom d'utilisateur ou mot de passe invalide. Réessayez !")) {
+                label_error_connexion.setTextFill(Color.rgb(0,0,0,1));
+            }
+        });
 
+        textAnimator = new TextAnimator(label_error_connexion.getText(),
+                0, textOutput);
     }
     
     @FXML
