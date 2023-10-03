@@ -193,10 +193,6 @@ public class Controller implements Initializable {
     public void initialize(URL var1, ResourceBundle var2) {
         TextOutput textOutput = textOut -> Platform.runLater(() ->  {
             label_error_connexion.setText(textOut);
-            label_error_connexion.setTextFill(Color.rgb((new Random()).nextInt(255),(new Random()).nextInt(255),(new Random()).nextInt(255), 1));
-            if(Objects.equals(textOut, "Nom d'utilisateur ou mot de passe invalide. Réessayez !")) {
-                label_error_connexion.setTextFill(Color.rgb(0,0,0,1));
-            }
         });
 
         textAnimator = new TextAnimator(label_error_connexion.getText(),
