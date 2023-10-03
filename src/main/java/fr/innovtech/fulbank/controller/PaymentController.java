@@ -1,6 +1,7 @@
 package fr.innovtech.fulbank.controller;
 
 import fr.innovtech.fulbank.App;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,7 +35,10 @@ public class PaymentController extends Controller implements Initializable {
         stage.show();
     }
 
-
+    /* protected void showCateg(){
+        cbx_depuis(FXCollections.observableArrayList())
+    }
+    */
 
 }
 
