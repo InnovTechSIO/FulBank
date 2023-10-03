@@ -2,6 +2,8 @@ package fr.innovtech.fulbank.entities;
 
 
 public class Customer {
+
+    private int _id;
     private String _firstName;
     private String _lastName;
     private String _mail;
@@ -11,6 +13,7 @@ public class Customer {
     private  String _iban;
 
     public Customer(String _firstName, String _lastName, String _mail, String _phone, String _password, String _iban) {
+
         this._firstName = _firstName;
         this._lastName = _lastName;
         this._mail = _mail;
@@ -73,4 +76,6 @@ public class Customer {
                 ", _password='" + _password + '\'' +
                 '}';
     }
+
+
 }
