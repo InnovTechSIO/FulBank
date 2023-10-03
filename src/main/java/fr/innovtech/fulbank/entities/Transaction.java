@@ -1,5 +1,7 @@
 package fr.innovtech.fulbank.entities;
 
+import fr.innovtech.fulbank.annotations.NotNull;
+
 import java.util.Date;
 
 public class Transaction {
@@ -70,6 +72,9 @@ public class Transaction {
     public void set_dab(DAB _dab) {
         this._dab = _dab;
     }
+
+
+  
 
     @Override
     public String toString() {
