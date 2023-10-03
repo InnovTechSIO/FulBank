@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class CoinGeckoAPI {
 
-    public static Integer getCryptoCurrentPrice(@NotNull String crypto, @NotNull String currency) throws IOException {
+    public static Double getCryptoCurrentPrice(@NotNull String crypto, @NotNull String currency) throws IOException {
         URL url = new URL(String.format("https://api.coingecko.com/api/v3/coins/%s", crypto.toLowerCase()));
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
@@ -27,7 +27,24 @@ public class CoinGeckoAPI {
 
         return jsonObject.getJSONObject("market_data")
                 .getJSONObject("current_price")
-                .getInt(currency);
+                .getDouble(currency);
 
     }
+
+    public static Double convertCryptoToCurrency(@NotNull String crypto, @NotNull String currency, Double amount) throws IOException {
+        Double cryptoPrice = getCryptoCurrentPrice(crypto, currency);
+
+        Double convertedAmount = cryptoPrice * amount;
+
+        if (!currency.equalsIgnoreCase(currency)) {
+            Double currencyExchangeRate = getCryptoCurrentPrice(currency, currency.toLowerCase());
+
+            convertedAmount /= currencyExchangeRate;
+        }
+
+        return convertedAmount;
+    }
+
+
+
 }
