@@ -105,12 +105,16 @@ public class CustomerDBController {
                 stmtQuery.setString(6, iban);
                 stmtQuery.setString(7, password_crypted);
                 stmtQuery.executeUpdate();
-                return true;
+
             } catch (SQLException e) {
 
                 return false;
             }
+            return true;
         }
+
+
+
 
     }
     public static String capitalizeWord(String str){

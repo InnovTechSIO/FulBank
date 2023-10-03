@@ -1,6 +1,8 @@
 package fr.innovtech.fulbank.entities;
 
 
+import java.util.List;
+
 public class Customer {
 
     private int _id;
@@ -11,6 +13,8 @@ public class Customer {
     private String _password;
 
     private  String _iban;
+
+    private List<Account> _accounts;
 
     public Customer(String _firstName, String _lastName, String _mail, String _phone, String _password, String _iban) {
 
@@ -66,6 +70,14 @@ public class Customer {
 
     public void set_iban(String _iban){ this._iban= _iban;}
 
+    public List<Account> get_accounts() {
+        return _accounts;
+    }
+
+    public void set_accounts(List<Account> _accounts) {
+        this._accounts = _accounts;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -74,6 +86,7 @@ public class Customer {
                 ", _mail='" + _mail + '\'' +
                 ", _phone='" + _phone + '\'' +
                 ", _password='" + _password + '\'' +
+                ", _accounts=" + _accounts +
                 '}';
     }
 

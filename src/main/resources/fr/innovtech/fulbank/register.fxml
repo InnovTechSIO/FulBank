@@ -113,41 +113,31 @@
             <Font size="56.0" />
          </font>
       </Button>
-      <Label fx:id="label_amount" layoutX="1059.0" layoutY="259.0" text="Montant">
+      <Label fx:id="label_lowceilling" layoutX="1060.0" layoutY="341.0" text="Plafond bas">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label_lowceilling" layoutX="1059.0" layoutY="417.0" text="Plafond bas">
+      <Label fx:id="label_highceilling" layoutX="1060.0" layoutY="259.0" text="Plafond haut">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label_highceilling" layoutX="1059.0" layoutY="341.0" text="Plafond haut">
+      <Label fx:id="label_wording" layoutX="1042.0" layoutY="417.0" text="Type de compte">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label_wording" layoutX="1041.0" layoutY="488.0" text="Type de compte">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="wording" layoutX="1225.0" layoutY="488.0" prefHeight="35.0" prefWidth="324.0" promptText="Selectionnez une catégorie de Compte" />
-      <TextField fx:id="low_ceilling" layoutX="1225.0" layoutY="414.0" prefHeight="41.0" prefWidth="324.0" style="-fx-alignment: center; -fx-border-color: #000;">
+      <ComboBox fx:id="wording" layoutX="1225.0" layoutY="417.0" prefHeight="35.0" prefWidth="324.0" promptText="Selectionnez une catégorie de Compte" />
+      <TextField fx:id="low_ceilling" layoutX="1225.0" layoutY="338.0" prefHeight="41.0" prefWidth="324.0" style="-fx-alignment: center; -fx-border-color: #000;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="ceiling_high" layoutX="1225.0" layoutY="338.0" prefHeight="41.0" prefWidth="324.0" style="-fx-border-color: #000; -fx-alignment: center;">
+      <PasswordField fx:id="ceiling_high" layoutX="1225.0" layoutY="256.0" prefHeight="41.0" prefWidth="324.0" style="-fx-border-color: #000; -fx-alignment: center;">
          <font>
             <Font size="18.0" />
          </font>
       </PasswordField>
-      <TextField fx:id="amount" layoutX="1225.0" layoutY="256.0" prefHeight="22.0" prefWidth="324.0" style="-fx-alignment: center; -fx-border-color: #000;">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </TextField>
    </children>
 </AnchorPane>
