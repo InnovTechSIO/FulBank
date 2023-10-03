@@ -1,7 +1,8 @@
-package fr.innovtech.fulbank.controller;
+package fr.innovtech.fulbank.controller.ViewController;
 
 import com.github.javafaker.CreditCardType;
 import com.github.javafaker.Faker;
+import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -10,7 +11,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RegisterController extends Controller implements Initializable {
+public class RegisterViewController extends ViewController implements Initializable {
 
     @FXML
     private TextField IBAN;

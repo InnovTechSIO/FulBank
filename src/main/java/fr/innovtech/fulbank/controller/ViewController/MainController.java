@@ -1,4 +1,4 @@
-package fr.innovtech.fulbank.controller;
+package fr.innovtech.fulbank.controller.ViewController;
 
 import fr.innovtech.fulbank.App;
 import javafx.fxml.FXML;

@@ -1,6 +1,6 @@
-package fr.innovtech.fulbank.controller;
+package fr.innovtech.fulbank.controller.ViewController;
 
-import fr.innovtech.fulbank.entities.Customer;
+import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProfileController extends Controller implements Initializable {
+public class ProfileViewController extends ViewController implements Initializable {
 
 
     @FXML

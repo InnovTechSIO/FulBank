@@ -1,6 +1,5 @@
 package fr.innovtech.fulbank.entities;
 
-import fr.innovtech.fulbank.annotations.NotNull;
 
 import java.util.Date;
 
@@ -74,7 +73,15 @@ public class Transaction {
     }
 
 
-  
+    public void transactionmoney(Float amount, Account sender,Account receiver, Transactiontype transactiontype, DAB dab) {
+        if (transactiontype.get_number() == 1) {
+            sender.set_amount(sender.get_amount() - amount);
+            receiver.set_amount(receiver.get_amount() + amount);
+        }
+        else return;
+
+
+    }
 
     @Override
     public String toString() {

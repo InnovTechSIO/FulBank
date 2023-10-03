@@ -1,6 +1,5 @@
 package fr.innovtech.fulbank;
 
-import com.github.javafaker.CreditCardType;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
