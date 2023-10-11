@@ -36,7 +36,7 @@ public class PaymentViewController extends ViewController implements Initializab
     }
 
     protected void showCateg(){
-        cbx_depuis(FXCollections.observableArrayList())
+
     }
 
 
