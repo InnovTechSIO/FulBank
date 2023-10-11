@@ -12,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class PaymentViewController extends ViewController implements Initializable {
 
@@ -34,8 +36,10 @@ public class PaymentViewController extends ViewController implements Initializab
         stage.show();
     }
 
+    @Override
+    public void initialize(URL var1, ResourceBundle var2) {
 
-
+    }
 }
 
 
