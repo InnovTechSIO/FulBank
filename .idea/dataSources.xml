@@ -8,5 +8,19 @@
       <jdbc-url>jdbc:mariadb://172.16.119.3:3306/FulBank</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="TP_Benjamin@172.16.119.20" uuid="ecc8a32a-e5da-40de-8524-1345eeab3e35">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://172.16.119.20:3306/TP_Benjamin</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="TP_Import@172.16.119.20" uuid="870e7403-b37a-45be-801a-015e62894795">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://172.16.119.20:3306/TP_Import</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
