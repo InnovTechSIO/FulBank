@@ -4,10 +4,13 @@ import java.util.Random;
 
 public class TextAnimator implements Runnable {
 
-    private String text;
-    private int animationTime;
-    private TextOutput textOutput;
-    private Random random = new Random();
+    private final String text;
+    private final int animationTime;
+    private final TextOutput textOutput;
+    private final Random random = new Random();
+
+
+
 
     public TextAnimator(String text, int animationTime, TextOutput textField) {
         this.text = text;
