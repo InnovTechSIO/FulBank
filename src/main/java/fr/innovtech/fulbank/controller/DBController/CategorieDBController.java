@@ -46,4 +46,29 @@ public class CategorieDBController {
         return categories.get(0);
     }
 
+    public static ArrayList<String> getCategoryByCustomer(int idClient)
+    {
+        ArrayList<String> accounts = new ArrayList<>();
+
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select wording from Category\n" +
+                    "join Account A on Category.idCategory = A.idCategory\n" +
+                    "where A.idClient = ?;");
+            stmtQuery.setInt(1, idClient);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+
+            while(resultSet.next()){
+                accounts.add(resultSet.getString("wording"));
+            }
+
+
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return accounts;
+    }
 }

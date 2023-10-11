@@ -26,6 +26,7 @@ public class Customer {
         this._iban = _iban;
     }
 
+    public int get_id() { return  _id; }
     public String get_firstName() {
         return _firstName;
     }
