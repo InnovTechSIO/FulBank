@@ -19,7 +19,7 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Rectangle>
-      <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80e2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle fx:id="topPane" style="-fx-background-color: #16915A" arcHeight="5.0" arcWidth="5.0" fill="#80e2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <ImageView fx:id="logo" cache="true" fitHeight="601.0" fitWidth="823.0" focusTraversable="true" layoutX="377.0" layoutY="-187.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@fulbanklogo.png" />
