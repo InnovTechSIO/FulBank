@@ -1,4 +1,4 @@
-import fr.innovtech.fulbank.App;
+package fr.innovtech.fulbank;
 
 public class Launcher {
 
