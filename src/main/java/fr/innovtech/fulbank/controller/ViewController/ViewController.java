@@ -1,10 +1,11 @@
-package fr.innovtech.fulbank.controller;
+package fr.innovtech.fulbank.controller.ViewController;
 
 
 import fr.innovtech.fulbank.App;
 import fr.innovtech.fulbank.animator.TextAnimator;
 import fr.innovtech.fulbank.animator.TextOutput;
 import javafx.application.Platform;
+import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,7 +25,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class ViewController implements Initializable {
 
 
     private double xOffset = 0;
@@ -193,10 +194,6 @@ public class Controller implements Initializable {
     public void initialize(URL var1, ResourceBundle var2) {
         TextOutput textOutput = textOut -> Platform.runLater(() ->  {
             label_error_connexion.setText(textOut);
-            label_error_connexion.setTextFill(Color.rgb((new Random()).nextInt(255),(new Random()).nextInt(255),(new Random()).nextInt(255), 1));
-            if(Objects.equals(textOut, "Nom d'utilisateur ou mot de passe invalide. Réessayez !")) {
-                label_error_connexion.setTextFill(Color.rgb(0,0,0,1));
-            }
         });
 
         textAnimator = new TextAnimator(label_error_connexion.getText(),
