@@ -35,10 +35,10 @@ public class PaymentController extends Controller implements Initializable {
         stage.show();
     }
 
-    /* protected void showCateg(){
+    protected void showCateg(){
         cbx_depuis(FXCollections.observableArrayList())
     }
-    */
+
 
 }
 
