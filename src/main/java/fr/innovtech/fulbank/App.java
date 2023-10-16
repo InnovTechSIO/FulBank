@@ -1,5 +1,7 @@
 package fr.innovtech.fulbank;
 
+import fr.innovtech.fulbank.controller.DBController.CategorieDBController;
+import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +25,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         MySQLDBGateway.connection();
-
     }
 
 

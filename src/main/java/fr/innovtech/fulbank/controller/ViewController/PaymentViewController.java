@@ -46,30 +46,13 @@ public class PaymentViewController extends ViewController implements Initializab
         stage.setScene(scene);
         stage.show();
     }
-    /*Fonction pour mettre a jour le cbbox grave à la collection de libelle de compte
+
     @FXML
     protected void showCbxDepuis(){
-        ObservableList<String> accounts
-                = FXCollections.observableArrayList(CategorieDBController.getCategoryByCustomer(CustomerDBController.connectedCustomer.get_id()));
-        cbx_depuis.setItems(accounts);
-        cbx_depuis.getSelectionModel().select(1);
+        int idClient = CustomerDBController.connectedCustomer.get_id();
+        cbx_depuis.getItems().addAll(CategorieDBController.getCategoryByCustomer(idClient));
     }
-    */
-    @FXML
-    protected void showCbxDepuis(){
-        ArrayList<String> accounts = CategorieDBController.getCategoryByCustomer(CustomerDBController.connectedCustomer.get_id());
-        for (String account : accounts){
-            cbx_depuis.getItems().add(account);
-        }
-    }
-    /* fonction test pour voir si la récupération des libellés de compte marche*/
-    @FXML
-    protected void test(){
-        ArrayList<String> accounts = CategorieDBController.getCategoryByCustomer(CustomerDBController.connectedCustomer.get_id());
-        for (String s : accounts){
-            lbl_depuis.setText(s);
-        }
-    }
+
 
 
     @Override

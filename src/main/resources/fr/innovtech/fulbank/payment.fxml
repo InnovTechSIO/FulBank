@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.Cursor?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.ViewController.PaymentViewController">
    <children>
@@ -18,7 +18,7 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Rectangle>
-      <Rectangle fx:id="topPane" style="-fx-background-color: #80C2EC" arcHeight="5.0" arcWidth="5.0" fill="#80e2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80e2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: #80C2EC" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <ImageView fx:id="n" fitHeight="438.0" fitWidth="600.0" layoutX="735.0" layoutY="65.0" AnchorPane.rightAnchor="-99.0" AnchorPane.topAnchor="-168.0">
          <image>
             <Image url="@fulbanklogo.png" />
@@ -38,7 +38,7 @@
          <font>
             <Font size="48.0" />
          </font></TextField>
-      <Label layoutX="42.0" layoutY="409.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Depuis :" textFill="#224399">
+      <Label fx:id="lbl_depuis" layoutX="42.0" layoutY="409.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Depuis :" textFill="#224399">
          <font>
             <Font size="68.0" />
          </font>
