@@ -18,6 +18,8 @@ public class CoinGeckoAPI {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
+
+
         BufferedReader br = new BufferedReader(new InputStreamReader((con.getInputStream())));
         StringBuilder sb = new StringBuilder();
         String output;
@@ -70,10 +72,7 @@ public class CoinGeckoAPI {
                 String symbol = jsonObject.getString("symbol");
                 String name = jsonObject.getString("name");
 
-                Coin coin = new Coin();
-                coin.setId(id);
-                coin.setSymbol(symbol);
-                coin.setName(name);
+                Coin coin = new Coin(id, symbol, name);
 
                 CryptoDBController.pushCrpyto(coin);
             }
