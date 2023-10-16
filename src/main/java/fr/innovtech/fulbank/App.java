@@ -1,5 +1,6 @@
 package fr.innovtech.fulbank;
 
+import fr.innovtech.fulbank.api.CoinGeckoAPI;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,12 +11,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Objects;
 
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, URISyntaxException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -26,7 +28,6 @@ public class App extends Application {
         stage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("fulbank.png"))));
         stage.show();
         MySQLDBGateway.connection();
-
     }
 
 

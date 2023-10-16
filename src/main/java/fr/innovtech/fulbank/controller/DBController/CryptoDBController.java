@@ -1,5 +1,6 @@
 package fr.innovtech.fulbank.controller.DBController;
 
+import fr.innovtech.fulbank.entities.Coin;
 import fr.innovtech.fulbank.entities.Crypto;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
 
@@ -37,5 +38,18 @@ public class CryptoDBController {
             e.printStackTrace();
         }
         return cryptos.get(0);
+    }
+
+    public static void pushCrpyto(Coin coin) {
+
+        try {
+            PreparedStatement stmtInsert = mySQLConnection.prepareStatement("INSERT into Coins (id, symbol, name) VALUES (?, ?, ?)");
+            stmtInsert.setString(1, coin.getId());
+            stmtInsert.setString(2, coin.getSymbol());
+            stmtInsert.setString(3, coin.getName());
+            stmtInsert.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
