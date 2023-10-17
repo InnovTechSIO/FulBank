@@ -12,9 +12,12 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class App extends Application {
+    public static ArrayList<HashMap<String, Object>> cryptosData;
 
     @Override
     public void start(Stage stage) throws IOException, URISyntaxException {
@@ -28,6 +31,7 @@ public class App extends Application {
         stage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("fulbank.png"))));
         stage.show();
         MySQLDBGateway.connection();
+        cryptosData = CoinGeckoAPI.getFirst100Cryptos("eur");
     }
 
 

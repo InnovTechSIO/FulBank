@@ -9,7 +9,11 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class CoinGeckoAPI {
 
@@ -77,6 +81,47 @@ public class CoinGeckoAPI {
                 CryptoDBController.pushCrpyto(coin);
             }
         }
+
+    }
+
+    public static ArrayList<HashMap<String, Object>> getFirst100Cryptos(@NotNull String currency) throws URISyntaxException, IOException {
+        URI uri = new URI(String.format("https://api.coingecko.com/api/v3/coins/markets?vs_currency=%s", currency));
+        URL url = uri.toURL();
+        ArrayList<HashMap<String, Object>> cryptos = new ArrayList<>();
+
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+            StringBuilder sb = new StringBuilder();
+            String output;
+            while ((output = br.readLine()) != null) {
+                sb.append(output);
+            }
+
+            JSONArray jsonArray = new JSONArray(sb.toString());
+
+            for(int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String id = jsonObject.getString("id");
+                String symbol = jsonObject.getString("symbol");
+                String name = jsonObject.getString("name");
+                String image = jsonObject.getString("image");
+                Double currentPrice = jsonObject.getDouble("current_price");
+
+                HashMap<String, Object> crypto = new HashMap<>();
+                crypto.put("id", id);
+                crypto.put("symbol", symbol);
+                crypto.put("name", name);
+                crypto.put("image", image);
+                crypto.put("current_price", currentPrice);
+
+                cryptos.add(crypto);
+
+            }
+        }
+
+        return cryptos;
 
     }
 

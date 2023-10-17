@@ -32,7 +32,7 @@
             <Font size="40.0" />
          </font>
       </Button>
-      <Button layoutX="1225.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Cours Crypto" textAlignment="CENTER">
+      <Button layoutX="1225.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: #16915A;" onMouseClicked="#switchCours" styleClass="buttonMain" stylesheets="@style.css" text="Cours Crypto" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
