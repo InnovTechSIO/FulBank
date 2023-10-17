@@ -23,27 +23,27 @@
             <Font name="Arial Bold" size="68.0" />
          </font>
       </Label>
-      <Label layoutX="42.0" layoutY="188.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Montant du virement :" textFill="#224399">
+      <Label layoutX="42.0" layoutY="437.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Montant du virement :" textFill="#224399">
          <font>
             <Font size="68.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_montant" alignment="CENTER_RIGHT" layoutX="42.0" layoutY="311.0" prefHeight="92.0" prefWidth="464.0" style="-fx-font-family: Open Sans;" text="0.0">
+      <TextField fx:id="txt_montant" alignment="CENTER_RIGHT" layoutX="42.0" layoutY="560.0" prefHeight="92.0" prefWidth="464.0" style="-fx-font-family: Open Sans;" text="0.0">
          <font>
             <Font size="48.0" />
          </font></TextField>
-      <Label fx:id="lbl_depuis" layoutX="42.0" layoutY="473.0" prefHeight="100.0" prefWidth="281.0" style="-fx-font-family: roboto;" text="Depuis :" textFill="#224399">
+      <Label fx:id="lbl_depuis" layoutX="42.0" layoutY="191.0" prefHeight="100.0" prefWidth="281.0" style="-fx-font-family: roboto;" text="Depuis :" textFill="#224399">
          <font>
             <Font size="68.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbx_depuis" layoutX="42.0" layoutY="593.0" onMouseClicked="#showCbxDepuis" prefHeight="53.0" prefWidth="400.0" promptText="Choisir un compte" />
-      <Label layoutX="615.0" layoutY="473.0" prefHeight="100.0" prefWidth="252.0" style="-fx-font-family: roboto;" text="Vers :" textFill="#224399">
+      <ComboBox fx:id="cbx_depuis" layoutX="42.0" layoutY="311.0" onMouseClicked="#showCbxDepuis" prefHeight="53.0" prefWidth="400.0" promptText="Choisir un compte" />
+      <Label layoutX="615.0" layoutY="191.0" prefHeight="100.0" prefWidth="252.0" style="-fx-font-family: roboto;" text="Vers :" textFill="#224399">
          <font>
             <Font size="68.0" />
          </font>
       </Label>
-      <ImageView fx:id="plusButton" fitHeight="109.0" fitWidth="112.0" layoutX="1021.0" layoutY="565.0" onMouseClicked="#switchBeneficiary">
+      <ImageView fx:id="plusButton" fitHeight="109.0" fitWidth="112.0" layoutX="1021.0" layoutY="283.0" onMouseClicked="#switchBeneficiary">
          <image>
             <Image url="@plus.png" />
          </image>
@@ -53,8 +53,8 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <ComboBox fx:id="cbx_vers" layoutX="615.0" layoutY="593.0" onMouseClicked="#showCbxVers" prefHeight="53.0" prefWidth="400.0" promptText="Choisir un compte" />
-      <Label layoutX="513.0" layoutY="316.0" prefHeight="88.0" prefWidth="74.0" text="€">
+      <ComboBox fx:id="cbx_vers" layoutX="615.0" layoutY="311.0" onMouseClicked="#showCbxVers" prefHeight="53.0" prefWidth="400.0" promptText="Choisir un compte" />
+      <Label fx:id="lbl_currency" layoutX="513.0" layoutY="565.0" prefHeight="93.0" prefWidth="281.0" text="€">
          <font>
             <Font size="64.0" />
          </font>

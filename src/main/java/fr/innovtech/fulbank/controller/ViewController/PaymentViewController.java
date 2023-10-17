@@ -51,6 +51,9 @@ public class PaymentViewController extends ViewController implements Initializab
     private ImageView plusButton;
 
     @FXML
+    private Label lbl_currency;
+
+    @FXML
     protected void switchBeneficiary(MouseEvent event) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("add_beneficiary.fxml"));
@@ -61,10 +64,20 @@ public class PaymentViewController extends ViewController implements Initializab
     }
 
     @FXML
+    protected void setCurrency(){
+        if (cbx_depuis.getValue() != null) {
+            if (cbx_depuis.getValue().toString().equals("crypto")) {
+                lbl_currency.setText("bitcoin");
+            }
+        }
+    }
+
+    @FXML
     protected void showCbxDepuis(){
         cbx_vers.getItems().clear();
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
         cbx_depuis.getItems().addAll(CategorieDBController.getCategoryByCustomer(idCustomer));
+        setCurrency();
     }
 
     @FXML
@@ -87,8 +100,10 @@ public class PaymentViewController extends ViewController implements Initializab
         int amount = parseInt(txt_montant.getCharacters().toString());
         String accountAdd = cbx_vers.getValue().toString();
         String accountSubstract = cbx_depuis.getValue().toString();
-        AccountDBController.doPayment(amount, idCustomer, accountAdd, accountSubstract);
+        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract);
     }
+
+
 
 
     @Override

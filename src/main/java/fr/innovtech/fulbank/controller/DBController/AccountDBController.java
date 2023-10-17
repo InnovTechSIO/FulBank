@@ -88,12 +88,12 @@ public class AccountDBController {
     public static void AddTransaction(int amount, String accountAdd, String accountSubstract, int idCustomer ){
         try{
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("insert into Transaction (datetransaction, amount, nbTransactionType, idDab, number_1, number_2) VALUES (date(now()),\n" +
-                    "                                                                                                        ?,\n" +
-                    "                                                                                                        1,\n" +
-                    "                                                                                                        1,\n" +
-                    "                                                                                                        (select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? ),\n" +
-                    "                                                                                                        (select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? )\n" +
-                    "                                                                                                        );");
+                                                                                "?,\n" +
+                                                                                "1,\n" +
+                                                                                "1,\n" +
+                                                                                "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? ),\n" +
+                                                                                "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? )\n" +
+                                                                                ");");
             stmtQuery.setInt(1, amount);
             stmtQuery.setString(2, accountAdd);
             stmtQuery.setInt(3, idCustomer);
@@ -106,7 +106,7 @@ public class AccountDBController {
         }
     }
 
-    public static void doPayment(int amount, int idCustomer, String accountAdd, String accountSubstract){
+    public static void Payment(int amount, int idCustomer, String accountAdd, String accountSubstract){
         AddAmount(amount, idCustomer, accountAdd);
         SubstractAmount(amount, idCustomer, accountSubstract);
         AddTransaction(amount, accountAdd, accountSubstract, idCustomer);
