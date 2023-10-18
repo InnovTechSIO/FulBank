@@ -28,6 +28,7 @@ public class CoursViewController extends ViewController implements Initializable
             double value = (Double) cryptoData.get("current_price");
             String imageUrl = (String) cryptoData.get("image");
 
+
             CryptoCard cryptoCard = new CryptoCard(name, value, imageUrl);
             cryptoCards.add(cryptoCard);
         }
