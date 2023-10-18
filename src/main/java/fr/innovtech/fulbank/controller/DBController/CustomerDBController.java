@@ -12,7 +12,7 @@ import java.util.List;
 public class CustomerDBController {
 
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
-    public static Customer connectedCustomer = new Customer("default", "default", "default", "default", "default", "default");
+    public static Customer connectedCustomer = new Customer(0, "default", "default", "default", "default", "default", "default");
 
 
     public static Customer getCustomerById(int id) {
@@ -33,7 +33,7 @@ public class CustomerDBController {
                     String password = resultSet.getString("password");
                     String iban = resultSet.getString("iban");
 
-                    Customer customer = new Customer(firstname, name, email, phone, password, iban);
+                    Customer customer = new Customer(id, firstname, name, email, phone, password, iban);
                     customers.add(customer);
                 } while(resultSet.next());
             }
@@ -64,6 +64,7 @@ public class CustomerDBController {
                     String databasePassword = resultSet.getString("password");
                     boolean isPasswordCorrect = BCrypt.checkpw(password, databasePassword);
                     if (isPasswordCorrect) {
+                        int id = resultSet.getInt("idClient");
                         String name = resultSet.getString("name");
                         String firstname = resultSet.getString("firstname");
                         String email = resultSet.getString("email");
@@ -71,7 +72,7 @@ public class CustomerDBController {
                         String pass = resultSet.getString("password");
                         String iban = resultSet.getString("iban");
 
-                        CustomerDBController.connectedCustomer = new Customer(firstname, name, email, phone, pass, iban);
+                        CustomerDBController.connectedCustomer = new Customer(id, firstname, name, email, phone, pass, iban);
                         return true;
                     }
                     else {
@@ -148,5 +149,7 @@ public class CustomerDBController {
 
 
     }
+
+
 
 }

@@ -16,8 +16,9 @@ public class Customer {
 
     private List<Account> _accounts;
 
-    public Customer(String _firstName, String _lastName, String _mail, String _phone, String _password, String _iban) {
+    public Customer(int _id, String _firstName, String _lastName, String _mail, String _phone, String _password, String _iban) {
 
+        this._id = _id;
         this._firstName = _firstName;
         this._lastName = _lastName;
         this._mail = _mail;
@@ -26,6 +27,7 @@ public class Customer {
         this._iban = _iban;
     }
 
+    public int get_id() { return  _id; }
     public String get_firstName() {
         return _firstName;
     }

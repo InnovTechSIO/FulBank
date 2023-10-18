@@ -46,4 +46,54 @@ public class CategorieDBController {
         return categories.get(0);
     }
 
+    public static ArrayList<String> getCategoryByCustomer(int idClient)
+    {
+        ArrayList<String> accounts = new ArrayList<>();
+
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select wording from Category\n" +
+                    "join Account A on Category.idCategory = A.idCategory\n" +
+                    "where A.idClient = ?;");
+            stmtQuery.setInt(1, idClient);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+
+            while(resultSet.next()){
+                accounts.add(resultSet.getString("wording"));
+            }
+
+
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return accounts;
+    }
+
+    public static String getCurrency(String account){
+        String currency = "";
+
+        try{
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select Currency from Category where wording like ?");
+            stmtQuery.setString(1,account);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if(resultSet.wasNull()){
+                PreparedStatement stmtQuery2 = mySQLConnection.prepareStatement("select cr.wording\n" +
+                                                                                    "from Crypto cr\n" +
+                                                                                    "join FulBank.Category C on cr.number = C.number\n" +
+                                                                                    "where C.wording like ?;");
+                stmtQuery2.setString(1,account);
+            }
+
+            currency = resultSet.toString();
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return currency;
+    }
 }

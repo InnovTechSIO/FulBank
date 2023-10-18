@@ -46,4 +46,74 @@ public class AccountDBController {
         }
         return accounts.get(0);
     }
+
+    public static void AddAmount(int add, int idCustomer, String account){
+        try{
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
+                                                                                "set Amount = Amount + ?\n" +
+                                                                                "where idClient = ?\n" +
+                                                                                "and idCategory=(\n" +
+                                                                                "    select idCategory\n" +
+                                                                                "    from Category\n" +
+                                                                                "    where wording like ? );");
+            stmtQuery.setInt(1, add);
+            stmtQuery.setInt(2, idCustomer);
+            stmtQuery.setString(3,account);
+            stmtQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void SubstractAmount(int add, int idCustomer, String account){
+        try{
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
+                                                                                "set Amount = Amount - ?\n" +
+                                                                                "where idClient = ?\n" +
+                                                                                "and idCategory=(\n" +
+                                                                                "    select idCategory\n" +
+                                                                                "    from Category\n" +
+                                                                                "    where wording like ? );");
+            stmtQuery.setInt(1, add);
+            stmtQuery.setInt(2, idCustomer);
+            stmtQuery.setString(3,account);
+            stmtQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void AddTransaction(int amount, String accountAdd, String accountSubstract, int idCustomer ){
+        try{
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("insert into Transaction (datetransaction, amount, nbTransactionType, idDab, number_1, number_2) VALUES (date(now()),\n" +
+                                                                                "?,\n" +
+                                                                                "1,\n" +
+                                                                                "1,\n" +
+                                                                                "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? ),\n" +
+                                                                                "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? )\n" +
+                                                                                ");");
+            stmtQuery.setInt(1, amount);
+            stmtQuery.setString(2, accountAdd);
+            stmtQuery.setInt(3, idCustomer);
+            stmtQuery.setString(4, accountSubstract);
+            stmtQuery.setInt(5, idCustomer);
+            stmtQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void Payment(int amount, int idCustomer, String accountAdd, String accountSubstract){
+        AddAmount(amount, idCustomer, accountAdd);
+        SubstractAmount(amount, idCustomer, accountSubstract);
+        AddTransaction(amount, accountAdd, accountSubstract, idCustomer);
+    }
+
+
 }
+
+
+
