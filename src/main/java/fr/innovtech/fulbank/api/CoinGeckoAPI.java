@@ -108,6 +108,8 @@ public class CoinGeckoAPI {
                 String name = jsonObject.getString("name");
                 String image = jsonObject.getString("image");
                 Double currentPrice = jsonObject.getDouble("current_price");
+                Double highestPrice = jsonObject.getDouble("high_24h");
+                Double lowestPrice = jsonObject.getDouble("low_24h");
 
                 HashMap<String, Object> crypto = new HashMap<>();
                 crypto.put("id", id);
@@ -115,6 +117,9 @@ public class CoinGeckoAPI {
                 crypto.put("name", name);
                 crypto.put("image", image);
                 crypto.put("current_price", currentPrice);
+                crypto.put("high_24h", highestPrice);
+                crypto.put("low_24h", lowestPrice);
+
 
                 cryptos.add(crypto);
 
