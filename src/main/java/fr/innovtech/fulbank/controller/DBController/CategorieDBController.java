@@ -88,7 +88,7 @@ public class CategorieDBController {
                 stmtQuery2.setString(1,account);
             }
 
-            currency = resultSet.toString();
+            currency = resultSet.getString("currency");
         }
         catch (SQLException e) {
             throw new RuntimeException(e);

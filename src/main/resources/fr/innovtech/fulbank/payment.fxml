@@ -48,7 +48,7 @@
             <Image url="@plus.png" />
          </image>
       </ImageView>
-      <Button fx:id="bt_payment" layoutX="42.0" layoutY="766.0" mnemonicParsing="false" onMouseClicked="#doPayment" prefHeight="73.0" prefWidth="349.0" text="Faire le virement">
+      <Button fx:id="bt_payment" layoutX="42.0" layoutY="766.0" mnemonicParsing="false" onAction="" onMouseClicked="#doPayment" prefHeight="73.0" prefWidth="349.0" text="Faire le virement">
          <font>
             <Font size="24.0" />
          </font>

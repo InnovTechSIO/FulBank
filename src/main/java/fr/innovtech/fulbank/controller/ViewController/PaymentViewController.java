@@ -7,6 +7,7 @@ import fr.innovtech.fulbank.controller.DBController.CategorieDBController;
 import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,12 +64,24 @@ public class PaymentViewController extends ViewController implements Initializab
         stage.show();
     }
 
+    /* Fonction pour switch vers le main view sur le oncaction du bouton
+    @FXML
+    protected void switchMain(ActionEvent event) throws IOException {
+
+        if (parseInt(txt_montant.getCharacters().toString())>0) {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+    */
+
     @FXML
     protected void setCurrency(){
         if (cbx_depuis.getValue() != null) {
-            if (cbx_depuis.getValue().toString().equals("crypto")) {
-                lbl_currency.setText("bitcoin");
-            }
+            System.out.println(CategorieDBController.getCurrency(cbx_depuis.getValue().toString()));
         }
     }
 
