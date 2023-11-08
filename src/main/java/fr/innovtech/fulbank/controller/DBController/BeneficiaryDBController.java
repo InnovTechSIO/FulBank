@@ -16,9 +16,7 @@ public class BeneficiaryDBController {
         ArrayList<String> beneficiaries = new ArrayList<>();
 
         try {
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select name\n" +
-                                                                                "from Beneficiary\n" +
-                                                                                "where idClient= ?;");
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select name from Beneficiary where idBeneficiary = (select idBeneficiary from Add_beneficiary where id_customer = ?);");
             stmtQuery.setInt(1, idCustomer);
             ResultSet resultSet = stmtQuery.executeQuery();
 

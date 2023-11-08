@@ -2,9 +2,12 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: rgba(0,0,0,0); -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.ViewController.CoursViewController">
     <children>
@@ -13,7 +16,33 @@
                 <Cursor fx:constant="DEFAULT" />
             </cursor></Rectangle>
         <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80e2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: #16915A" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <ListView fx:id="coursListView" layoutX="170.0" styleClass="list-view" layoutY="102.0" prefHeight="766.0" prefWidth="629.0" />
+      <ListView fx:id="coursListView" layoutX="170.0" layoutY="102.0" prefHeight="766.0" prefWidth="629.0" styleClass="list-view" stylesheets="@style.css" />
       <FontAwesomeIcon glyphName="LONG_ARROW_LEFT" layoutX="42.0" layoutY="117.0" onMouseClicked="#switchSceneAccount" size="10em" />
+      <ImageView fx:id="selectedImageView" fitHeight="368.0" fitWidth="387.0" layoutX="821.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="selectedValueLabel" layoutX="1217.0" layoutY="117.0" text="Valeur : " visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="selectedNameLabel" layoutX="1217.0" layoutY="144.0" text="Nom :" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="selectedNameLabel1" layoutX="1217.0" layoutY="171.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="selectedHighestValue" layoutX="821.0" layoutY="498.0" prefHeight="27.0" prefWidth="565.0" text="Plus haute valeur dernière 24h :" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="selectedLowestValue" layoutX="821.0" layoutY="525.0" prefHeight="27.0" prefWidth="565.0" text="Plus basse valeur dernière 24h :" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
