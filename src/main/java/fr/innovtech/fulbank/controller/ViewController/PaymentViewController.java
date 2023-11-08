@@ -100,7 +100,7 @@ public class PaymentViewController extends ViewController implements Initializab
         int amount = parseInt(txt_montant.getCharacters().toString());
         String accountAdd = cbx_vers.getValue().toString();
         String accountSubstract = cbx_depuis.getValue().toString();
-        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idCustomer2);
+        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract);
     }
 
 
