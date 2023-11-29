@@ -97,7 +97,7 @@ public class PaymentViewController extends ViewController implements Initializab
     protected void showCbxVers(){
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
         ArrayList<String> allAccounts = new ArrayList<>(CategorieDBController.getCategoryByCustomer(idCustomer));
-        allAccounts.addAll(BeneficiaryDBController.getBeneficaryByCustomer(idCustomer));
+        allAccounts.addAll(BeneficiaryDBController.getBeneficiariesByCustomer(idCustomer));
         String choosen = cbx_depuis.getValue().toString();
 
         for(String account : allAccounts){
@@ -110,10 +110,11 @@ public class PaymentViewController extends ViewController implements Initializab
     @FXML
     protected void doPayment(){
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
+        int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
         int amount = parseInt(txt_montant.getCharacters().toString());
         String accountAdd = cbx_vers.getValue().toString();
         String accountSubstract = cbx_depuis.getValue().toString();
-        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idCustomer2);
+        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary);
     }
 
 

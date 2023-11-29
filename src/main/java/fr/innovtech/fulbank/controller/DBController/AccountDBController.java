@@ -107,10 +107,10 @@ public class AccountDBController {
         }
     }
 
-    public static void Payment(int amount, int idCustomer, String accountAdd, String accountSubstract, int idCustomer2){
+    public static void Payment(int amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary){
         AddAmount(amount, idCustomer, accountAdd);
         SubstractAmount(amount, idCustomer, accountSubstract);
-        AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idCustomer2);
+        AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary);
     }
 
 
