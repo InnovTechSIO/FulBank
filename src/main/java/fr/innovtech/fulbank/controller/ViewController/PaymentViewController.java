@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.SplittableRandom;
 
+import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 public class PaymentViewController extends ViewController implements Initializable {
@@ -53,6 +54,9 @@ public class PaymentViewController extends ViewController implements Initializab
 
     @FXML
     private Label lbl_currency;
+
+    @FXML
+    private Button test;
 
     @FXML
     protected void switchBeneficiary(MouseEvent event) throws IOException {
@@ -109,13 +113,43 @@ public class PaymentViewController extends ViewController implements Initializab
 
     @FXML
     protected void doPayment(){
+        String beneficiary = cbx_vers.getValue().toString();
+        String accountAdd ="";
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
         int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
         int amount = parseInt(txt_montant.getCharacters().toString());
-        String accountAdd = cbx_vers.getValue().toString();
+        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
+        if (!accounts.contains(beneficiary)){
+            accountAdd = "courant";
+        }
+        else {
+            accountAdd = beneficiary;
+        }
+        //tester jusqu'ici tout marche
         String accountSubstract = cbx_depuis.getValue().toString();
         AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary);
+        // problème avec la transaction "Column 'number_2' cannot be null" -> probleme avec l'idcustomer 2 (id du beneficiaire)
     }
+
+    @FXML
+    // fonction de test via un bouton dans payment
+    protected void test(){
+        String beneficiary = cbx_vers.getValue().toString();
+        String accountAdd ="";
+        int idCustomer = CustomerDBController.connectedCustomer.get_id();
+        int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
+        float amount = parseFloat(txt_montant.getCharacters().toString());
+        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
+        if (!accounts.contains(beneficiary)){
+            accountAdd = "courant";
+            System.out.println("pas dans la liste");
+        }
+        else {
+            accountAdd = beneficiary;
+            System.out.println("dans la liste");
+        }
+    }
+
 
 
 

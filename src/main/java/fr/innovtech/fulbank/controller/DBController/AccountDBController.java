@@ -20,7 +20,7 @@ public class AccountDBController {
         ArrayList<Account> accounts = new ArrayList<>();
 
         try {
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Account WHERE idAccount = ?");
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Account WHERE number= ?");
             stmtQuery.setInt(1, id);
             ResultSet resultSet = stmtQuery.executeQuery();
 
@@ -47,7 +47,7 @@ public class AccountDBController {
         return accounts.get(0);
     }
 
-    public static void AddAmount(int add, int idCustomer, String account){
+    public static void AddAmount(float add, int idCustomer, String account){
         try{
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
                                                                                 "set Amount = Amount + ?\n" +
@@ -56,7 +56,7 @@ public class AccountDBController {
                                                                                 "    select idCategory\n" +
                                                                                 "    from Category\n" +
                                                                                 "    where wording like ? );");
-            stmtQuery.setInt(1, add);
+            stmtQuery.setFloat(1, add);
             stmtQuery.setInt(2, idCustomer);
             stmtQuery.setString(3,account);
             stmtQuery.executeUpdate();
@@ -67,7 +67,7 @@ public class AccountDBController {
     }
 
 
-    public static void SubstractAmount(int add, int idCustomer, String account){
+    public static void SubstractAmount(float add, int idCustomer, String account){
         try{
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
                                                                                 "set Amount = Amount - ?\n" +
@@ -76,7 +76,7 @@ public class AccountDBController {
                                                                                 "    select idCategory\n" +
                                                                                 "    from Category\n" +
                                                                                 "    where wording like ? );");
-            stmtQuery.setInt(1, add);
+            stmtQuery.setFloat(1, add);
             stmtQuery.setInt(2, idCustomer);
             stmtQuery.setString(3,account);
             stmtQuery.executeUpdate();
@@ -86,7 +86,7 @@ public class AccountDBController {
         }
     }
 
-    public static void AddTransaction(int amount, String accountAdd, String accountSubstract, int idCustomer, int idCustomer2 ){
+    public static void AddTransaction(float amount, String accountAdd, String accountSubstract, int idCustomer, int idCustomer2 ){
         try{
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("insert into Transaction (datetransaction, amount, nbTransactionType, idDab, number_1, number_2) VALUES (date(now()),\n" +
                                                                                 "?,\n" +
@@ -95,7 +95,7 @@ public class AccountDBController {
                                                                                 "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? ),\n" +
                                                                                 "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? )\n" +
                                                                                 ");");
-            stmtQuery.setInt(1, amount);
+            stmtQuery.setFloat(1, amount);
             stmtQuery.setString(2, accountAdd);
             stmtQuery.setInt(3, idCustomer);
             stmtQuery.setString(4, accountSubstract);
@@ -107,12 +107,39 @@ public class AccountDBController {
         }
     }
 
-    public static void Payment(int amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary){
+    public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary){
         AddAmount(amount, idCustomer, accountAdd);
         SubstractAmount(amount, idCustomer, accountSubstract);
         AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary);
     }
 
+    public static ArrayList<String> getAllAccountsByCustomer(int idCustomer){
+        ArrayList<String> accounts = new ArrayList<>();
+
+        try
+        {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select wording\n" +
+                                                                                "from Category\n" +
+                                                                                "join FulBank.Account A on Category.idCategory = A.idCategory\n" +
+                                                                                "join FulBank.customer c on A.idClient = c.idClient\n" +
+                                                                                "where c.idClient = ?;");
+            stmtQuery.setInt(1, idCustomer);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            while(resultSet.next())
+            {
+                accounts.add(resultSet.getString("wording"));
+            }
+
+
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return accounts;
+    }
 
 }
 

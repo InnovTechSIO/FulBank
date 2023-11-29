@@ -38,13 +38,15 @@ public class BeneficiaryDBController {
     }
 
     public static int getBeneficiaryByName(String nameBeneficiary) {
-        int idBeneficiary = 0;
+        int idBeneficiary = 2;
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select idClientBeneficiary from Beneficiary where name = ?");
             stmtQuery.setString(1, nameBeneficiary);
             ResultSet resultSet = stmtQuery.executeQuery();
 
-            idBeneficiary = resultSet.getInt("idClientBeneficiary");
+            if (resultSet.next()) {
+                idBeneficiary = resultSet.getInt("idClientBeneficiary");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
