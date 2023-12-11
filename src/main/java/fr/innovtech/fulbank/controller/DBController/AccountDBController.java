@@ -88,18 +88,20 @@ public class AccountDBController {
 
     public static void AddTransaction(float amount, String accountAdd, String accountSubstract, int idCustomer, int idCustomer2 ){
         try{
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("insert into Transaction (datetransaction, amount, nbTransactionType, idDab, number_1, number_2) VALUES (date(now()),\n" +
+
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("insert into Transaction (datetransaction, amount, nbTransactionType, idDab, number_1, number_2) VALUES (?,\n" +
                                                                                 "?,\n" +
                                                                                 "1,\n" +
                                                                                 "1,\n" +
                                                                                 "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? ),\n" +
                                                                                 "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? )\n" +
                                                                                 ");");
-            stmtQuery.setFloat(1, amount);
-            stmtQuery.setString(2, accountAdd);
-            stmtQuery.setInt(3, idCustomer);
-            stmtQuery.setString(4, accountSubstract);
-            stmtQuery.setInt(5, idCustomer2);
+            stmtQuery.setDate(1, new java.sql.Date(new Date().getTime()));
+            stmtQuery.setFloat(2, amount);
+            stmtQuery.setString(3, accountSubstract);
+            stmtQuery.setInt(4, idCustomer);
+            stmtQuery.setString(5, accountAdd);
+            stmtQuery.setInt(6, idCustomer2);
             stmtQuery.executeUpdate();
 
         } catch (SQLException e) {
@@ -111,6 +113,7 @@ public class AccountDBController {
         AddAmount(amount, idBeneficiary, accountAdd);
         SubstractAmount(amount, idCustomer, accountSubstract);
         AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary);
+
     }
 
     public static ArrayList<String> getAllAccountsByCustomer(int idCustomer){

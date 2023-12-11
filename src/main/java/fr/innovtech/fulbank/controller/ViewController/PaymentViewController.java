@@ -121,9 +121,11 @@ public class PaymentViewController extends ViewController implements Initializab
         ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
         if (!accounts.contains(beneficiary)){
             accountAdd = "courant";
+
         }
         else {
             accountAdd = beneficiary;
+            idBeneficiary = idCustomer;
         }
         String accountSubstract = cbx_depuis.getValue().toString();
         AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary);
