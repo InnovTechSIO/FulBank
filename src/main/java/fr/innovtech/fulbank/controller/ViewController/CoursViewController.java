@@ -61,17 +61,14 @@ public class CoursViewController extends ViewController implements Initializable
         coursListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             selectedImageView.setImage(new Image(newValue.getImageUrl()));
             selectedValueLabel.setVisible(true);
-            selectedValueLabel.setText(String.format("Valeur: %.2f €", newValue.getValue()));
+            selectedValueLabel.setText(String.format("Valeur: %s €", newValue.getValue()));
             selectedNameLabel.setVisible(true);
             selectedNameLabel.setText(String.format("Nom: %s", newValue.getName()));
             selectedHighestValue.setVisible(true);
-            selectedHighestValue.setText(String.format("Plus haute valeur dernière 24h : %.2f €", newValue.getHighestValue()));
+            selectedHighestValue.setText(String.format("Plus haute valeur dernière 24h : %s €", newValue.getHighestValue()));
             selectedLowestValue.setVisible(true);
-            selectedLowestValue.setText(String.format("Plus basse valeur dernière 24h : %.2f €", newValue.getLowestValue()));
+            selectedLowestValue.setText(String.format("Plus basse valeur dernière 24h : %s €", newValue.getLowestValue()));
         });
-
-
-
 
     }
     private static class LoadImageTask extends Task<Image> {
