@@ -5,6 +5,8 @@ import fr.innovtech.fulbank.controller.DBController.AccountDBController;
 import fr.innovtech.fulbank.controller.DBController.BeneficiaryDBController;
 import fr.innovtech.fulbank.controller.DBController.CategorieDBController;
 import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
+import fr.innovtech.fulbank.exception.HighCeilingException;
+import fr.innovtech.fulbank.exception.LowCeilingException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -112,7 +114,7 @@ public class PaymentViewController extends ViewController implements Initializab
     }
 
     @FXML
-    protected void doPayment(){
+    protected void doPayment() throws HighCeilingException, LowCeilingException {
         String beneficiary = cbx_vers.getValue().toString();
         String accountAdd ="";
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
@@ -128,7 +130,9 @@ public class PaymentViewController extends ViewController implements Initializab
             idBeneficiary = idCustomer;
         }
         String accountSubstract = cbx_depuis.getValue().toString();
-        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary);
+        float high_ceiling  = AccountDBController.getceiling_higher(accountAdd);
+        float low_ceiling = AccountDBController.getlow_ceiling(accountSubstract);
+        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary, high_ceiling, low_ceiling);
         cbx_vers.getItems().clear();
         cbx_depuis.getItems().clear();
         txt_montant.clear();
@@ -142,9 +146,10 @@ public class PaymentViewController extends ViewController implements Initializab
         long delay = 4000;
         lbl_fini.setVisible(true);
         timer.schedule(task,delay);
-        float high_ceiling  = AccountDBController.getceiling_higher(accountAdd);
-        float low_ceiling = AccountDBController.getlow_ceiling(accountSubstract);
-        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary, high_ceiling, low_ceiling);
+    }
+    public void setLblFiniText(String text){
+        lbl_fini.setVisible(true);
+        lbl_fini.setText(text);
     }
 
     @FXML

@@ -1,8 +1,11 @@
 package fr.innovtech.fulbank.controller.DBController;
 
+import fr.innovtech.fulbank.controller.ViewController.PaymentViewController;
 import fr.innovtech.fulbank.entities.Account;
 import fr.innovtech.fulbank.entities.Category;
 import fr.innovtech.fulbank.entities.Customer;
+import fr.innovtech.fulbank.exception.HighCeilingException;
+import fr.innovtech.fulbank.exception.LowCeilingException;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
 
 import java.sql.Connection;
@@ -47,42 +50,76 @@ public class AccountDBController {
         return accounts.get(0);
     }
 
-    public static void AddAmount(float add, int idCustomer, String account, float high_ceiling) {
-        try {
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
-                    "set Amount = Amount + ?\n" +
-                    "where idClient = ?\n" +
-                    "and idCategory=(\n" +
-                    "    select idCategory\n" +
-                    "    from Category\n" +
-                    "    where wording like ? );");
-            stmtQuery.setFloat(1, add);
-            stmtQuery.setInt(2, idCustomer);
-            stmtQuery.setString(3, account);
-            stmtQuery.executeUpdate();
+    public static float getAmount(int idCustomer, String account){
+        float amount = 0;
+        try
+        {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select Amount from Account WHERE idClient = ? and idCategory = (select idCategory from Category where wording like ?);");
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            stmtQuery.setInt(1,idCustomer);
+            stmtQuery.setString(2,account);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            while(resultSet.next()){
+                amount = resultSet.getFloat("Amount");
+            }
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return amount;
+    }
+
+    public static void AddAmount(float add, int idCustomer, String account, float high_ceiling) throws HighCeilingException {
+        float amount = getAmount(idCustomer, account);
+        if (amount + add > high_ceiling) {
+            return;
+
+        }
+        else {
+            try {
+                PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
+                        "set Amount = Amount + ?\n" +
+                        "where idClient = ?\n" +
+                        "and idCategory=(\n" +
+                        "    select idCategory\n" +
+                        "    from Category\n" +
+                        "    where wording like ? );");
+                stmtQuery.setFloat(1, add);
+                stmtQuery.setInt(2, idCustomer);
+                stmtQuery.setString(3, account);
+                stmtQuery.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
 
-    public static void SubstractAmount(float add, int idCustomer, String account, float low_ceiling) {
-        try {
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
-                    "set Amount = Amount - ?\n" +
-                    "where idClient = ?\n" +
-                    "and idCategory=(\n" +
-                    "    select idCategory\n" +
-                    "    from Category\n" +
-                    "    where wording like ? );");
-            stmtQuery.setFloat(1, add);
-            stmtQuery.setInt(2, idCustomer);
-            stmtQuery.setString(3, account);
-            stmtQuery.executeUpdate();
+    public static void SubstractAmount(float add, int idCustomer, String account, float low_ceiling) throws  LowCeilingException {
+        float amount = getAmount(idCustomer, account);
+        if (amount - add < low_ceiling) {
+            throw new LowCeilingException("Seuil atteint");
+        }
+        else {
+            try {
+                PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
+                        "set Amount = Amount - ?\n" +
+                        "where idClient = ?\n" +
+                        "and idCategory=(\n" +
+                        "    select idCategory\n" +
+                        "    from Category\n" +
+                        "    where wording like ? );");
+                stmtQuery.setFloat(1, add);
+                stmtQuery.setInt(2, idCustomer);
+                stmtQuery.setString(3, account);
+                stmtQuery.executeUpdate();
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -110,7 +147,7 @@ public class AccountDBController {
         }
     }
 
-    public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary, float high_ceiling, float low_ceiling) {
+    public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary, float high_ceiling, float low_ceiling) throws HighCeilingException, LowCeilingException {
         AddAmount(amount, idBeneficiary, accountAdd, high_ceiling);
         SubstractAmount(amount, idCustomer, accountSubstract, low_ceiling);
         AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary);
@@ -141,26 +178,7 @@ public class AccountDBController {
         return accounts;
     }
 
-    public static float getAmount(int idCustomer, String account){
-        float amount = 0;
-        try
-        {
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select Amount from Account WHERE idClient = ? and idCategory = (select idCategory from Category where wording like ?);");
 
-            stmtQuery.setInt(1,idCustomer);
-            stmtQuery.setString(2,account);
-            ResultSet resultSet = stmtQuery.executeQuery();
-
-            while(resultSet.next()){
-                amount = resultSet.getFloat("Amount");
-            }
-
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return amount;
-    }
 
     public static float getceiling_higher(String wording){
         float ceiling = 0;
