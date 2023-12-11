@@ -85,7 +85,7 @@ public class AccountDBController {
         }
     }
 
-    public static void AddTransaction(int amount, String accountAdd, String accountSubstract, int idCustomer ){
+    public static void AddTransaction(int amount, String accountAdd, String accountSubstract, int idCustomer, int idCustomer2 ){
         try{
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("insert into Transaction (datetransaction, amount, nbTransactionType, idDab, number_1, number_2) VALUES (date(now()),\n" +
                                                                                 "?,\n" +
@@ -98,7 +98,7 @@ public class AccountDBController {
             stmtQuery.setString(2, accountAdd);
             stmtQuery.setInt(3, idCustomer);
             stmtQuery.setString(4, accountSubstract);
-            stmtQuery.setInt(5, idCustomer);
+            stmtQuery.setInt(5, idCustomer2);
             stmtQuery.executeUpdate();
 
         } catch (SQLException e) {
@@ -106,10 +106,10 @@ public class AccountDBController {
         }
     }
 
-    public static void Payment(int amount, int idCustomer, String accountAdd, String accountSubstract){
+    public static void Payment(int amount, int idCustomer, String accountAdd, String accountSubstract, int idCustomer2){
         AddAmount(amount, idCustomer, accountAdd);
         SubstractAmount(amount, idCustomer, accountSubstract);
-        AddTransaction(amount, accountAdd, accountSubstract, idCustomer);
+        AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idCustomer2);
     }
 
 
