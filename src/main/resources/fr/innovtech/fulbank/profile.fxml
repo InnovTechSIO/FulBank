@@ -17,11 +17,11 @@
             <Font name="Arial Bold" size="68.0" />
          </font>
       </Label>
-      <Rectangle fx:id="mainRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#80e2ec" height="970.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Rectangle fx:id="mainRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#80c2ec" height="970.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Rectangle>
-      <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80e2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: #80C2EC" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80c2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: #80C2EC" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <ImageView fx:id="n" fitHeight="438.0" fitWidth="600.0" layoutX="1068.0" layoutY="-168.0" AnchorPane.rightAnchor="-99.0" AnchorPane.topAnchor="-168.0">
          <image>
             <Image url="@fulbanklogo.png" />

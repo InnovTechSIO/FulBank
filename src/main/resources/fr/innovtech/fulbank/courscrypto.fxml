@@ -11,11 +11,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: rgba(0,0,0,0); -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.ViewController.CoursViewController">
     <children>
-        <Rectangle fx:id="mainRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#80e2ec" height="970.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Rectangle fx:id="mainRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#80c2ec" height="970.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <cursor>
                 <Cursor fx:constant="DEFAULT" />
             </cursor></Rectangle>
-        <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80e2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: #16915A" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80c2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: #16915A" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <ListView fx:id="coursListView" layoutX="170.0" layoutY="102.0" prefHeight="766.0" prefWidth="629.0" styleClass="list-view" stylesheets="@style.css" />
       <FontAwesomeIcon glyphName="LONG_ARROW_LEFT" layoutX="42.0" layoutY="117.0" onMouseClicked="#switchSceneAccount" size="10em" />
       <ImageView fx:id="selectedImageView" fitHeight="368.0" fitWidth="387.0" layoutX="821.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
