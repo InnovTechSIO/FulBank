@@ -16,7 +16,7 @@ public class AccountViewController extends ViewController implements Initializab
 
     @FXML
     protected void setLbl_indiv(){
-        double amount = AccountDBController.getAmount(CustomerDBController.connectedCustomer.get_id(), "courant");
+        float amount = AccountDBController.getAmount(CustomerDBController.connectedCustomer.get_id(), "courant");
         lbl_indiv.setText(String.valueOf(amount));
     }
 

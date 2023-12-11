@@ -141,8 +141,8 @@ public class AccountDBController {
         return accounts;
     }
 
-    public static double getAmount(int idCustomer, String account){
-        double amount = 0;
+    public static float getAmount(int idCustomer, String account){
+        float amount = 0;
         try
         {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select Amount from Account WHERE idClient = ? and idCategory = (select idCategory from Category where wording like ?);");
@@ -152,7 +152,7 @@ public class AccountDBController {
             ResultSet resultSet = stmtQuery.executeQuery();
 
             while(resultSet.next()){
-                amount = resultSet.getDouble("Amount");
+                amount = resultSet.getFloat("Amount");
             }
 
         }
