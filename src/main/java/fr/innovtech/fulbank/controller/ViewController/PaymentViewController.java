@@ -7,6 +7,7 @@ import fr.innovtech.fulbank.controller.DBController.CategorieDBController;
 import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,6 +29,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.SplittableRandom;
 
+import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 public class PaymentViewController extends ViewController implements Initializable {
@@ -54,6 +56,9 @@ public class PaymentViewController extends ViewController implements Initializab
     private Label lbl_currency;
 
     @FXML
+    private Button test;
+
+    @FXML
     protected void switchBeneficiary(MouseEvent event) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("add_beneficiary.fxml"));
@@ -63,12 +68,24 @@ public class PaymentViewController extends ViewController implements Initializab
         stage.show();
     }
 
+    /* Fonction pour switch vers le main view sur le oncaction du bouton
+    @FXML
+    protected void switchMain(ActionEvent event) throws IOException {
+
+        if (parseInt(txt_montant.getCharacters().toString())>0) {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+    */
+
     @FXML
     protected void setCurrency(){
         if (cbx_depuis.getValue() != null) {
-            if (cbx_depuis.getValue().toString().equals("crypto")) {
-                lbl_currency.setText("bitcoin");
-            }
+            System.out.println(CategorieDBController.getCurrency(cbx_depuis.getValue().toString()));
         }
     }
 
@@ -84,7 +101,7 @@ public class PaymentViewController extends ViewController implements Initializab
     protected void showCbxVers(){
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
         ArrayList<String> allAccounts = new ArrayList<>(CategorieDBController.getCategoryByCustomer(idCustomer));
-        allAccounts.addAll(BeneficiaryDBController.getBeneficaryByCustomer(idCustomer));
+        allAccounts.addAll(BeneficiaryDBController.getBeneficiariesByCustomer(idCustomer));
         String choosen = cbx_depuis.getValue().toString();
 
         for(String account : allAccounts){
@@ -96,12 +113,28 @@ public class PaymentViewController extends ViewController implements Initializab
 
     @FXML
     protected void doPayment(){
+        String beneficiary = cbx_vers.getValue().toString();
+        String accountAdd ="";
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
+        int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
         int amount = parseInt(txt_montant.getCharacters().toString());
-        String accountAdd = cbx_vers.getValue().toString();
+        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
+        if (!accounts.contains(beneficiary)){
+            accountAdd = "courant";
+        }
+        else {
+            accountAdd = beneficiary;
+        }
         String accountSubstract = cbx_depuis.getValue().toString();
-        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract);
+        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary);
     }
+
+    @FXML
+    // fonction de test via un bouton dans payment
+    protected void test(){
+        
+    }
+
 
 
 

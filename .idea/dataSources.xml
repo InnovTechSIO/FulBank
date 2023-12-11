@@ -5,7 +5,7 @@
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://172.16.119.3:3306/FulBank</jdbc-url>
+      <jdbc-url>jdbc:mariadb://172.16.119.4:3306/FulBank</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="@localhost" uuid="03e3fef0-17f2-470b-a635-92b3ee6bdad0">
