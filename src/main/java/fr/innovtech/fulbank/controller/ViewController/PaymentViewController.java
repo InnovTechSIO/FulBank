@@ -125,29 +125,14 @@ public class PaymentViewController extends ViewController implements Initializab
         else {
             accountAdd = beneficiary;
         }
-        //tester jusqu'ici tout marche
         String accountSubstract = cbx_depuis.getValue().toString();
         AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary);
-        // problème avec la transaction "Column 'number_2' cannot be null" -> probleme avec l'idcustomer 2 (id du beneficiaire)
     }
 
     @FXML
     // fonction de test via un bouton dans payment
     protected void test(){
-        String beneficiary = cbx_vers.getValue().toString();
-        String accountAdd ="";
-        int idCustomer = CustomerDBController.connectedCustomer.get_id();
-        int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
-        float amount = parseFloat(txt_montant.getCharacters().toString());
-        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
-        if (!accounts.contains(beneficiary)){
-            accountAdd = "courant";
-            System.out.println("pas dans la liste");
-        }
-        else {
-            accountAdd = beneficiary;
-            System.out.println("dans la liste");
-        }
+        
     }
 
 

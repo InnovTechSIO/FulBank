@@ -38,7 +38,7 @@ public class BeneficiaryDBController {
     }
 
     public static int getBeneficiaryByName(String nameBeneficiary) {
-        int idBeneficiary = 2;
+        int idBeneficiary = 0;
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select idClientBeneficiary from Beneficiary where name = ?");
             stmtQuery.setString(1, nameBeneficiary);

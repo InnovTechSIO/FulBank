@@ -108,7 +108,7 @@ public class AccountDBController {
     }
 
     public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary){
-        AddAmount(amount, idCustomer, accountAdd);
+        AddAmount(amount, idBeneficiary, accountAdd);
         SubstractAmount(amount, idCustomer, accountSubstract);
         AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary);
     }
