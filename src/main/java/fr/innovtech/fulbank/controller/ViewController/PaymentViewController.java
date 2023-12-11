@@ -128,7 +128,9 @@ public class PaymentViewController extends ViewController implements Initializab
             idBeneficiary = idCustomer;
         }
         String accountSubstract = cbx_depuis.getValue().toString();
-        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary);
+        float high_ceiling  = AccountDBController.getceiling_higher(accountAdd);
+        float low_ceiling = AccountDBController.getlow_ceiling(accountSubstract);
+        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary, high_ceiling, low_ceiling);
     }
 
     @FXML
