@@ -24,10 +24,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.SplittableRandom;
+import java.util.*;
 
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
@@ -57,6 +54,9 @@ public class PaymentViewController extends ViewController implements Initializab
 
     @FXML
     private Button test;
+
+    @FXML
+    private Label lbl_fini;
 
     @FXML
     protected void switchBeneficiary(MouseEvent event) throws IOException {
@@ -127,12 +127,36 @@ public class PaymentViewController extends ViewController implements Initializab
         }
         String accountSubstract = cbx_depuis.getValue().toString();
         AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary);
+        cbx_vers.getItems().clear();
+        cbx_depuis.getItems().clear();
+        txt_montant.clear();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                lbl_fini.setVisible(false);
+            }
+        };
+        Timer timer = new Timer("Timer");
+        long delay = 4000;
+        lbl_fini.setVisible(true);
+        timer.schedule(task,delay);
     }
 
     @FXML
     // fonction de test via un bouton dans payment
     protected void test(){
-        
+        String beneficiary = cbx_vers.getValue().toString();
+        String accountAdd ="";
+        int idCustomer = CustomerDBController.connectedCustomer.get_id();
+        int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
+        int amount = parseInt(txt_montant.getCharacters().toString());
+        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
+        if (!accounts.contains(beneficiary)){
+            accountAdd = "courant";
+        }
+        else {
+            accountAdd = beneficiary;
+        }
     }
 
 

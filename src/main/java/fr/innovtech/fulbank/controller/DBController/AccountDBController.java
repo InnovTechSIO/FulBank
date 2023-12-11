@@ -141,6 +141,27 @@ public class AccountDBController {
         return accounts;
     }
 
+    public static double getAmount(int idCustomer, String account){
+        double amount = 0;
+        try
+        {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select Amount from Account WHERE idClient = ? and idCategory = (select idCategory from Category where wording like ?);");
+
+            stmtQuery.setInt(1,idCustomer);
+            stmtQuery.setString(2,account);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            while(resultSet.next()){
+                amount = resultSet.getDouble("Amount");
+            }
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return amount;
+    }
+
 }
 
 
