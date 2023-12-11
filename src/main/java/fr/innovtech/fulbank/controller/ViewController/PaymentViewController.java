@@ -142,6 +142,9 @@ public class PaymentViewController extends ViewController implements Initializab
         long delay = 4000;
         lbl_fini.setVisible(true);
         timer.schedule(task,delay);
+        float high_ceiling  = AccountDBController.getceiling_higher(accountAdd);
+        float low_ceiling = AccountDBController.getlow_ceiling(accountSubstract);
+        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary, high_ceiling, low_ceiling);
     }
 
     @FXML
