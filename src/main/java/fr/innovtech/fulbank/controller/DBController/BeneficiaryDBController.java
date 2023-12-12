@@ -72,7 +72,6 @@ public class BeneficiaryDBController {
     }
 
     //Fonction en cours pour ajouter un bénéficiaire à partir de son iban (on lui crée un nom) -> on vérifie d'abord s'il existe avec la fonction doExist
-    // A vérifier
     public static void addBeneficiary(String name, String iban, int idClient, int idBeneficiary){
         if (!doExist(name,iban)){
             try{
@@ -87,6 +86,24 @@ public class BeneficiaryDBController {
                 e.printStackTrace();
             }
         }
+    }
+
+    // Fonction pour récupérer tous les id de bénéficiaire
+    public static ArrayList<Integer> getAllBeneficiary(){
+        ArrayList<Integer> beneficiaries = new ArrayList<>();
+        try{
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select idClientBeneficiary from Beneficiary;");
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            while(resultSet.next()){
+                beneficiaries.add(resultSet.getInt("idClientBeneficiary"));
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return beneficiaries;
     }
 
 

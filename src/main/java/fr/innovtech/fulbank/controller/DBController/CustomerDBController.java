@@ -150,8 +150,7 @@ public class CustomerDBController {
 
     }
 
-    //fonction pour récupérer l'id du bénéficiaire à partir de l'iban
-    // A vérifier / finir
+    // Fonction qui renvoie l'id d'un client en mettant son iban en paramètre
     public static int getCustomerByIban(String iban){
         int idCustomer = 0;
         try {
@@ -161,12 +160,14 @@ public class CustomerDBController {
             ResultSet resultSet = stmtQuery.executeQuery();
 
             if(resultSet.next()){
-                idCustomer = resultSet;
+                idCustomer = resultSet.getInt("idClient");
             }
 
         }catch (SQLException e){
             e.printStackTrace();
         }
+
+        return  idCustomer;
     }
 
 
