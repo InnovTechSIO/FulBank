@@ -59,7 +59,7 @@ public class PaymentViewController extends ViewController implements Initializab
     private Button test;
 
     @FXML
-    private Label lbl_fini;
+    private Label label_error_payment;
 
     @FXML
     protected void switchBeneficiary(MouseEvent event) throws IOException {
@@ -120,12 +120,12 @@ public class PaymentViewController extends ViewController implements Initializab
         String accountSubstract = cbx_depuis.getValue().toString();
         float high_ceiling  = AccountDBController.getceiling_higher(accountAdd);
         float low_ceiling = AccountDBController.getlow_ceiling(accountSubstract);
-        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary, high_ceiling, low_ceiling);
+        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary, high_ceiling, low_ceiling, this);
 
     }
     public void setLblFiniText(String text){
-        lbl_fini.setVisible(true);
-        lbl_fini.setText(text);
+        label_error_payment.setVisible(true);
+        label_error_payment.setText(text);
     }
 
     @FXML
@@ -153,9 +153,9 @@ public class PaymentViewController extends ViewController implements Initializab
         if(color == null)
             color = Color.BLACK;
         if(active) {
-            lbl_fini.setTextFill(color);
-            lbl_fini.setText(text);
-            lbl_fini.setVisible(true);
+            label_error_payment.setTextFill(color);
+            label_error_payment.setText(text);
+            label_error_payment.setVisible(true);
 
 
         }

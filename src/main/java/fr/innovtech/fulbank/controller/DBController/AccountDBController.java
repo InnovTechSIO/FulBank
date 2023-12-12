@@ -71,11 +71,10 @@ public class AccountDBController {
         return amount;
     }
 
-    public static void AddAmount(float add, int idCustomer, String account, float high_ceiling) throws HighCeilingException {
+    public static void AddAmount(float add, int idCustomer, String account, float high_ceiling, PaymentViewController paymentViewController)  {
         float amount = getAmount(idCustomer, account);
         if (amount + add > high_ceiling) {
-            return;
-
+            paymentViewController.setLblFiniText("Vous avez dépassé le plafond haut de votre compte");
         }
         else {
             try {
@@ -99,22 +98,27 @@ public class AccountDBController {
 
 
     public static void SubstractAmount(float add, int idCustomer, String account, float low_ceiling, PaymentViewController paymentViewController) {
-        try {
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
-                    "set Amount = Amount - ?\n" +
-                    "where idClient = ?\n" +
-                    "and idCategory=(\n" +
-                    "    select idCategory\n" +
-                    "    from Category\n" +
-                    "    where wording like ? );");
-            stmtQuery.setFloat(1, add);
-            stmtQuery.setInt(2, idCustomer);
-            stmtQuery.setString(3, account);
-            stmtQuery.executeUpdate();
 
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+        if(getAmount(idCustomer, account) - add < low_ceiling){
+            paymentViewController.setLblFiniText("Vous avez dépassé le plafond bas de votre compte");
+        }
+        else {
+            try {
+                PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
+                        "set Amount = Amount - ?\n" +
+                        "where idClient = ?\n" +
+                        "and idCategory=(\n" +
+                        "    select idCategory\n" +
+                        "    from Category\n" +
+                        "    where wording like ? );");
+                stmtQuery.setFloat(1, add);
+                stmtQuery.setInt(2, idCustomer);
+                stmtQuery.setString(3, account);
+                stmtQuery.executeUpdate();
+
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
         }
     }
 
