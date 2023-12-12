@@ -161,6 +161,10 @@ public class PaymentViewController extends ViewController implements Initializab
         }
     }
 
+    public boolean isvisibilelbl(){
+        return label_error_payment.isVisible();
+    }
+
 
 
     @Override

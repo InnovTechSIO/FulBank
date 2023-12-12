@@ -71,10 +71,11 @@ public class AccountDBController {
         return amount;
     }
 
-    public static void AddAmount(float add, int idCustomer, String account, float high_ceiling, PaymentViewController paymentViewController)  {
+    public static boolean AddAmount(float add, int idCustomer, String account, float high_ceiling, PaymentViewController paymentViewController)  {
         float amount = getAmount(idCustomer, account);
         if (amount + add > high_ceiling) {
             paymentViewController.setLblFiniText("Vous avez dépassé le plafond haut de votre compte");
+            return false;
         }
         else {
             try {
@@ -89,18 +90,21 @@ public class AccountDBController {
                 stmtQuery.setInt(2, idCustomer);
                 stmtQuery.setString(3, account);
                 stmtQuery.executeUpdate();
+                return true;
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
+
     }
 
 
-    public static void SubstractAmount(float add, int idCustomer, String account, float low_ceiling, PaymentViewController paymentViewController) {
+    public static boolean SubstractAmount(float add, int idCustomer, String account, float low_ceiling, PaymentViewController paymentViewController) {
 
         if(getAmount(idCustomer, account) - add < low_ceiling){
             paymentViewController.setLblFiniText("Vous avez dépassé le plafond bas de votre compte");
+            return false;
         }
         else {
             try {
@@ -115,6 +119,7 @@ public class AccountDBController {
                 stmtQuery.setInt(2, idCustomer);
                 stmtQuery.setString(3, account);
                 stmtQuery.executeUpdate();
+                return true;
 
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
@@ -122,7 +127,9 @@ public class AccountDBController {
         }
     }
 
-    public static void AddTransaction(float amount, String accountAdd, String accountSubstract, int idCustomer, int idCustomer2 ) {
+    public static void AddTransaction(float amount, String accountAdd, String accountSubstract, int idCustomer, int idCustomer2 , PaymentViewController paymentViewController) {
+
+
 
         try {
 
@@ -147,9 +154,14 @@ public class AccountDBController {
     }
 
     public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary, float high_ceiling, float low_ceiling, PaymentViewController paymentViewController) {
-        AddAmount(amount, idBeneficiary, accountAdd, high_ceiling, paymentViewController);
-        SubstractAmount(amount, idCustomer, accountSubstract, low_ceiling, paymentViewController);
-        AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary);
+        if(AddAmount(amount, idBeneficiary, accountAdd, high_ceiling, paymentViewController)){
+            if(        SubstractAmount(amount, idCustomer, accountSubstract, low_ceiling, paymentViewController)){
+                AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary, paymentViewController);
+                paymentViewController.setLblFiniText("");
+
+            }
+        }
+
 
     }
 
