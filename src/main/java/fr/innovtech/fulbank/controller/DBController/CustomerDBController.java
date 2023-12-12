@@ -15,6 +15,7 @@ public class CustomerDBController {
     public static Customer connectedCustomer = new Customer(0, "default", "default", "default", "default", "default", "default");
 
 
+    // Getter de customer
     public static Customer getCustomerById(int id) {
         ArrayList<Customer> customers = new ArrayList<>();
 
@@ -45,6 +46,7 @@ public class CustomerDBController {
     }
 
 
+    // Retourne un booléen qui dit si l'utilisateur est connecté
     public static boolean checkUser(String username, String password) {
 
         try {
@@ -88,6 +90,7 @@ public class CustomerDBController {
         return false;
     }
 
+    // Méthode pour enregister un client
     public static  boolean registerCustomer(String name, String firstName, String email, String phone, String cardNumber, String iban, String password){
 
         if(name.isEmpty() || firstName.isEmpty() || email.isEmpty() || phone.isEmpty() || cardNumber.isEmpty() || iban.isEmpty() || password.isEmpty()){

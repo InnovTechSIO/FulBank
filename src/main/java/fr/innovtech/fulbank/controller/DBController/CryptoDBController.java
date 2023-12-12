@@ -15,6 +15,7 @@ public class CryptoDBController {
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
 
 
+    // Getter de crypto
     public static Crypto getCrypto(int id) {
         ArrayList<Crypto> cryptos = new ArrayList<>();
 

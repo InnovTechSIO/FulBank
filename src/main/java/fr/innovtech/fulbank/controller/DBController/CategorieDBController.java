@@ -16,6 +16,7 @@ public class CategorieDBController {
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
 
 
+    // Getter de catégorie
     public static Category getCategoryById(int id) {
         ArrayList<Category> categories = new ArrayList<>();
 
@@ -46,6 +47,7 @@ public class CategorieDBController {
         return categories.get(0);
     }
 
+    // Récupère une liste de compte avec en paramètre l'id d'un client
     public static ArrayList<String> getCategoryByCustomer(int idClient)
     {
         ArrayList<String> accounts = new ArrayList<>();
@@ -72,6 +74,7 @@ public class CategorieDBController {
         return accounts;
     }
 
+    // Récupère la monnaie d'un compte avec en paramètre le libelle du compte
     public static String getCurrency(String account){
         String currency = "";
 

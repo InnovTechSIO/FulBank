@@ -14,6 +14,7 @@ public class BeneficiaryDBController {
 
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
 
+    // Récupère tous les bénéficiaires d'un client avec son id en paramètre
     public static ArrayList<String> getBeneficiariesByCustomer(int idCustomer){
         ArrayList<String> beneficiaries = new ArrayList<>();
 
@@ -37,6 +38,7 @@ public class BeneficiaryDBController {
         return beneficiaries;
     }
 
+    // Récupère un bénéficiaire avec son nom en paramètre
     public static int getBeneficiaryByName(String nameBeneficiary) {
         int idBeneficiary = 0;
         try {
@@ -54,6 +56,7 @@ public class BeneficiaryDBController {
         return idBeneficiary;
     }
 
+    // Vérifie si le bénéficiaire existe dans la base de donnée
     public static boolean doExist(String name, String iban){
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select idClientBeneficiary from Beneficiary where name = ? and idClientBeneficiary = (select customer.idClient from customer where customer.IBAN = ?);");
