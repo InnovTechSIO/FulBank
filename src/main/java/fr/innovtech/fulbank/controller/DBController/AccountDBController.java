@@ -1,5 +1,6 @@
 package fr.innovtech.fulbank.controller.DBController;
 
+import fr.innovtech.fulbank.controller.ViewController.PaymentViewController;
 import fr.innovtech.fulbank.entities.Account;
 import fr.innovtech.fulbank.entities.Category;
 import fr.innovtech.fulbank.entities.Customer;
@@ -47,7 +48,32 @@ public class AccountDBController {
         return accounts.get(0);
     }
 
-    public static void AddAmount(float add, int idCustomer, String account, float high_ceiling) {
+    public static float getAmount(int idCustomer, String account){
+        float amount = 0;
+        try
+        {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select Amount from Account WHERE idClient = ? and idCategory = (select idCategory from Category where wording like ?);");
+
+            stmtQuery.setInt(1,idCustomer);
+            stmtQuery.setString(2,account);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            while(resultSet.next()){
+                amount = resultSet.getFloat("Amount");
+            }
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return amount;
+    }
+
+    public static void AddAmount(float add, int idCustomer, String account, float high_ceiling, PaymentViewController paymentViewController) {
+        if (getAmount(idCustomer, account) + add > high_ceiling) {
+            return;
+
+        }
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
                     "set Amount = Amount + ?\n" +
@@ -67,7 +93,7 @@ public class AccountDBController {
     }
 
 
-    public static void SubstractAmount(float add, int idCustomer, String account, float low_ceiling) {
+    public static void SubstractAmount(float add, int idCustomer, String account, float low_ceiling, PaymentViewController paymentViewController) {
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
                     "set Amount = Amount - ?\n" +
@@ -110,9 +136,9 @@ public class AccountDBController {
         }
     }
 
-    public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary, float high_ceiling, float low_ceiling) {
-        AddAmount(amount, idBeneficiary, accountAdd, high_ceiling);
-        SubstractAmount(amount, idCustomer, accountSubstract, low_ceiling);
+    public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary, float high_ceiling, float low_ceiling, PaymentViewController paymentViewController) {
+        AddAmount(amount, idBeneficiary, accountAdd, high_ceiling, paymentViewController);
+        SubstractAmount(amount, idCustomer, accountSubstract, low_ceiling, paymentViewController);
         AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary);
 
     }
@@ -141,26 +167,7 @@ public class AccountDBController {
         return accounts;
     }
 
-    public static float getAmount(int idCustomer, String account){
-        float amount = 0;
-        try
-        {
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select Amount from Account WHERE idClient = ? and idCategory = (select idCategory from Category where wording like ?);");
 
-            stmtQuery.setInt(1,idCustomer);
-            stmtQuery.setString(2,account);
-            ResultSet resultSet = stmtQuery.executeQuery();
-
-            while(resultSet.next()){
-                amount = resultSet.getFloat("Amount");
-            }
-
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return amount;
-    }
 
     public static float getceiling_higher(String wording){
         float ceiling = 0;
