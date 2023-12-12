@@ -5,6 +5,8 @@ import fr.innovtech.fulbank.controller.DBController.AccountDBController;
 import fr.innovtech.fulbank.controller.DBController.BeneficiaryDBController;
 import fr.innovtech.fulbank.controller.DBController.CategorieDBController;
 import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
+import fr.innovtech.fulbank.exception.HighCeilingException;
+import fr.innovtech.fulbank.exception.LowCeilingException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,25 +21,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.SplittableRandom;
+import java.util.*;
 
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 public class PaymentViewController extends ViewController implements Initializable {
-
-
-    @FXML
-    private AnchorPane payment_controller;
 
     @FXML
     private TextField txt_montant;
@@ -123,7 +117,7 @@ public class PaymentViewController extends ViewController implements Initializab
     }
 
     @FXML
-    protected void doPayment(){
+    protected void doPayment() throws HighCeilingException, LowCeilingException {
         String beneficiary = cbx_vers.getValue().toString();
         String accountAdd ="";
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
@@ -132,9 +126,11 @@ public class PaymentViewController extends ViewController implements Initializab
         ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
         if (!accounts.contains(beneficiary)){
             accountAdd = "courant";
+
         }
         else {
             accountAdd = beneficiary;
+            idBeneficiary = idCustomer;
         }
         String accountSubstract = cbx_depuis.getValue().toString();
         float high_ceiling  = AccountDBController.getceiling_higher(accountAdd);
@@ -159,7 +155,18 @@ public class PaymentViewController extends ViewController implements Initializab
     @FXML
     // fonction de test via un bouton dans payment
     protected void test(){
-        
+        String beneficiary = cbx_vers.getValue().toString();
+        String accountAdd ="";
+        int idCustomer = CustomerDBController.connectedCustomer.get_id();
+        int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
+        int amount = parseInt(txt_montant.getCharacters().toString());
+        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
+        if (!accounts.contains(beneficiary)){
+            accountAdd = "courant";
+        }
+        else {
+            accountAdd = beneficiary;
+        }
     }
 
 
@@ -173,12 +180,7 @@ public class PaymentViewController extends ViewController implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        label_error_paymen = new Label("test");
 
-        payment_controller.getChildren().add(label_error_paymen);
-        label_error_paymen.setLayoutX(1);
-        label_error_paymen.setLayoutY(1);
-        label_error_paymen.setVisible(true);
 
 
     }
