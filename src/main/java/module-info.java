@@ -13,6 +13,7 @@ module fr.innovtech.fulbank {
     exports fr.innovtech.fulbank.entities;
     exports fr.innovtech.fulbank.controller.ViewController;
     exports fr.innovtech.fulbank.controller.DBController;
+    exports fr.innovtech.fulbank.exception;
     opens fr.innovtech.fulbank.controller.DBController to javafx.fxml;
     opens fr.innovtech.fulbank.controller.ViewController to javafx.fxml;
 }

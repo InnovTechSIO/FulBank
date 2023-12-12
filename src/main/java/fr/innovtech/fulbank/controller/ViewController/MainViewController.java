@@ -45,6 +45,15 @@ public class MainViewController extends ViewController implements Initializable 
         stage.show();
     }
 
+    @FXML
+    protected void switchAccounts(MouseEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("account.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
 
