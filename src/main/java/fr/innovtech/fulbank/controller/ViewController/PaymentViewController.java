@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -70,19 +71,6 @@ public class PaymentViewController extends ViewController implements Initializab
         stage.show();
     }
 
-    /* Fonction pour switch vers le main view sur le oncaction du bouton
-    @FXML
-    protected void switchMain(ActionEvent event) throws IOException {
-
-        if (parseInt(txt_montant.getCharacters().toString())>0) {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-    }
-    */
 
     @FXML
     protected void setCurrency(){
@@ -133,19 +121,7 @@ public class PaymentViewController extends ViewController implements Initializab
         float high_ceiling  = AccountDBController.getceiling_higher(accountAdd);
         float low_ceiling = AccountDBController.getlow_ceiling(accountSubstract);
         AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary, high_ceiling, low_ceiling);
-        cbx_vers.getItems().clear();
-        cbx_depuis.getItems().clear();
-        txt_montant.clear();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                lbl_fini.setVisible(false);
-            }
-        };
-        Timer timer = new Timer("Timer");
-        long delay = 4000;
-        lbl_fini.setVisible(true);
-        timer.schedule(task,delay);
+
     }
     public void setLblFiniText(String text){
         lbl_fini.setVisible(true);
@@ -171,10 +147,25 @@ public class PaymentViewController extends ViewController implements Initializab
 
 
 
+    boolean active = false;
+
+    public void setTextLblFini(String text, Color color){
+        if(color == null)
+            color = Color.BLACK;
+        if(active) {
+            lbl_fini.setTextFill(color);
+            lbl_fini.setText(text);
+            lbl_fini.setVisible(true);
+
+
+        }
+    }
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        active = true;
     }
 
 
