@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.ViewController.PaymentViewController">
+<AnchorPane fx:id="payment_controller" prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.ViewController.PaymentViewController">
    <children>
       <FontAwesomeIcon glyphName="LONG_ARROW_LEFT" layoutX="42.0" layoutY="117.0" onMouseClicked="#switchSceneAccount" size="10em" />
       <ImageView fx:id="n" fitHeight="438.0" fitWidth="600.0" layoutX="735.0" layoutY="65.0" AnchorPane.rightAnchor="-99.0" AnchorPane.topAnchor="-168.0">

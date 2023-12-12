@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,6 +34,10 @@ import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 public class PaymentViewController extends ViewController implements Initializable {
+
+
+    @FXML
+    private AnchorPane payment_controller;
 
     @FXML
     private TextField txt_montant;
@@ -57,6 +62,12 @@ public class PaymentViewController extends ViewController implements Initializab
 
     @FXML
     private Button test;
+
+    @FXML
+    private Label label_error_paymen;
+
+    @FXML
+    private Label label_error_payment;
 
     @FXML
     protected void switchBeneficiary(MouseEvent event) throws IOException {
@@ -126,8 +137,24 @@ public class PaymentViewController extends ViewController implements Initializab
             accountAdd = beneficiary;
         }
         String accountSubstract = cbx_depuis.getValue().toString();
-        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary);
+        float high_ceiling  = AccountDBController.getceiling_higher(accountAdd);
+        float low_ceiling = AccountDBController.getlow_ceiling(accountSubstract);
+        AccountDBController.Payment(amount, idCustomer, accountAdd, accountSubstract, idBeneficiary, high_ceiling, low_ceiling, this);
+        cbx_vers.getItems().clear();
+        cbx_depuis.getItems().clear();
+        txt_montant.clear();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                label_error_payment.setVisible(false);
+            }
+        };
+        Timer timer = new Timer("Timer");
+        long delay = 4000;
+        label_error_payment.setVisible(true);
+        timer.schedule(task,delay);
     }
+
 
     @FXML
     // fonction de test via un bouton dans payment
@@ -136,11 +163,24 @@ public class PaymentViewController extends ViewController implements Initializab
     }
 
 
+    @FXML
+    public void setLblFiniText(String text){
+        label_error_payment.setVisible(true);
+        label_error_payment.setText(text);
+    }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        label_error_paymen = new Label("test");
+
+        payment_controller.getChildren().add(label_error_paymen);
+        label_error_paymen.setLayoutX(1);
+        label_error_paymen.setLayoutY(1);
+        label_error_paymen.setVisible(true);
+
+
     }
 
 

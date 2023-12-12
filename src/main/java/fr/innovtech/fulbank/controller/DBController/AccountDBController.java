@@ -47,18 +47,97 @@ public class AccountDBController {
         return accounts.get(0);
     }
 
-    public static void AddAmount(float add, int idCustomer, String account){
-        try{
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
-                                                                                "set Amount = Amount + ?\n" +
-                                                                                "where idClient = ?\n" +
-                                                                                "and idCategory=(\n" +
-                                                                                "    select idCategory\n" +
-                                                                                "    from Category\n" +
-                                                                                "    where wording like ? );");
-            stmtQuery.setFloat(1, add);
-            stmtQuery.setInt(2, idCustomer);
-            stmtQuery.setString(3,account);
+    public static float getAmount(int idCustomer, String account){
+        float amount = 0;
+        try
+        {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select Amount from Account WHERE idClient = ? and idCategory = (select idCategory from Category where wording like ?);");
+
+            stmtQuery.setInt(1,idCustomer);
+            stmtQuery.setString(2,account);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            while(resultSet.next()){
+                amount = resultSet.getFloat("Amount");
+            }
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return amount;
+    }
+
+    public static void AddAmount(float add, int idCustomer, String account, float high_ceiling, PaymentViewController paymentViewController ) throws HighCeilingException {
+        float amount = getAmount(idCustomer, account);
+        if (amount + add > high_ceiling) {
+            paymentViewController.setLblFiniText("Plafond haut atteint");
+
+
+        }
+        else {
+            try {
+                PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
+                        "set Amount = Amount + ?\n" +
+                        "where idClient = ?\n" +
+                        "and idCategory=(\n" +
+                        "    select idCategory\n" +
+                        "    from Category\n" +
+                        "    where wording like ? );");
+                stmtQuery.setFloat(1, add);
+                stmtQuery.setInt(2, idCustomer);
+                stmtQuery.setString(3, account);
+                stmtQuery.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+    public static void SubstractAmount(float add, int idCustomer, String account, float low_ceiling, PaymentViewController paymentViewController) throws  LowCeilingException {
+        float amount = getAmount(idCustomer, account);
+        if (amount - add < low_ceiling) {
+            paymentViewController.setLblFiniText("Plafond bas atteint");
+        }
+        else {
+            try {
+                PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
+                        "set Amount = Amount - ?\n" +
+                        "where idClient = ?\n" +
+                        "and idCategory=(\n" +
+                        "    select idCategory\n" +
+                        "    from Category\n" +
+                        "    where wording like ? );");
+                stmtQuery.setFloat(1, add);
+                stmtQuery.setInt(2, idCustomer);
+                stmtQuery.setString(3, account);
+                stmtQuery.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public static void AddTransaction(float amount, String accountAdd, String accountSubstract, int idCustomer, int idCustomer2 ) {
+
+        try {
+
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("insert into Transaction (datetransaction, amount, nbTransactionType, idDab, number_1, number_2) VALUES (?,\n" +
+                    "?,\n" +
+                    "1,\n" +
+                    "1,\n" +
+                    "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? ),\n" +
+                    "(select number from Account where idCategory = ( select idCategory from Category where wording like ? ) and idClient = ? )\n" +
+                    ");");
+            stmtQuery.setDate(1, new java.sql.Date(new Date().getTime()));
+            stmtQuery.setFloat(2, amount);
+            stmtQuery.setString(3, accountSubstract);
+            stmtQuery.setInt(4, idCustomer);
+            stmtQuery.setString(5, accountAdd);
+            stmtQuery.setInt(6, idCustomer2);
             stmtQuery.executeUpdate();
 
         } catch (SQLException e) {
@@ -66,6 +145,10 @@ public class AccountDBController {
         }
     }
 
+    public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary, float high_ceiling, float low_ceiling, PaymentViewController paymentViewController) throws HighCeilingException, LowCeilingException {
+        AddAmount(amount, idBeneficiary, accountAdd, high_ceiling, paymentViewController);
+        SubstractAmount(amount, idCustomer, accountSubstract, low_ceiling, paymentViewController);
+        AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary);
 
     public static void SubstractAmount(float add, int idCustomer, String account){
         try{
