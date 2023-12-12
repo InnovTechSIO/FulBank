@@ -52,19 +52,22 @@ public class AccountDBController {
     }
 
     // Récupère le montant d'un compte avec en paramètre l'id du client et le libelle en string du compte
-    public static float getAmount(int idCustomer, String account){
+    public static float getAmount(int idCustomer, String account) {
         float amount = 0;
-        try
-        {
+        try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select Amount from Account WHERE idClient = ? and idCategory = (select idCategory from Category where wording like ?);");
 
-            stmtQuery.setInt(1,idCustomer);
-            stmtQuery.setString(2,account);
+            stmtQuery.setInt(1, idCustomer);
+            stmtQuery.setString(2, account);
             ResultSet resultSet = stmtQuery.executeQuery();
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 amount = resultSet.getFloat("Amount");
             }
+        } catch (SQLException e) {
+        }
+        return amount;
+    }
 
     // Met à jour le montant du compte qui reçoit l'argent dans une transaction (utilisé dans doPayment)
     public static boolean AddAmount(float add, int idCustomer, String account, float high_ceiling, PaymentViewController paymentViewController)  {
