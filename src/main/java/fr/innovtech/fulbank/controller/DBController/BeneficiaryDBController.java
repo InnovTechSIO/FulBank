@@ -53,4 +53,41 @@ public class BeneficiaryDBController {
 
         return idBeneficiary;
     }
+
+    public static boolean doExist(String name, String iban){
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select idClientBeneficiary from Beneficiary where name = ? and idClientBeneficiary = (select customer.idClient from customer where customer.IBAN = ?);");
+            stmtQuery.setString(1, name);
+            stmtQuery.setString(2, iban);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    //Fonction en cours pour ajouter un bénéficiaire à partir de son iban (on lui crée un nom) -> on vérifie d'abord s'il existe avec la fonction doExist
+    // A vérifier
+    public static void addBeneficiary(String name, String iban, int idClient, int idBeneficiary){
+        if (!doExist(name,iban)){
+            try{
+                PreparedStatement stmtQuery = mySQLConnection.prepareStatement("insert into Beneficiary (idClient, idClientBeneficiary, name) VALUES (?, ?, ?);");
+                stmtQuery.setInt(1, idClient);
+                stmtQuery.setInt(2, idBeneficiary);
+                stmtQuery.setString(3,name);
+
+                stmtQuery.executeUpdate();
+
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }

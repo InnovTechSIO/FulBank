@@ -98,24 +98,19 @@ public class AccountDBController {
     }
 
 
-    public static void SubstractAmount(float add, int idCustomer, String account, float low_ceiling) throws  LowCeilingException {
-        float amount = getAmount(idCustomer, account);
-        if (amount - add < low_ceiling) {
-            throw new LowCeilingException("Seuil atteint");
-        }
-        else {
-            try {
-                PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
-                        "set Amount = Amount - ?\n" +
-                        "where idClient = ?\n" +
-                        "and idCategory=(\n" +
-                        "    select idCategory\n" +
-                        "    from Category\n" +
-                        "    where wording like ? );");
-                stmtQuery.setFloat(1, add);
-                stmtQuery.setInt(2, idCustomer);
-                stmtQuery.setString(3, account);
-                stmtQuery.executeUpdate();
+    public static void SubstractAmount(float add, int idCustomer, String account, float low_ceiling, PaymentViewController paymentViewController) {
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("update Account\n" +
+                    "set Amount = Amount - ?\n" +
+                    "where idClient = ?\n" +
+                    "and idCategory=(\n" +
+                    "    select idCategory\n" +
+                    "    from Category\n" +
+                    "    where wording like ? );");
+            stmtQuery.setFloat(1, add);
+            stmtQuery.setInt(2, idCustomer);
+            stmtQuery.setString(3, account);
+            stmtQuery.executeUpdate();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -147,9 +142,9 @@ public class AccountDBController {
         }
     }
 
-    public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary, float high_ceiling, float low_ceiling) throws HighCeilingException, LowCeilingException {
-        AddAmount(amount, idBeneficiary, accountAdd, high_ceiling);
-        SubstractAmount(amount, idCustomer, accountSubstract, low_ceiling);
+    public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary, float high_ceiling, float low_ceiling, PaymentViewController paymentViewController) {
+        AddAmount(amount, idBeneficiary, accountAdd, high_ceiling, paymentViewController);
+        SubstractAmount(amount, idCustomer, accountSubstract, low_ceiling, paymentViewController);
         AddTransaction(amount, accountAdd, accountSubstract, idCustomer, idBeneficiary);
 
     }

@@ -71,19 +71,6 @@ public class PaymentViewController extends ViewController implements Initializab
         stage.show();
     }
 
-    /* Fonction pour switch vers le main view sur le oncaction du bouton
-    @FXML
-    protected void switchMain(ActionEvent event) throws IOException {
-
-        if (parseInt(txt_montant.getCharacters().toString())>0) {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-    }
-    */
 
     @FXML
     protected void setCurrency(){

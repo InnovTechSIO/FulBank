@@ -36,19 +36,19 @@
             <Font size="68.0" />
          </font>
       </Label>
-      <TextField layoutX="42.0" layoutY="472.0" prefHeight="53.0" prefWidth="701.0" />
+      <TextField fx:id="txt_name" layoutX="42.0" layoutY="472.0" prefHeight="53.0" prefWidth="701.0" />
       <Label layoutX="42.0" layoutY="385.0" prefHeight="100.0" prefWidth="339.0" style="-fx-font-family: Open Sans; -fx-font-style: semi bold;" text="Nom :">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
       </Label>
-      <TextField layoutX="42.0" layoutY="673.0" prefHeight="53.0" prefWidth="701.0" />
+      <TextField fx:id="txt_iban" layoutX="42.0" layoutY="673.0" prefHeight="53.0" prefWidth="701.0" />
       <Label layoutX="42.0" layoutY="586.0" prefHeight="100.0" prefWidth="339.0" style="-fx-font-family: Open Sans; -fx-font-style: semi bold;" text="IBAN :">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
       </Label>
-      <Button layoutX="260.0" layoutY="791.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="243.0" text="Ajouter">
+      <Button fx:id="bt_add" layoutX="260.0" layoutY="791.0" mnemonicParsing="false" onMouseClicked="#addBeneficiary" prefHeight="76.0" prefWidth="243.0" text="Ajouter">
          <font>
             <Font size="36.0" />
          </font></Button>

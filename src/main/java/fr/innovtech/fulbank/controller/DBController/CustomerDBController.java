@@ -150,6 +150,25 @@ public class CustomerDBController {
 
     }
 
+    //fonction pour récupérer l'id du bénéficiaire à partir de l'iban
+    // A vérifier / finir
+    public static int getCustomerByIban(String iban){
+        int idCustomer = 0;
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select idClient from customer where IBAN = ?;");
+            stmtQuery.setString(1, iban);
+
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if(resultSet.next()){
+                idCustomer = resultSet;
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
 
 }
