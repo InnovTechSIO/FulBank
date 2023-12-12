@@ -19,6 +19,7 @@ public class AccountDBController {
 
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
 
+    // Getter de account
     public static Account getAccountById(int id) {
         ArrayList<Account> accounts = new ArrayList<>();
 
@@ -50,6 +51,7 @@ public class AccountDBController {
         return accounts.get(0);
     }
 
+    // Récupère le montant d'un compte avec en paramètre l'id du client et le libelle en string du compte
     public static float getAmount(int idCustomer, String account){
         float amount = 0;
         try
@@ -64,13 +66,7 @@ public class AccountDBController {
                 amount = resultSet.getFloat("Amount");
             }
 
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return amount;
-    }
-
+    // Met à jour le montant du compte qui reçoit l'argent dans une transaction (utilisé dans doPayment)
     public static boolean AddAmount(float add, int idCustomer, String account, float high_ceiling, PaymentViewController paymentViewController)  {
         float amount = getAmount(idCustomer, account);
         if (amount + add > high_ceiling) {
@@ -127,10 +123,8 @@ public class AccountDBController {
         }
     }
 
+    // Crée une transaction dans la table Transaction (utilisée dans doPayment)
     public static void AddTransaction(float amount, String accountAdd, String accountSubstract, int idCustomer, int idCustomer2 , PaymentViewController paymentViewController) {
-
-
-
         try {
 
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("insert into Transaction (datetransaction, amount, nbTransactionType, idDab, number_1, number_2) VALUES (?,\n" +
@@ -153,6 +147,7 @@ public class AccountDBController {
         }
     }
 
+    // Méthode finale utilisée pour effectuer une virement
     public static void Payment(float amount, int idCustomer, String accountAdd, String accountSubstract, int idBeneficiary, float high_ceiling, float low_ceiling, PaymentViewController paymentViewController) {
         if(AddAmount(amount, idBeneficiary, accountAdd, high_ceiling, paymentViewController)){
             if(        SubstractAmount(amount, idCustomer, accountSubstract, low_ceiling, paymentViewController)){
@@ -165,6 +160,7 @@ public class AccountDBController {
 
     }
 
+    // Récupère une liste de tous les comptes d'un utilisateur avec son idClient en paramètre
     public static ArrayList<String> getAllAccountsByCustomer(int idCustomer) {
         ArrayList<String> accounts = new ArrayList<>();
 
@@ -191,6 +187,7 @@ public class AccountDBController {
 
 
 
+    // Récupère le plafond haut d'un compte avec en paramètre le liblle du compte
     public static float getceiling_higher(String wording){
         float ceiling = 0;
         try {
@@ -210,6 +207,7 @@ public class AccountDBController {
 
     }
 
+    // Récupère le plafond bas d'un compte avec en paramètre le liblle du compte
     public static float getlow_ceiling(String wording){
         float low_ceiling = 0;
         try {
