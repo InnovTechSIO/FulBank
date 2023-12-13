@@ -20,12 +20,12 @@ public class AccountDBController {
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
 
     // Getter de account
-    public static Account getAccountById(int id) {
+    public static ArrayList<Account> getAccountByIdCustomer(int idCustomer) {
         ArrayList<Account> accounts = new ArrayList<>();
 
         try {
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Account WHERE number= ?");
-            stmtQuery.setInt(1, id);
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Account WHERE idClient= ?");
+            stmtQuery.setInt(1, idCustomer);
             ResultSet resultSet = stmtQuery.executeQuery();
 
             if (resultSet.next()) {
@@ -36,7 +36,7 @@ public class AccountDBController {
                     Date creationDate = resultSet.getDate("creation_date");
                     Date updateDate = resultSet.getDate("modification_date");
                     Date deletionDate = resultSet.getDate("deletion_date");
-                    Customer customer = CustomerDBController.getCustomerById(resultSet.getInt("idCustomer"));
+                    Customer customer = CustomerDBController.getCustomerById(resultSet.getInt("idClient"));
                     Category category = CategorieDBController.getCategoryById(resultSet.getInt("idCategory"));
 
 
@@ -48,7 +48,7 @@ public class AccountDBController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return accounts.get(0);
+        return accounts;
     }
 
     // Récupère le montant d'un compte avec en paramètre l'id du client et le libelle en string du compte
@@ -163,8 +163,8 @@ public class AccountDBController {
 
     }
 
-    // Récupère une liste de tous les comptes d'un utilisateur avec son idClient en paramètre
-    public static ArrayList<String> getAllAccountsByCustomer(int idCustomer) {
+    // Récupère une liste de tous les noms de comptes d'un utilisateur avec son idClient en paramètre
+    public static ArrayList<String> getAllAccountsNameByCustomer(int idCustomer) {
         ArrayList<String> accounts = new ArrayList<>();
 
         try {
@@ -210,7 +210,7 @@ public class AccountDBController {
 
     }
 
-    // Récupère le plafond bas d'un compte avec en paramètre le liblle du compte
+    // Récupère le plafond bas d'un compte avec en paramètre le libelle du compte
     public static float getlow_ceiling(String wording){
         float low_ceiling = 0;
         try {

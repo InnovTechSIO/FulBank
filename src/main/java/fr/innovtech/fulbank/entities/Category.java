@@ -7,12 +7,14 @@ public class Category {
         private Float _account_fees;
         private Float _ceiling_high;
         private Float _low_ceiling;
-        private Float _currency;
+        private String _currency;
         private Crypto _crypto;
 
         private Float _interest_rate;
 
-        public Category(Integer _id, String _wording, Float _account_fees, Float _ceiling_high, Float _low_ceiling,Float _interest_rate, Float _currency, Crypto _crypto) {
+        private Type _type;
+
+        public Category(Integer _id, String _wording, Float _account_fees, Float _ceiling_high, Float _low_ceiling,Float _interest_rate, String _currency, Crypto _crypto, Type _type) {
             this._wording = _wording;
             this._account_fees = _account_fees;
             this._ceiling_high = _ceiling_high;
@@ -21,6 +23,7 @@ public class Category {
             this._crypto = _crypto;
             this._id = _id;
             this._interest_rate = _interest_rate;
+            this._type = _type;
         }
 
         public String get_wording() {
@@ -39,9 +42,11 @@ public class Category {
             return _low_ceiling;
         }
 
-        public Float get_currency() {
+        public String get_currency() {
             return _currency;
         }
+
+        public Type get_type() { return this._type; }
 
         public void set_wording(String _wording) {
             this._wording = _wording;
@@ -59,9 +64,11 @@ public class Category {
             this._low_ceiling = _low_ceiling;
         }
 
-        public void set_currency(Float _currency) {
+        public void set_currency(String _currency) {
             this._currency = _currency;
         }
+
+        public void set_type(Type type) { this._type = type; }
 
         public int get_id() {
             return _id;
@@ -91,6 +98,7 @@ public class Category {
                     ", _low_ceiling=" + _low_ceiling +
                     ", _currency=" + _currency +
                     ", _crypto=" + _crypto +
+                    ", _type" + _type +
                     '}';
         }
 

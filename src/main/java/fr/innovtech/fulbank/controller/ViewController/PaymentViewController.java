@@ -109,7 +109,7 @@ public class PaymentViewController extends ViewController implements Initializab
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
         int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
         float amount = parseFloat(txt_montant.getCharacters().toString().replaceAll(",","."));
-        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
+        ArrayList<String> accounts = AccountDBController.getAllAccountsNameByCustomer(idCustomer);
         if (!accounts.contains(beneficiary)){
             accountAdd = "courant";
 
@@ -137,9 +137,9 @@ public class PaymentViewController extends ViewController implements Initializab
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
         int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
         int amount = parseInt(txt_montant.getCharacters().toString());
-        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
+        ArrayList<String> accounts = AccountDBController.getAllAccountsNameByCustomer(idCustomer);
         if (!accounts.contains(beneficiary)){
-            accountAdd = "courant";
+            accountAdd = "individuel";
         }
         else {
             accountAdd = beneficiary;

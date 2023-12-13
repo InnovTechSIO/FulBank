@@ -33,7 +33,7 @@ public class CategorieDBController {
                     Float ceiling_high = resultSet.getFloat("ceiling_high");
                     Float low_ceiling = resultSet.getFloat("low_ceiling");
                     Float interest_rate = resultSet.getFloat("interest_rate");
-                    Float currency_change = resultSet.getFloat("Currency");
+                    String currency_change = resultSet.getString("Currency");
                     Crypto crypto = CryptoDBController.getCrypto(resultSet.getInt("number"));
 
                     Category category = new Category(idcategory, wording, account_fees, ceiling_high, low_ceiling, interest_rate, currency_change, crypto);

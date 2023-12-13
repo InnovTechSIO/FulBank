@@ -1,8 +1,12 @@
 package fr.innovtech.fulbank.controller.ViewController;
 
 import fr.innovtech.fulbank.controller.DBController.AccountDBController;
+import fr.innovtech.fulbank.controller.DBController.CategorieDBController;
+import fr.innovtech.fulbank.controller.DBController.CryptoDBController;
 import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
 import fr.innovtech.fulbank.entities.Account;
+import fr.innovtech.fulbank.entities.Category;
+import fr.innovtech.fulbank.entities.Crypto;
 import fr.innovtech.fulbank.entities.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,20 +23,21 @@ public class AccountViewController extends ViewController implements Initializab
     private Label lbl_indiv;
 
 
-    @FXML
-    protected void setLbl_indiv(){
-        float amount = AccountDBController.getAmount(CustomerDBController.connectedCustomer.get_id(), "courant");
-        lbl_indiv.setText(String.valueOf(amount));
-    }
-
+    // Doit placer l'élément avec le nom du compte et le montant (voir la table type)
     @FXML
     protected void setCourants(){
-        //ArrayList<> accounts = AccountDBController.getAllAccountsByCustomer(CustomerDBController.connectedCustomer.get_id());
+        ArrayList<Account> accounts = AccountDBController.getAccountByIdCustomer(CustomerDBController.connectedCustomer.get_id());
+        for (Account anAccount : accounts){
+            if (anAccount.get_category().get_wording() == "individuel or ") {
+                lbl_indiv.setText(String.format("Compte %s : %f", anAccount.get_category().get_wording(), anAccount.get_amount()));
+            }
+        }
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setLbl_indiv();
+        setCourants();
     }
 
 }
