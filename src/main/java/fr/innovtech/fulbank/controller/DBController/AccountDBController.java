@@ -164,16 +164,19 @@ public class AccountDBController {
     }
 
     // Récupère une liste de tous les comptes d'un utilisateur avec son idClient en paramètre
+    public static ArrayList<String> getAllAccountsByCustomer(int idCustomer) {
         ArrayList<String> accounts = new ArrayList<>();
 
         try {
-            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select * from Account where idClient = ?;");
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select wording\n" +
+                    "from Category\n" +
+                    "join FulBank.Account A on Category.idCategory = A.idCategory\n" +
+                    "join FulBank.customer c on A.idClient = c.idClient\n" +
+                    "where c.idClient = ?;");
             stmtQuery.setInt(1, idCustomer);
             ResultSet resultSet = stmtQuery.executeQuery();
 
             while (resultSet.next()) {
-                int number = re
-                Account anAccount = new Account()
                 accounts.add(resultSet.getString("wording"));
             }
 
