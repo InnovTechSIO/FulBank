@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.ViewController.AccountViewController">
    <children>
-      <Rectangle fx:id="mainRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#80c2ec" height="970.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Rectangle fx:id="mainRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#80c2ec" height="970.0" layoutX="1.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1569.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="-6.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Rectangle>
@@ -36,14 +36,19 @@
          </font>
       </Label>
       <Line fx:id="line_epargne" endX="525.0" layoutX="67.0" layoutY="512.0" startX="-66.0" />
-      <Label fx:id="lbl_credit" layoutX="14.0" layoutY="695.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Crédit" textFill="#224399">
+      <Label fx:id="lbl_credit" layoutX="15.0" layoutY="687.0" prefHeight="100.0" prefWidth="791.0" style="-fx-font-family: roboto;" text="Crédit" textFill="#224399">
          <font>
             <Font size="64.0" />
          </font>
       </Label>
-      <Line fx:id="line_credit" endX="525.0" layoutX="67.0" layoutY="795.0" startX="-66.0" />
+      <Line fx:id="line_credit" endX="525.0" layoutX="67.0" layoutY="787.0" startX="-66.0" />
       <ListView fx:id="account_view1" layoutX="14.0" layoutY="267.0" prefHeight="153.0" prefWidth="576.0" style="-fx-background-color: #80c2ec;" />
       <ListView fx:id="account_view2" layoutX="14.0" layoutY="534.0" prefHeight="153.0" prefWidth="576.0" style="-fx-background-color: #80c2ec;" />
       <ListView fx:id="account_view3" layoutX="14.0" layoutY="803.0" prefHeight="153.0" prefWidth="576.0" style="-fx-background-color: #80c2ec;" />
+      <Label layoutX="599.0" layoutY="50.0" prefHeight="100.0" prefWidth="339.0" text="Comptes">
+         <font>
+            <Font name="Arial Bold" size="68.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

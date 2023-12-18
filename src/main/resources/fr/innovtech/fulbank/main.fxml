@@ -36,7 +36,7 @@
             <Font size="40.0" />
          </font>
       </Button>
-      <Button layoutX="1225.0" layoutY="425.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="286.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Conversion" textAlignment="CENTER">
+      <Button layoutX="1225.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#switchConversion" prefHeight="84.0" prefWidth="286.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Conversion" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
