@@ -22,7 +22,7 @@ public class CryptoCardCell extends ListCell<CryptoCard> {
         imageView = new ImageView();
         nameLabel = new Label();
         valueLabel = new Label();
-        setStyle("-fx-background-color: #80e2ec; -fx-border-color: #80e2ec");
+        setStyle("-fx-background-color: #224399; -fx-border-color: #224399");
         imageView.setFitHeight(50);
         imageView.setPreserveRatio(true);
         imageView.setStyle("-fx-margin: 10px");

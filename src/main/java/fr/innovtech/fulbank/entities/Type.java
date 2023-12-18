@@ -17,6 +17,7 @@ public class Type {
     public void setId(int id) { this._id = id; }
 
     public void setWording (String wording) {this._wording = wording;}
+
     @Override
     public String toString() {
         return "Type{" +
@@ -26,4 +27,3 @@ public class Type {
     }
 }
 
-}
