@@ -19,7 +19,7 @@ public class CategorieDBController {
 
     // Getter de catégorie
     public static Category getCategoryById(int id) {
-        Category categorie = new Category(1, "Compte courant", 0.0f, 0.0f, 0.0f, 0.0f, "EUR", null);
+        Category categorie = new Category(1, "Compte courant", 0.0f, 0.0f, 0.0f, 0.0f, "EUR", null, null);
 
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Category WHERE idCategory = ?");
@@ -44,9 +44,9 @@ public class CategorieDBController {
                     categorie.set_interest(interest_rate);
                     categorie.set_currency(currency_change);
                     categorie.set_crypto(crypto);
+                    categorie.set_wording(wording);
 
-                    categorie.setType(type);
-                    categories.add(category);
+                    categorie.set_type(type);
                 } while(resultSet.next());
             }
 

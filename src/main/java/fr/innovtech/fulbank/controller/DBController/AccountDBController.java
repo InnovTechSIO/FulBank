@@ -52,10 +52,8 @@ public class AccountDBController {
     }
 
     public static Account getAccountByIdd(int id) {
-        Customer customerr = CustomerDBController.getCustomerById(id);
-        Category categoryy = CategorieDBController.getCategoryById(id);
 
-        Account account = new Account(1, 12.5f, new Date(), new Date(), new Date(),customerr ,categoryy );
+        Account account = new Account(1, null, null, null, null,null ,null );
 
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Account WHERE number= ?");
@@ -268,6 +266,26 @@ public class AccountDBController {
             e.printStackTrace();
         }
         return low_ceiling;
+    }
+
+    public static int getIdAccountByCategoryName(String name){
+        int id = 0;
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select A.number\n" +
+                    "from Category C \n" +
+                    "join Account A on C.idCategory = A.idCategory" +
+                    " where C.wording like ?;");
+            stmtQuery.setString(1, name);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if (resultSet.next()) {
+               id= resultSet.getInt("number");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return  id;
     }
 
 

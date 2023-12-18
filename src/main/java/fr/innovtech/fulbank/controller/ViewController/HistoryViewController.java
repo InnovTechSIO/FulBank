@@ -1,6 +1,7 @@
 package fr.innovtech.fulbank.controller.ViewController;
 
 import fr.innovtech.fulbank.App;
+import fr.innovtech.fulbank.controller.DBController.AccountDBController;
 import fr.innovtech.fulbank.controller.DBController.CategorieDBController;
 import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
 import fr.innovtech.fulbank.controller.DBController.HistoryDBController;
@@ -35,9 +36,7 @@ public class HistoryViewController extends ViewController implements Initializab
 
     @FXML
     protected void showCbxChoiceAccount() {
-        cbx_choiceAccount.getItems().clear();
-        int idCustomer = CustomerDBController.connectedCustomer.get_id();
-        cbx_choiceAccount.getItems().addAll(CategorieDBController.getCategoryByCustomer(idCustomer));
+
     }
 
     @FXML
@@ -52,22 +51,64 @@ public class HistoryViewController extends ViewController implements Initializab
 
     @Override
     public void initialize(URL var1, ResourceBundle var2) {
-        showCbxChoiceAccount();
+        cbx_choiceAccount.getItems().clear();
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
+        cbx_choiceAccount.getItems().addAll(CategorieDBController.getCategoryByCustomer(idCustomer));
+
         List<Integer> allIdAccount = HistoryDBController.getAllIdAccountsByCustomer(idCustomer);
         List<Transaction> allTransaction = new ArrayList<>();
         List<Transaction> allTransactionSubstract = new ArrayList<>();
         List<Transaction> allTransactionadd = new ArrayList<>();
+
         for(Integer idAccount : allIdAccount){
             allTransactionadd.addAll(HistoryDBController.getAllTransactionsByAccountAdd(idAccount));
             allTransactionSubstract.addAll(HistoryDBController.getAllTransactionsByAccountSubstract(idAccount));
         }
+
         allTransaction.addAll(allTransactionadd);
         allTransaction.addAll(allTransactionSubstract);
 
+        changeListView(historyListView, allTransactionadd, allTransactionSubstract);
+
+
+        cbx_choiceAccount.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            // a revoir pour reset la listview
+            historyListView.getItems().clear();
+            historyListView.setCellFactory(null);
+            historyListView.refresh();
+
+            allTransaction.clear();
+            allTransactionSubstract.clear();
+            allTransactionadd.clear();
+
+            int idAccount = AccountDBController.getIdAccountByCategoryName(newValue);
+
+                allTransactionadd.addAll(HistoryDBController.getAllTransactionsByAccountAddByCategorie(idAccount, newValue));
+                allTransactionSubstract.addAll(HistoryDBController.getAllTransactionsByAccountSubstractByCategorie(idAccount, newValue));
+
+
+            System.out.println(allTransactionadd);
+            System.out.println(allTransactionSubstract);
+
+
+            changeListView(historyListView, allTransactionadd, allTransactionSubstract);
+
+
+        });
+
+
+
+    }
+
+
+    private void changeListView(ListView<HistoryCard> historyListView, List<Transaction> allTransactionadd, List<Transaction> allTransactionSubstract){
+
         List<HistoryCard> historyCards = new ArrayList<>();
 
-        for(Transaction transaction : allTransaction) {
+
+
+
+        for(Transaction transaction : allTransactionadd) {
 
             int idTransaction = transaction.get_idtransaction();
             float amount = transaction.get_amount();
@@ -78,18 +119,36 @@ public class HistoryViewController extends ViewController implements Initializab
             String customerNameAdd = accountadd.get_customer().get_lastName();
             int idAccountSubstract = accountsubstract.get_number();
 
-            System.out.println("customerNameSubstract : " + customerNameSubstract);
-            System.out.println("customerNameAdd : " + customerNameAdd);
 
-            HistoryCard historyCard = new HistoryCard(idTransaction, amount, accountsubstract.get_category().get_wording(),customerNameSubstract, accountadd.get_category().get_wording(),customerNameAdd, dateTransaction, idAccountSubstract);
+
+
+            HistoryCard historyCard = new HistoryCard(idTransaction, amount, accountsubstract.get_category().get_wording(),customerNameSubstract, accountadd.get_category().get_wording(),customerNameAdd, dateTransaction, idAccountSubstract, false);
+            historyCards.add(historyCard);
+
+        }
+
+
+        for(Transaction transaction : allTransactionSubstract) {
+
+            int idTransaction = transaction.get_idtransaction();
+            float amount = transaction.get_amount();
+            Account accountsubstract = transaction.get_accountsubstract();
+            Account accountadd = transaction.get_accountadd();
+            String dateTransaction = transaction.get_datetransaction().toString();
+            String customerNameSubstract = accountsubstract.get_customer().get_lastName();
+            String customerNameAdd = accountadd.get_customer().get_lastName();
+            int idAccountSubstract = accountsubstract.get_number();
+
+
+
+
+            HistoryCard historyCard = new HistoryCard(idTransaction, amount, accountsubstract.get_category().get_wording(),customerNameSubstract, accountadd.get_category().get_wording(),customerNameAdd, dateTransaction, idAccountSubstract, true);
             historyCards.add(historyCard);
 
         }
 
         historyListView.setItems(FXCollections.observableList(historyCards));
         historyListView.setCellFactory(param -> new HistoryCardCell());
-
-
 
 
 

@@ -17,6 +17,7 @@ public class HistoryCard {
     private String customerNameAdd;
 
 
+    private boolean substract;
 
 
 
@@ -24,9 +25,10 @@ public class HistoryCard {
 
     private int idAccountSubstract;
 
-    public HistoryCard(int idTransaction, float amount, String accountSubstract,String customerNameSubstract, String accountAdd,String customerNameAdd, String dateTransaction,int idAccountSubstract) {
+    public HistoryCard(int idTransaction, float amount, String accountSubstract,String customerNameSubstract, String accountAdd,String customerNameAdd, String dateTransaction,int idAccountSubstract, boolean isSubstract) {
         this.idTransaction = idTransaction;
         this.amount = amount;
+        this.substract = isSubstract;
         this.accountSubstract = accountSubstract;
         this.accountAdd = accountAdd;
         this.dateTransaction = dateTransaction;
@@ -50,6 +52,10 @@ public class HistoryCard {
         return accountSubstract;
     }
 
+
+    public boolean isSubstract() {
+        return substract;
+    }
 
     public String getAccountAdd() {
         return accountAdd;

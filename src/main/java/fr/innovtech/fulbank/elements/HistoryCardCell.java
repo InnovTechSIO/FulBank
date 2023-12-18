@@ -42,11 +42,12 @@ public class HistoryCardCell extends ListCell<HistoryCard> {
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
 
 
+
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
         } else {
-            if(item.getIdAccountSubstract()== AccountDBController.getAccountByIdd(idCustomer).get_number()){
+            if(item.isSubstract()){
                 amountLabel.setText(String.valueOf("-"+item.getAmount()));
                     amountLabel.setStyle("-fx-text-fill: red");
 
