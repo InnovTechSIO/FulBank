@@ -42,8 +42,8 @@
          </font>
       </Label>
       <Line fx:id="line_credit" endX="525.0" layoutX="67.0" layoutY="795.0" startX="-66.0" />
-      <ListView fx:id="account_view" layoutX="14.0" layoutY="267.0" prefHeight="153.0" prefWidth="576.0" />
-      <ListView fx:id="account_view1" layoutX="14.0" layoutY="534.0" prefHeight="153.0" prefWidth="576.0" />
-      <ListView fx:id="account_view11" layoutX="14.0" layoutY="807.0" prefHeight="153.0" prefWidth="576.0" />
+      <ListView fx:id="account_view1" layoutX="14.0" layoutY="267.0" prefHeight="153.0" prefWidth="576.0" style="-fx-background-color: #80c2ec;" />
+      <ListView fx:id="account_view2" layoutX="14.0" layoutY="534.0" prefHeight="153.0" prefWidth="576.0" style="-fx-background-color: #80c2ec;" />
+      <ListView fx:id="account_view3" layoutX="14.0" layoutY="803.0" prefHeight="153.0" prefWidth="576.0" style="-fx-background-color: #80c2ec;" />
    </children>
 </AnchorPane>
