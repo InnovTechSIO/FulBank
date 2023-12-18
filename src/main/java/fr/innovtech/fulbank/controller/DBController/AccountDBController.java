@@ -19,7 +19,7 @@ public class AccountDBController {
 
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
 
-    // Getter de account (liste de compte)
+    // Récupère la liste de compte d'un client avec à son id
     public static ArrayList<Account> getAccountByIdCustomer(int idCustomer) {
         ArrayList<Account> accounts = new ArrayList<>();
 

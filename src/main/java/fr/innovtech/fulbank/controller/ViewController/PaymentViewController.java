@@ -128,7 +128,7 @@ public class PaymentViewController extends ViewController implements Initializab
         label_error_payment.setVisible(true);
         label_error_payment.setText(text);
     }
-    
+
 
 
 
