@@ -61,11 +61,6 @@
          </font>
       </Button>
       <ComboBox fx:id="cbx_vers" layoutX="615.0" layoutY="311.0" onMouseClicked="#showCbxVers" prefHeight="53.0" prefWidth="400.0" promptText="Choisir un compte" />
-      <Label fx:id="lbl_currency" layoutX="513.0" layoutY="565.0" onMouseClicked="#test" prefHeight="93.0" prefWidth="281.0" text="€">
-         <font>
-            <Font size="64.0" />
-         </font>
-      </Label>
       <Label fx:id="label_error_payment" layoutX="42.0" layoutY="859.0" prefHeight="41.0" prefWidth="349.0" />
    </children>
 </AnchorPane>
