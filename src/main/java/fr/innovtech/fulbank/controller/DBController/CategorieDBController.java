@@ -94,7 +94,7 @@ public class CategorieDBController {
             currency = resultSet.getString("currency");
         }
         catch (SQLException e) {
-            throw new RuntimeException(e);
+
         }
 
         return currency;
