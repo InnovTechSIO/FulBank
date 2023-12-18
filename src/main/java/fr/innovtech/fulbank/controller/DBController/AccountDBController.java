@@ -36,7 +36,7 @@ public class AccountDBController {
                     Date creationDate = resultSet.getDate("creation_date");
                     Date updateDate = resultSet.getDate("modification_date");
                     Date deletionDate = resultSet.getDate("deletion_date");
-                    Customer customer = CustomerDBController.getCustomerById(resultSet.getInt("idCustomer"));
+                    Customer customer = CustomerDBController.getCustomerById(resultSet.getInt("idClient"));
                     Category category = CategorieDBController.getCategoryById(resultSet.getInt("idCategory"));
 
 
@@ -49,6 +49,47 @@ public class AccountDBController {
             e.printStackTrace();
         }
         return accounts.get(0);
+    }
+
+    public static Account getAccountByIdd(int id) {
+        Customer customerr = CustomerDBController.getCustomerById(id);
+        Category categoryy = CategorieDBController.getCategoryById(id);
+
+        Account account = new Account(1, 12.5f, new Date(), new Date(), new Date(),customerr ,categoryy );
+
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Account WHERE number= ?");
+            stmtQuery.setInt(1, id);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if (resultSet.next()) {
+                do {
+
+                    int number = resultSet.getInt("number");
+                    Float amount = resultSet.getFloat("Amount");
+                    Date creationDate = resultSet.getDate("creation_date");
+                    Date updateDate = resultSet.getDate("modification_date");
+                    Date deletionDate = resultSet.getDate("deletion_date");
+                    Customer customer = CustomerDBController.getCustomerById(resultSet.getInt("idClient"));
+                    Category category = CategorieDBController.getCategoryById(resultSet.getInt("idCategory"));
+
+
+                   account.set_amount(amount);
+                     account.set_category(category);
+                        account.set_customer(customer);
+                        account.set_creationDate(creationDate);
+                        account.setDeletionDate(deletionDate);
+                        account.set_updateDate(updateDate);
+                        account.set_number(number);
+
+
+                } while (resultSet.next());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return account;
     }
 
     // Récupère le montant d'un compte avec en paramètre l'id du client et le libelle en string du compte

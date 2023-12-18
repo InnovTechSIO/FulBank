@@ -7,12 +7,12 @@ public class Category {
         private Float _account_fees;
         private Float _ceiling_high;
         private Float _low_ceiling;
-        private Float _currency;
+        private String  _currency;
         private Crypto _crypto;
 
         private Float _interest_rate;
 
-        public Category(Integer _id, String _wording, Float _account_fees, Float _ceiling_high, Float _low_ceiling,Float _interest_rate, Float _currency, Crypto _crypto) {
+        public Category(Integer _id, String _wording, Float _account_fees, Float _ceiling_high, Float _low_ceiling,Float _interest_rate, String _currency, Crypto _crypto) {
             this._wording = _wording;
             this._account_fees = _account_fees;
             this._ceiling_high = _ceiling_high;
@@ -39,7 +39,7 @@ public class Category {
             return _low_ceiling;
         }
 
-        public Float get_currency() {
+        public String get_currency() {
             return _currency;
         }
 
@@ -59,7 +59,7 @@ public class Category {
             this._low_ceiling = _low_ceiling;
         }
 
-        public void set_currency(Float _currency) {
+        public void set_currency(String _currency) {
             this._currency = _currency;
         }
 
@@ -78,6 +78,16 @@ public class Category {
         public void set_crypto(Crypto _crypto) {
             this._crypto = _crypto;
         }
+
+        public Float get_interest() {
+            return _interest_rate;
+        }
+
+        public void set_interest(Float _interest_rate) {
+            this._interest_rate = _interest_rate;
+        }
+
+
 
 
 
