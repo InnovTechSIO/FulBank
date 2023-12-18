@@ -22,7 +22,7 @@ public class CryptoCardCell extends ListCell<CryptoCard> {
         imageView = new ImageView();
         nameLabel = new Label();
         valueLabel = new Label();
-        setStyle("-fx-background-color: #80e2ec; -fx-border-color: #80e2ec");
+        setStyle("-fx-background-color: #80c2ec; -fx-border-color: #80c2ec");
         imageView.setFitHeight(50);
         imageView.setPreserveRatio(true);
         imageView.setStyle("-fx-margin: 10px");
@@ -48,7 +48,7 @@ public class CryptoCardCell extends ListCell<CryptoCard> {
             imageView.imageProperty().bind(loadImageTask.valueProperty());
             new Thread(loadImageTask).start();
 
-            setStyle("-fx-background-color: " + (getIndex() % 2 == 0 ? "#80e2ec;" : "#6ac3d2; -fx-border-color: #272727; -fx-border-width: 1px;"));
+            setStyle("-fx-background-color: " + (getIndex() % 2 == 0 ? "#80c2ec;" : "#6ac3d2; -fx-border-color: #272727; -fx-border-width: 1px;"));
             setGraphic(cardLayout);
         }
     }

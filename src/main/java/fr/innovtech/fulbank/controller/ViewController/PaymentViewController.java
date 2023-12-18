@@ -109,7 +109,7 @@ public class PaymentViewController extends ViewController implements Initializab
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
         int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
         float amount = parseFloat(txt_montant.getCharacters().toString().replaceAll(",","."));
-        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
+        ArrayList<String> accounts = AccountDBController.getAllAccountsNameByCustomer(idCustomer);
         if (!accounts.contains(beneficiary)){
             accountAdd = "courant";
 
@@ -129,22 +129,6 @@ public class PaymentViewController extends ViewController implements Initializab
         label_error_payment.setText(text);
     }
 
-    @FXML
-    // fonction de test via un bouton dans payment
-    protected void test(){
-        String beneficiary = cbx_vers.getValue().toString();
-        String accountAdd ="";
-        int idCustomer = CustomerDBController.connectedCustomer.get_id();
-        int idBeneficiary = BeneficiaryDBController.getBeneficiaryByName(cbx_vers.getValue().toString());
-        int amount = parseInt(txt_montant.getCharacters().toString());
-        ArrayList<String> accounts = AccountDBController.getAllAccountsByCustomer(idCustomer);
-        if (!accounts.contains(beneficiary)){
-            accountAdd = "courant";
-        }
-        else {
-            accountAdd = beneficiary;
-        }
-    }
 
 
 

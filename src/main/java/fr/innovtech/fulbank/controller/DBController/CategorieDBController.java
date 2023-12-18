@@ -2,6 +2,7 @@ package fr.innovtech.fulbank.controller.DBController;
 
 import fr.innovtech.fulbank.entities.Category;
 import fr.innovtech.fulbank.entities.Crypto;
+import fr.innovtech.fulbank.entities.Type;
 import fr.innovtech.fulbank.gateways.MySQLDBGateway;
 
 import java.sql.Connection;
@@ -35,6 +36,7 @@ public class CategorieDBController {
                     Float interest_rate = resultSet.getFloat("interest_rate");
                     String currency_change = resultSet.getString("Currency");
                     Crypto crypto = CryptoDBController.getCrypto(resultSet.getInt("number"));
+                    Type type = TypeDBController.getType(resultSet.getInt("idType"));
 
                     categorie.set_account_fees(account_fees);
                     categorie.set_ceiling_high(ceiling_high);
@@ -43,6 +45,8 @@ public class CategorieDBController {
                     categorie.set_currency(currency_change);
                     categorie.set_crypto(crypto);
 
+                    categorie.setType(type);
+                    categories.add(category);
                 } while(resultSet.next());
             }
 
