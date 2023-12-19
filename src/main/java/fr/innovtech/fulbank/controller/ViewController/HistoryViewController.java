@@ -43,7 +43,7 @@ public class HistoryViewController extends ViewController implements Initializab
         historyListView.setStyle("-fx-background-color: #80e2ec;");
         cbx_choiceAccount.getItems().clear();
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
-        cbx_choiceAccount.getItems().add("all");
+        cbx_choiceAccount.getItems().add("Toutes les transactions");
         cbx_choiceAccount.getItems().addAll(CategorieDBController.getCategoryByCustomer(idCustomer));
         cbx_choiceAccount.getSelectionModel().selectFirst();
 
@@ -72,7 +72,7 @@ public class HistoryViewController extends ViewController implements Initializab
             allTransaction.clear();
             allTransactionSubstract.clear();
             allTransactionadd.clear();
-            if(newValue.equals("all")){
+            if(newValue.equals("Toutes les transactions")){
                 for(Integer idAccount : allIdAccount){
                     allTransactionadd.addAll(HistoryDBController.getAllTransactionsByAccountAdd(idAccount));
                     allTransactionSubstract.addAll(HistoryDBController.getAllTransactionsByAccountSubstract(idAccount));
