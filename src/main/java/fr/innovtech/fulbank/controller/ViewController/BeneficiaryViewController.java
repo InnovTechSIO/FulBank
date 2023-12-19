@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class BeneficiaryViewController extends MainViewController implements Initializable {
+public class BeneficiaryViewController extends ViewController implements Initializable {
     @FXML
     TextField txt_name;
 

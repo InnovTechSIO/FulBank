@@ -51,6 +51,45 @@ public class AccountDBController {
         return accounts;
     }
 
+    public static Account getAccountByIdd(int id) {
+
+        Account account = new Account(1, null, null, null, null,null ,null );
+
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Account WHERE number= ?");
+            stmtQuery.setInt(1, id);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if (resultSet.next()) {
+                do {
+
+                    int number = resultSet.getInt("number");
+                    Float amount = resultSet.getFloat("Amount");
+                    Date creationDate = resultSet.getDate("creation_date");
+                    Date updateDate = resultSet.getDate("modification_date");
+                    Date deletionDate = resultSet.getDate("deletion_date");
+                    Customer customer = CustomerDBController.getCustomerById(resultSet.getInt("idClient"));
+                    Category category = CategorieDBController.getCategoryById(resultSet.getInt("idCategory"));
+
+
+                   account.set_amount(amount);
+                     account.set_category(category);
+                        account.set_customer(customer);
+                        account.set_creationDate(creationDate);
+                        account.setDeletionDate(deletionDate);
+                        account.set_updateDate(updateDate);
+                        account.set_number(number);
+
+
+                } while (resultSet.next());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return account;
+    }
+
     // Récupère le montant d'un compte avec en paramètre l'id du client et le libelle en string du compte
     public static float getAmount(int idCustomer, String account) {
         float amount = 0;
@@ -227,6 +266,26 @@ public class AccountDBController {
             e.printStackTrace();
         }
         return low_ceiling;
+    }
+
+    public static int getIdAccountByCategoryName(String name){
+        int id = 0;
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select A.number\n" +
+                    "from Category C \n" +
+                    "join Account A on C.idCategory = A.idCategory" +
+                    " where C.wording like ?;");
+            stmtQuery.setString(1, name);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if (resultSet.next()) {
+               id= resultSet.getInt("number");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return  id;
     }
 
 

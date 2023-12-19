@@ -7,7 +7,7 @@ public class Category {
         private Float _account_fees;
         private Float _ceiling_high;
         private Float _low_ceiling;
-        private String _currency;
+        private String  _currency;
         private Crypto _crypto;
 
         private Float _interest_rate;
@@ -85,6 +85,16 @@ public class Category {
         public void set_crypto(Crypto _crypto) {
             this._crypto = _crypto;
         }
+
+        public Float get_interest() {
+            return _interest_rate;
+        }
+
+        public void set_interest(Float _interest_rate) {
+            this._interest_rate = _interest_rate;
+        }
+
+
 
 
 
