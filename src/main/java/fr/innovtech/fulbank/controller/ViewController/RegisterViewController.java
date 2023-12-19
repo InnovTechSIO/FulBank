@@ -27,10 +27,8 @@ public class RegisterViewController extends ViewController implements Initializa
         Faker faker = new Faker();
         IBAN.setText(faker.finance().iban("FR"));
         card_number.setText(faker.finance().creditCard(CreditCardType.MASTERCARD));
-        for(String crypto : CustomerDBController.allcrypto()){
-            System.out.println(crypto);
-            wording.getItems().add(crypto);
-        }
+
+
     }
 
 

@@ -158,14 +158,25 @@ public class ViewController implements Initializable {
 
         
         boolean isRegistered = CustomerDBController.registerCustomer(name, firstname, email, phone, card_number, IBAN, password);
+        int idCustomer= CustomerDBController.getCustomerByEmail(email);
+        boolean succesNewAccount = CustomerDBController.createAccount(idCustomer);
 
         if(isRegistered){
-            System.out.println("User is registered");
-            try {
-                switchToConnexionView(event);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(succesNewAccount){
+                System.out.println("User is registered");
+                try {
+                    switchToConnexionView(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
+            else {
+                System.out.println("Account is not registered");
+                label_registration_failed.setVisible(true);
+            }
+
+
         }
         else{
             System.out.println("User is not registered");

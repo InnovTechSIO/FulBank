@@ -45,6 +45,44 @@ public class CustomerDBController {
         return customers.get(0);
     }
 
+    public static int getCustomerByEmail(String email) {
+        int id = 0;
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM customer WHERE email = ?");
+            stmtQuery.setString(1, email);
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if(resultSet.next()) {
+                do {
+                    id = resultSet.getInt("idClient");
+                } while(resultSet.next());
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public static boolean createAccount(int idClient){
+        try {
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("INSERT INTO Account (Amount, creation_date, modification_date,deletion_date,idCategory,idClient) VALUES (?, ?, ?,?, ?, ?)");
+            stmtQuery.setFloat(1, 0);
+            stmtQuery.setDate(2, new Date(System.currentTimeMillis()));
+            stmtQuery.setDate(3, new Date(System.currentTimeMillis()));
+            stmtQuery.setDate(4, null);
+            stmtQuery.setInt(5, 2);
+            stmtQuery.setInt(6, idClient);
+            stmtQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+
+    }
+
 
     // Retourne un booléen qui dit si l'utilisateur est connecté
     public static boolean checkUser(String username, String password) {
