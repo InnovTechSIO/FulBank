@@ -54,6 +54,7 @@ public class HistoryViewController extends ViewController implements Initializab
         List<Transaction> allTransactionadd = new ArrayList<>();
 
         for(Integer idAccount : allIdAccount){
+
             allTransactionadd.addAll(HistoryDBController.getAllTransactionsByAccountAdd(idAccount));
             allTransactionSubstract.addAll(HistoryDBController.getAllTransactionsByAccountSubstract(idAccount));
         }
@@ -85,7 +86,7 @@ public class HistoryViewController extends ViewController implements Initializab
 
             }
             else{
-                int idAccount = AccountDBController.getIdAccountByCategoryName(newValue);
+                int idAccount = AccountDBController.getIdAccountByCategoryName(newValue,idCustomer);
 
                 allTransactionadd.addAll(HistoryDBController.getAllTransactionsByAccountAddByCategorie(idAccount, newValue));
                 allTransactionSubstract.addAll(HistoryDBController.getAllTransactionsByAccountSubstractByCategorie(idAccount, newValue));

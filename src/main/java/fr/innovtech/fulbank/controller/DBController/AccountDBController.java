@@ -268,14 +268,15 @@ public class AccountDBController {
         return low_ceiling;
     }
 
-    public static int getIdAccountByCategoryName(String name){
+    public static int getIdAccountByCategoryName(String name,int idCustomer){
         int id = 0;
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select A.number\n" +
                     "from Category C \n" +
                     "join Account A on C.idCategory = A.idCategory" +
-                    " where C.wording like ?;");
+                    " where C.wording like ? AND A.idClient=?;");
             stmtQuery.setString(1, name);
+            stmtQuery.setInt(2, idCustomer);
             ResultSet resultSet = stmtQuery.executeQuery();
 
             if (resultSet.next()) {
