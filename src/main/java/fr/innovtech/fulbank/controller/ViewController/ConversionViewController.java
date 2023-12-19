@@ -5,6 +5,7 @@ import fr.innovtech.fulbank.controller.DBController.AccountDBController;
 import fr.innovtech.fulbank.controller.DBController.CategorieDBController;
 import fr.innovtech.fulbank.controller.DBController.CryptoDBController;
 import fr.innovtech.fulbank.controller.DBController.CustomerDBController;
+import fr.innovtech.fulbank.entities.Account;
 import fr.innovtech.fulbank.entities.Category;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,14 +70,26 @@ public class ConversionViewController extends MainViewController implements Init
         bt_validate.setVisible(true);
     }
 
+    /* fonction du bouton validation de la conversion à voir dans la v2 (le bouton existe déjà)
     public void validate(){
-        AccountDBController.convertCrypto(parseDouble(txt_value2.getText()), CustomerDBController.connectedCustomer.get_id());
-        AccountDBController.AddAmount(parseFloat(txt_value2.getText()), CustomerDBController.connectedCustomer.get_id(),"courant",AccountDBController.getceiling_higher("courant"))
-    }
+        int idCustomer = CustomerDBController.connectedCustomer.get_id();
+        AccountDBController.convertCrypto(parseDouble(txt_value2.getText()), idCustomer);
+        PaymentViewController paymentViewController = new PaymentViewController();
+
+        for (Account anAccount : AccountDBController.getAccountByIdCustomer(idCustomer)){
+            System.out.println("avant : " + anAccount.get_amount());
+            if (anAccount.get_category().get_wording().equals("Individuel")){
+                anAccount.set_amount((float)1000.0);
+                System.out.println(anAccount.get_amount());
+            }
+            System.out.println("Apres : " + anAccount.get_amount());
+        }
+    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showCbbox();
+
     }
 
 }

@@ -246,7 +246,32 @@ public class AccountDBController {
         }
     }
 
-    
+    /* Récupère le compte courant d'un client
+    public static Account getAccountCourant(int idCustomer){
+        try{
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("select * from Account where idClient = ?");
+
+            stmtQuery.setInt(1,idCustomer);
+
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            if (resultSet.next()){
+                int number = resultSet.getInt("number");
+                Float amount = resultSet.getFloat("Amount");
+                Date creationDate = resultSet.getDate("creation_date");
+                Date updateDate = resultSet.getDate("modification_date");
+                Date deletionDate = resultSet.getDate("deletion_date");
+                Customer customer = CustomerDBController.getCustomerById(resultSet.getInt("idClient"));
+                Category category = CategorieDBController.getCategoryById(resultSet.getInt("idCategory"));
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return
+    }*/
+
+
 
 
 

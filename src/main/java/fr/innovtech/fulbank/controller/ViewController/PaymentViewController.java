@@ -111,7 +111,7 @@ public class PaymentViewController extends ViewController implements Initializab
         float amount = parseFloat(txt_montant.getCharacters().toString().replaceAll(",","."));
         ArrayList<String> accounts = AccountDBController.getAllAccountsNameByCustomer(idCustomer);
         if (!accounts.contains(beneficiary)){
-            accountAdd = "courant";
+            accountAdd = "Individuel";
 
         }
         else {
