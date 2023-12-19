@@ -19,7 +19,7 @@ public class CategorieDBController {
 
     // Getter de catégorie
     public static Category getCategoryById(int id) {
-        ArrayList<Category> categories = new ArrayList<>();
+        Category categorie = new Category(1, "Compte courant", 0.0f, 0.0f, 0.0f, 0.0f, "EUR", null, null);
 
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Category WHERE idCategory = ?");
@@ -38,15 +38,22 @@ public class CategorieDBController {
                     Crypto crypto = CryptoDBController.getCrypto(resultSet.getInt("number"));
                     Type type = TypeDBController.getType(resultSet.getInt("idType"));
 
-                    Category category = new Category(idcategory, wording, account_fees, ceiling_high, low_ceiling, interest_rate, currency_change, crypto, type);
-                    categories.add(category);
+                    categorie.set_account_fees(account_fees);
+                    categorie.set_ceiling_high(ceiling_high);
+                    categorie.set_low_ceiling(low_ceiling);
+                    categorie.set_interest(interest_rate);
+                    categorie.set_currency(currency_change);
+                    categorie.set_crypto(crypto);
+                    categorie.set_wording(wording);
+
+                    categorie.set_type(type);
                 } while(resultSet.next());
             }
 
         } catch(SQLException e) {
             e.printStackTrace();
         }
-        return categories.get(0);
+        return categorie;
     }
 
     // Récupère une liste de compte avec en paramètre l'id d'un client
@@ -96,7 +103,7 @@ public class CategorieDBController {
             currency = resultSet.getString("currency");
         }
         catch (SQLException e) {
-            throw new RuntimeException(e);
+
         }
 
         return currency;

@@ -17,7 +17,7 @@ public class CryptoDBController {
 
     // Getter de crypto
     public static Crypto getCrypto(int id) {
-        Crypto crypto = new Crypto(0,"","");
+        Crypto crypto = new Crypto(1,"", "");
 
         try {
             PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT * FROM Crypto WHERE number = ?");
@@ -30,9 +30,9 @@ public class CryptoDBController {
                     String wording = resultSet.getString("wording");
                     String libelle = resultSet.getString("libelle");
 
-                    crypto.setNumber(number);
-                    crypto.setLibelle(wording);
                     crypto.setLibelle(libelle);
+                    crypto.setWording(wording);
+                    crypto.setNumber(number);
 
                 } while(resultSet.next());
             }

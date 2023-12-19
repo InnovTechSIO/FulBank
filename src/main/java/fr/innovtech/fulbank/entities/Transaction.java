@@ -9,17 +9,19 @@ public class Transaction {
     private Date _datetransaction;
     private Float _amount;
 
-    private Account _account;
+    private Account _accountsubstract;
+    private Account _accountadd;
 
     private Transactiontype _transactiontype;
 
     private  DAB _dab;
 
-    public Transaction(int _idtransaction, Date _datetransaction, Float _amount, Account _account, Transactiontype _transactiontype, DAB _dab) {
+    public Transaction(int _idtransaction, Date _datetransaction, Float _amount, Account _accountsubstract, Account _accountadd, Transactiontype _transactiontype, DAB _dab) {
         this._idtransaction = _idtransaction;
         this._datetransaction = _datetransaction;
         this._amount = _amount;
-        this._account = _account;
+        this._accountsubstract = _accountsubstract;
+        this._accountadd = _accountadd;
         this._transactiontype = _transactiontype;
         this._dab = _dab;
     }
@@ -36,8 +38,12 @@ public class Transaction {
         return _amount;
     }
 
-    public Account get_account() {
-        return _account;
+    public Account get_accountsubstract() {
+        return _accountsubstract;
+    }
+
+    public Account get_accountadd() {
+        return _accountadd;
     }
 
     public Transactiontype get_transactiontype() {
@@ -60,8 +66,12 @@ public class Transaction {
         this._amount = _amount;
     }
 
-    public void set_account(Account _account) {
-        this._account = _account;
+    public void set_accountsubstract(Account _accountsubstract) {
+        this._accountsubstract = _accountsubstract;
+    }
+
+    public void set_accountadd(Account _accountadd) {
+        this._accountadd = _accountadd;
     }
 
     public void set_transactiontype(Transactiontype _transactiontype) {
@@ -89,7 +99,8 @@ public class Transaction {
                 "_idtransaction=" + _idtransaction +
                 ", _datetransaction=" + _datetransaction +
                 ", _amount=" + _amount +
-                ", _account=" + _account +
+                ", _accountsubstract=" + _accountsubstract +
+                ", _accountadd=" + _accountadd +
                 ", _transactiontype=" + _transactiontype +
                 ", _dab=" + _dab +
                 '}';

@@ -26,7 +26,7 @@
             <Font size="40.0" />
          </font>
       </Button>
-      <Button layoutX="50.0" layoutY="650.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="291.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Historique" textAlignment="CENTER">
+      <Button fx:id="historyButton"  layoutX="50.0" layoutY="650.0" mnemonicParsing="false" onMouseClicked="#switchHistory" prefHeight="84.0" prefWidth="291.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Historique" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
