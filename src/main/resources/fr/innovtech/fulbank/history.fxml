@@ -2,7 +2,6 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -37,8 +36,7 @@
       </Label>
       <Line endX="861.0" layoutX="109.0" layoutY="277.0" startX="-66.0" />
       <FontAwesomeIcon glyphName="LONG_ARROW_LEFT" layoutX="42.0" layoutY="117.0" onMouseClicked="#switchSceneAccount" size="10em" />
-      <ComboBox fx:id="cbx_choiceAccount" layoutX="1116.0" layoutY="485.0" onMouseClicked="#showCbxChoiceAccount" prefHeight="73.0" prefWidth="224.0" />
+      <ComboBox fx:id="cbx_choiceAccount" layoutX="1116.0" layoutY="485.0"  prefHeight="73.0" prefWidth="224.0" />
       <ListView fx:id="historyListView" layoutX="43.0" layoutY="299.0" prefHeight="654.0" prefWidth="711.0" />
-      <Button fx:id="btn_TestHistory" layoutX="1116.0" layoutY="698.0" mnemonicParsing="false" onMouseClicked="#Test" prefHeight="73.0" prefWidth="127.0" text="Button" />
    </children>
 </AnchorPane>

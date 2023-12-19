@@ -11,6 +11,7 @@ import fr.innovtech.fulbank.elements.HistoryCardCell;
 import fr.innovtech.fulbank.entities.Account;
 import fr.innovtech.fulbank.entities.Transaction;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,26 +35,18 @@ public class HistoryViewController extends ViewController implements Initializab
     Button btn_TestHistory;
 
 
-    @FXML
-    protected void showCbxChoiceAccount() {
-
-    }
-
-    @FXML
-    protected void Test(){
 
 
-
-
-
-
-    }
 
     @Override
     public void initialize(URL var1, ResourceBundle var2) {
+        historyListView.setStyle("-fx-background-color: #80e2ec;");
         cbx_choiceAccount.getItems().clear();
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
+        cbx_choiceAccount.getItems().add("all");
         cbx_choiceAccount.getItems().addAll(CategorieDBController.getCategoryByCustomer(idCustomer));
+        cbx_choiceAccount.getSelectionModel().selectFirst();
+
 
         List<Integer> allIdAccount = HistoryDBController.getAllIdAccountsByCustomer(idCustomer);
         List<Transaction> allTransaction = new ArrayList<>();
@@ -72,31 +65,48 @@ public class HistoryViewController extends ViewController implements Initializab
 
 
         cbx_choiceAccount.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            // a revoir pour reset la listview
 
+            historyListView.getItems().clear();
+            historyListView.refresh();
 
             allTransaction.clear();
             allTransactionSubstract.clear();
             allTransactionadd.clear();
-            historyListView.getItems().clear();
+            if(newValue.equals("all")){
+                for(Integer idAccount : allIdAccount){
+                    allTransactionadd.addAll(HistoryDBController.getAllTransactionsByAccountAdd(idAccount));
+                    allTransactionSubstract.addAll(HistoryDBController.getAllTransactionsByAccountSubstract(idAccount));
+                }
 
+                allTransaction.addAll(allTransactionadd);
+                allTransaction.addAll(allTransactionSubstract);
 
-            int idAccount = AccountDBController.getIdAccountByCategoryName(newValue);
+                setListView(historyListView, allTransactionadd, allTransactionSubstract);
+
+            }
+            else{
+                int idAccount = AccountDBController.getIdAccountByCategoryName(newValue);
 
                 allTransactionadd.addAll(HistoryDBController.getAllTransactionsByAccountAddByCategorie(idAccount, newValue));
                 allTransactionSubstract.addAll(HistoryDBController.getAllTransactionsByAccountSubstractByCategorie(idAccount, newValue));
 
+                System.out.println("separation");
 
-            System.out.println(allTransactionadd);
-            System.out.println(allTransactionSubstract);
 
-            if(allTransactionSubstract.isEmpty()){
-                changeListView(historyListView, allTransactionadd, allTransactionSubstract,false);
+
+                if(allTransactionSubstract.isEmpty()){
+                    changeListView(historyListView, allTransactionadd, allTransactionSubstract,false);
+
+                }
+                else{
+                    changeListView(historyListView, allTransactionadd, allTransactionSubstract,true);
+                }
+
 
             }
-            else{
-                changeListView(historyListView, allTransactionadd, allTransactionSubstract,true);
-            }
+
+
+
 
 
 
@@ -111,7 +121,6 @@ public class HistoryViewController extends ViewController implements Initializab
 
 
         List<HistoryCard> historyCards = new ArrayList<>();
-
 
 
 
@@ -166,6 +175,7 @@ public class HistoryViewController extends ViewController implements Initializab
 
         List<HistoryCard> historyCards = new ArrayList<>();
 
+
         if(isSubstract){
             for(Transaction transaction : allTransactionSubstract) {
 
@@ -183,8 +193,7 @@ public class HistoryViewController extends ViewController implements Initializab
 
                 HistoryCard historyCard = new HistoryCard(idTransaction, amount, accountsubstract.get_category().get_wording(),customerNameSubstract, accountadd.get_category().get_wording(),customerNameAdd, dateTransaction, idAccountSubstract, true);
                 historyCards.add(historyCard);
-                historyListView.setItems(FXCollections.observableList(historyCards));
-                historyListView.setCellFactory(param -> new HistoryCardCell());
+
 
             }
 
@@ -192,6 +201,7 @@ public class HistoryViewController extends ViewController implements Initializab
 
         }
         else {
+
             for(Transaction transaction : allTransactionadd) {
 
                 int idTransaction = transaction.get_idtransaction();
@@ -208,12 +218,14 @@ public class HistoryViewController extends ViewController implements Initializab
 
                 HistoryCard historyCard = new HistoryCard(idTransaction, amount, accountsubstract.get_category().get_wording(),customerNameSubstract, accountadd.get_category().get_wording(),customerNameAdd, dateTransaction, idAccountSubstract, false);
                 historyCards.add(historyCard);
-                historyListView.setItems(FXCollections.observableList(historyCards));
-                historyListView.setCellFactory(param -> new HistoryCardCell());
+
 
             }
 
         }
+        historyListView.setItems(FXCollections.observableList(historyCards));
+        historyListView.setCellFactory(param -> new HistoryCardCell());
+
 
 
 

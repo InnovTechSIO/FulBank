@@ -28,7 +28,7 @@ public class HistoryCardCell extends ListCell<HistoryCard> {
         accountAddLabel = new Label();
         dateTransactionLabel = new Label();
 
-        setStyle("-fx-background-color: #80e2ec; -fx-border-color: #80e2ec");
+        setStyle("-fx-background-color: #80e2ec; -fx-border-color: #80e2ec;");
         textLayout.getChildren().addAll(amountLabel, accountSubstractLabel,accountAddLabel, dateTransactionLabel);
         cardLayout.getChildren().addAll(amountLabel, textLayout);
 
@@ -46,24 +46,29 @@ public class HistoryCardCell extends ListCell<HistoryCard> {
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
+            setStyle("-fx-background-color: #80e2ec;");
+
+
+
         } else {
             if(item.isSubstract()){
-                amountLabel.setText(String.valueOf("-"+item.getAmount()));
+                amountLabel.setText("-" + item.getAmount());
                     amountLabel.setStyle("-fx-text-fill: red");
 
             }
             else{
-                amountLabel.setText(String.valueOf("+"+item.getAmount()));
+                amountLabel.setText("+" + item.getAmount());
                 amountLabel.setStyle("-fx-text-fill: green");
             }
 
-            accountSubstractLabel.setText(String.valueOf("De : "+ item.getCustomerNameSubstract() +"avec son compte : "+item.getAccountSubstract()));
-            accountAddLabel.setText(String.valueOf("Vers : "+item.getCustomerNameAdd()  + "sur le compte : " + item.getAccountAdd()));
+            accountSubstractLabel.setText("De : " + item.getCustomerNameSubstract() + "avec son compte : " + item.getAccountSubstract());
+            accountAddLabel.setText("Vers : " + item.getCustomerNameAdd() + "sur le compte : " + item.getAccountAdd());
             dateTransactionLabel.setText(item.getDateTransaction());
 
 
             setStyle("-fx-background-color: " + (getIndex() % 2 == 0 ? "#80e2ec;" : "#6ac3d2; -fx-border-color: #272727; -fx-border-width: 1px;"));
             setGraphic(cardLayout);
+            System.out.println(item.getAmount());
         }
     }
 }
