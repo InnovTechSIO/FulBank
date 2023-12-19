@@ -55,4 +55,23 @@ public class CryptoDBController {
             e.printStackTrace();
         }
     }
+
+    public static ArrayList<String> getAllCryptoNames(){
+        ArrayList<String> allCryptos = new ArrayList<>();
+
+        try{
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement("SELECT wording FROM Crypto");
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            while(resultSet.next()){
+                String wording = resultSet.getString("wording");
+
+                allCryptos.add(wording);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return allCryptos;
+    }
+
 }

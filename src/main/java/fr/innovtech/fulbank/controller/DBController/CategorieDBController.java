@@ -101,4 +101,25 @@ public class CategorieDBController {
 
         return currency;
     }
+
+    // Récupère toutes les devises
+    public static ArrayList<String> getAllCurrencies(){
+        ArrayList<String> allCurrencies = new ArrayList<String>();
+
+        try{
+            PreparedStatement stmtQuery = mySQLConnection.prepareStatement(" select Currency from Category");
+            ResultSet resultSet = stmtQuery.executeQuery();
+
+            while (resultSet.next()){
+                String currency = resultSet.getString("Currency");
+
+                if(!allCurrencies.contains(currency) && currency != null){
+                    allCurrencies.add(currency);
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return (allCurrencies);
+    }
 }

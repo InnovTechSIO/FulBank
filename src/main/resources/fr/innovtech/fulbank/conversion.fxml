@@ -34,21 +34,26 @@
          </font>
       </Label>
       <TextField fx:id="txt_value1" layoutX="486.0" layoutY="370.0" prefHeight="25.0" prefWidth="385.0" />
-      <FontAwesomeIcon fx:id="arrow" fill="#224399" glyphName="LONG_ARROW_LEFT" layoutX="657.0" layoutY="548.0" rotate="90.0" size="10em" text="" />
-      <FontAwesomeIcon fx:id="arrow" fill="#224399" glyphName="LONG_ARROW_LEFT" layoutX="720.0" layoutY="558.0" rotate="270.0" size="10em" text="" />
-      <TextField fx:id="txt_value2" layoutX="486.0" layoutY="640.0" prefHeight="25.0" prefWidth="385.0" />
-      <Label layoutX="518.0" layoutY="246.0" prefHeight="100.0" prefWidth="533.0" text="Convertir de l'argent en crypto">
+      <FontAwesomeIcon fx:id="arrow" fill="#224399" glyphName="LONG_ARROW_LEFT" layoutX="657.0" layoutY="548.0" onMouseClicked="#changeCbbox" rotate="90.0" size="10em" text="" />
+      <FontAwesomeIcon fx:id="arrow" fill="#224399" glyphName="LONG_ARROW_LEFT" layoutX="720.0" layoutY="558.0" onMouseClicked="#changeCbbox" rotate="270.0" size="10em" text="" />
+      <TextField fx:id="txt_value2" disable="true" layoutX="486.0" layoutY="640.0" prefHeight="25.0" prefWidth="385.0" />
+      <Label layoutX="612.0" layoutY="244.0" prefHeight="100.0" prefWidth="533.0" text="Test de conversion">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
       </Label>
       <Line endX="436.0" layoutX="593.0" layoutY="330.0" startX="-100.0" />
-      <Button fx:id="bt_conversion" layoutX="644.0" layoutY="703.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="209.0" text="Convertir">
+      <Button fx:id="bt_conversion" layoutX="644.0" layoutY="703.0" mnemonicParsing="false" onMouseClicked="#conversion" prefHeight="50.0" prefWidth="209.0" text="Convertir">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
       <ComboBox fx:id="cbbox1" layoutX="896.0" layoutY="370.0" prefWidth="150.0" />
       <ComboBox fx:id="cbbox2" layoutX="896.0" layoutY="640.0" prefWidth="150.0" />
+      <Button fx:id="bt_validate" layoutX="615.0" layoutY="864.0" mnemonicParsing="false" onMouseClicked="#validate" prefHeight="61.0" prefWidth="292.0" text="Valider la conversion" visible="false">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

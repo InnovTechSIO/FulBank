@@ -229,6 +229,25 @@ public class AccountDBController {
         return low_ceiling;
     }
 
+    // Modifie le montant du compte crypto d'un utilisateur donné en paramètre
+    public static void convertCrypto(double amount, int idCustomer){
+        try{
+            PreparedStatement stmtUpdate = mySQLConnection.prepareStatement("update Account\n" +
+                                                                                "set Amount = Amount + ?\n" +
+                                                                                "where idClient = ?\n" +
+                                                                                "and idCategory = (select idCategory from Category where wording like 'Crypto');");
+            stmtUpdate.setDouble(1, amount);
+            stmtUpdate.setInt(2, idCustomer);
+
+            stmtUpdate.executeUpdate();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    
+
 
 
 
