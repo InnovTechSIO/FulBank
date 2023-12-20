@@ -12,6 +12,8 @@ import java.util.List;
 public class CustomerDBController {
 
     private static final Connection mySQLConnection = MySQLDBGateway.getConnection();
+
+    public static Customer defaultCustomer = new Customer(0, "default", "default", "default", "default", "default", "default");
     public static Customer connectedCustomer = new Customer(0, "default", "default", "default", "default", "default", "default");
 
 
