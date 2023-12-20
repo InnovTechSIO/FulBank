@@ -51,9 +51,6 @@ public class PaymentViewController extends ViewController implements Initializab
     private Button bt_payment;
 
     @FXML
-    private ImageView plusButton;
-
-    @FXML
     private Label lbl_currency;
 
     @FXML
