@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.shape.Line?>
 <AnchorPane prefHeight="970.0" prefWidth="1569.0" style="-fx-background-color: #80C2EC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.innovtech.fulbank.controller.ViewController.MainViewController">
@@ -15,6 +16,9 @@
          <Cursor fx:constant="DEFAULT" />
       </cursor></Rectangle>
    <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80c2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: #80C2EC" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   <ImageView fx:id="deconnect" fitHeight="106.0" fitWidth="90.0" layoutX="1431.0" layoutY="35.0">
+   </ImageView>
+   <FontAwesomeIcon glyphName="SIGN_OUT" layoutX="1455.0" layoutY="97.0" onMouseClicked="logoutCustomer" selectionEnd="0" size="7em" />
    <children>
       <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#switchAccounts" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Mes comptes" textAlignment="CENTER">
          <font>
@@ -26,7 +30,7 @@
             <Font size="40.0" />
          </font>
       </Button>
-      <Button fx:id="historyButton"  layoutX="50.0" layoutY="650.0" mnemonicParsing="false" onMouseClicked="#switchHistory" prefHeight="84.0" prefWidth="291.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Historique" textAlignment="CENTER">
+      <Button fx:id="historyButton" layoutX="50.0" layoutY="650.0" mnemonicParsing="false" onMouseClicked="#switchHistory" prefHeight="84.0" prefWidth="291.0" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Historique" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
