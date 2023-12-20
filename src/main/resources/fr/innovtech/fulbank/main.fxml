@@ -16,9 +16,9 @@
          <Cursor fx:constant="DEFAULT" />
       </cursor></Rectangle>
    <Rectangle fx:id="topPane" arcHeight="5.0" arcWidth="5.0" fill="#80c2ec" height="50.0" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: #80C2EC" width="1569.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-   <ImageView fx:id="deconnect" fitHeight="106.0" fitWidth="90.0" layoutX="1431.0" layoutY="35.0">
+   <ImageView fx:id="deconnect" fitHeight="106.0" fitWidth="90.0" layoutX="1431.0" layoutY="35.0" onMouseClicked="#logoutCustomer">
    </ImageView>
-   <FontAwesomeIcon glyphName="SIGN_OUT" layoutX="1455.0" layoutY="97.0" onMouseClicked="logoutCustomer" selectionEnd="0" size="7em" />
+   <FontAwesomeIcon glyphName="SIGN_OUT" layoutX="1455.0" layoutY="97.0" onMouseClicked="#logoutCustomer" selectionEnd="0" size="7em" />
    <children>
       <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#switchAccounts" style="-fx-background-color: #16915A;" styleClass="buttonMain" stylesheets="@style.css" text="Mes comptes" textAlignment="CENTER">
          <font>
