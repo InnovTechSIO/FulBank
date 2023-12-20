@@ -67,14 +67,13 @@ public class ConversionViewController extends MainViewController implements Init
                 }
             }
         }
-        //bt_validate.setVisible(true);
+        bt_validate.setVisible(true);
     }
 
-    /* fonction du bouton validation de la conversion à voir dans la v2 (le bouton existe déjà)
+    //fonction du bouton validation de la conversion à voir dans la v2 (le bouton existe déjà)
     public void validate(){
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
         AccountDBController.convertCrypto(parseDouble(txt_value2.getText()), idCustomer);
-        PaymentViewController paymentViewController = new PaymentViewController();
 
         for (Account anAccount : AccountDBController.getAccountByIdCustomer(idCustomer)){
             System.out.println("avant : " + anAccount.get_amount());
@@ -84,7 +83,7 @@ public class ConversionViewController extends MainViewController implements Init
             }
             System.out.println("Apres : " + anAccount.get_amount());
         }
-    }*/
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
