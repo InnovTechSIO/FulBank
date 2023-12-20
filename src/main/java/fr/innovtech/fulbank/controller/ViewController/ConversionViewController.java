@@ -70,18 +70,18 @@ public class ConversionViewController extends MainViewController implements Init
         bt_validate.setVisible(true);
     }
 
-    //fonction du bouton validation de la conversion à voir dans la v2 (le bouton existe déjà)
+    /*fonction du bouton validation de la conversion à voir dans la v2 (le bouton existe déjà)
+    Pour l'instant la fonction passe à travers tous les comptes pour trouvers le compte individuel
+    était en train de de set le nouveau montant du compte individuel une fois trouvé (le set ne marche pas donc devra surement créer une nouvelle fonction AmountAdd()
+    * */
     public void validate(){
         int idCustomer = CustomerDBController.connectedCustomer.get_id();
         AccountDBController.convertCrypto(parseDouble(txt_value2.getText()), idCustomer);
 
         for (Account anAccount : AccountDBController.getAccountByIdCustomer(idCustomer)){
-            System.out.println("avant : " + anAccount.get_amount());
             if (anAccount.get_category().get_wording().equals("Individuel")){
                 anAccount.set_amount((float)1000.0);
-                System.out.println(anAccount.get_amount());
             }
-            System.out.println("Apres : " + anAccount.get_amount());
         }
     }
 
