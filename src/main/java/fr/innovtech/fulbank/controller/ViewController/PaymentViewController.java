@@ -147,8 +147,6 @@ public class PaymentViewController extends ViewController implements Initializab
         return label_error_payment.isVisible();
     }
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         active = true;
