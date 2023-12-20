@@ -113,6 +113,16 @@ public class ViewController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    protected void logoutCustomer(KeyEvent event) throws IOException {
+        CustomerDBController.connectedCustomer = CustomerDBController.defaultCustomer;
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
     @FXML
