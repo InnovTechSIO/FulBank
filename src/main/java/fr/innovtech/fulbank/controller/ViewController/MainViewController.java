@@ -65,7 +65,7 @@ public class MainViewController extends ViewController implements Initializable 
 
     @FXML
     protected void switchHistory(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("History.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("history.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1569, 970);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);

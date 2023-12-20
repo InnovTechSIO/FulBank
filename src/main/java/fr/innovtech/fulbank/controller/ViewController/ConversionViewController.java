@@ -67,7 +67,7 @@ public class ConversionViewController extends MainViewController implements Init
                 }
             }
         }
-        bt_validate.setVisible(true);
+        //bt_validate.setVisible(true);
     }
 
     /* fonction du bouton validation de la conversion à voir dans la v2 (le bouton existe déjà)
