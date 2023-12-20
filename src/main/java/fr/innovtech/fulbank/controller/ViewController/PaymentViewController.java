@@ -51,9 +51,6 @@ public class PaymentViewController extends ViewController implements Initializab
     private Button bt_payment;
 
     @FXML
-    private ImageView plusButton;
-
-    @FXML
     private Label lbl_currency;
 
     @FXML
@@ -149,8 +146,6 @@ public class PaymentViewController extends ViewController implements Initializab
     public boolean isvisibilelbl(){
         return label_error_payment.isVisible();
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
